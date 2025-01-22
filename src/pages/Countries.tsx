@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Country } from "../types/userTypes";
 import CountryCard from "../components/CountryCard";
+import Grid from "../components/Grid";
 
 
 
@@ -33,9 +34,7 @@ function Countries() {
       <h1>World Countries App</h1>
 
       <div>
-      {countriesList && countriesList.map((country) => {
-        return <CountryCard country={country} key={country.flag} />
-      })}
+      {countriesList && <Grid countriesList={countriesList}/>}
       </div>
 
       

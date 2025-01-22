@@ -8,7 +8,8 @@ type CountryCardProps = {
 
 function CountryCard({country}: CountryCardProps) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <div className='card-container'>
+      <Card className='mycard' sx={{ maxWidth: 345 }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -32,6 +33,8 @@ function CountryCard({country}: CountryCardProps) {
           </Button>
         </CardActions>
       </Card>
+    </div>
+    
   )
 }
 
