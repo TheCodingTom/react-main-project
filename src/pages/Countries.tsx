@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Country } from "../types/userTypes";
-import CountryCard from "../components/CountryCard";
 import Grid from "../components/Grid";
 
 

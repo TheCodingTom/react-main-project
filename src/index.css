@@ -33,10 +33,20 @@ h1 {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  height: 270px;
+  width: 300px;
+  
+
 }
+
+.mycard:hover {
+  transform: scale(1.05);
+}
+
+
 .card-container {
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
-gap: 10px;
+gap: 20px;
 }
