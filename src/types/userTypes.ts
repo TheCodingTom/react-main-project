@@ -7,7 +7,7 @@ export type Country = {
     independent: boolean;
     languages: object;
     maps: Map;
-    name: object;
+    name: Name;
     population: number;
     region: string;
     timezones: string[];
@@ -15,3 +15,5 @@ export type Country = {
   export type Map = { googleMaps: string; openStreetMaps: string };
 
   export type Currency = {name: string; symbol: string}
+
+  export type Name = {common: string; official: string}

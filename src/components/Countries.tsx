@@ -16,18 +16,18 @@ import { Country } from "../types/userTypes";
 const url = "https://restcountries.com/v3.1/all";
 
 function Countries() {
-  const [countries, setCountries] = useState([]);
+  const [countriesList, setCountriesList] = useState<Country[] | null>(null);
+  // const [countriesList, setCountriesList] = useState<Country[]>([] as Country[]); - another way
 
   const getCountries = () => {
     fetch(url)
       .then((response) => {
         return response.json();
       })
-      .then((result) => {
-        console.log(result);
-        const [data] = result as Country[];
-        console.log(data.maps.googleMaps);
-        setCountries(result);
+      .then((data) => {
+        console.log(data);
+        const countriesArray = data as Country[];
+        setCountriesList(countriesArray);
       });
   };
 
@@ -40,18 +40,18 @@ function Countries() {
       <h1>World Countries App</h1>
 
       <div>
-        {/* {countries && countries.map((country) => {
-          return  <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {country.name.common}
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-          
-        })} */}
+      {countriesList && countriesList.map((country) => {
+        return <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+         {country.name.common}
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'white' }}>
+          {country.flag}
+      
+      
+        </Typography>
+      </CardContent>
+      })}
       </div>
 
       <div>
