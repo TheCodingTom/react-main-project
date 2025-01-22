@@ -1,8 +1,10 @@
-import React from 'react'
+// import React from 'react'
+
+import { useEffect } from "react";
 
 function Countries() {
 
-  const getData = () => {
+  const getCountries = () => {
     fetch("https://restcountries.com/v3.1/all").then((response) => {
       return response.json()
     }).then((result) => {
@@ -10,7 +12,12 @@ function Countries() {
       
     })
   }
-  getData()
+
+  useEffect(() => {
+    getCountries()
+  }, [])
+  
+ 
   return (
     <div>
       <h1>World Countries App</h1>
