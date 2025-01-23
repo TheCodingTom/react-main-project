@@ -13,35 +13,16 @@ function Countries() {
 
   const [userSearch, setUserSearch] = useState("");
 
-  // const getCountries = () => {
-  //   fetch(url)
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //       const countriesArray = data as Country[];
-  //       setCountriesList(countriesArray);
-  //     });
-  // };
-
-  const getCountriesAsync = async () => {
+  const getCountries = async () => {
     try {
       const response = await fetch(url);
       const result = await response.json();
-      return result
+      console.log(result);
+      setCountriesList(result);
     } catch (error) {
       console.log(error);
     }
-   
   };
-
-  const getResults = async () => {
-    const countries = await getCountriesAsync()
-    console.log(countries);
-    setCountriesList(countries)
-  }
-
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
@@ -53,7 +34,7 @@ function Countries() {
   });
 
   useEffect(() => {
-    getResults()
+    getCountries();
   }, []);
 
   return (
