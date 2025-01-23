@@ -20,12 +20,11 @@ function Countries() {
       console.log(result);
       setCountriesList(result);
     } catch (error) {
-      console.log(error);
+      console.log("error in the fetch:", error);
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setUserSearch(e.target.value);
   };
 
