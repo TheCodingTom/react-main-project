@@ -1,13 +1,19 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type SearchProps = {
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-function Search({}: Props) {
+function Search({ handleInputChange }: SearchProps) {
   return (
     <div>
-        <input type="text" placeholder='type something here' />
+      <input
+        type="text"
+        onChange={handleInputChange}
+        placeholder="type something here"
+      />
     </div>
-  )
+  );
 }
 
-export default Search
+export default Search;
