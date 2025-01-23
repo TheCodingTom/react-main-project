@@ -13,15 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
+/* 
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
+} */
 
 h1 {
   font-size: 3.2em;
@@ -35,18 +34,16 @@ h1 {
   text-align: center;
   height: 270px;
   width: 300px;
-  
-
 }
 
 .mycard:hover {
   transform: scale(1.05);
 }
 
-
 .card-container {
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-gap: 20px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
 }

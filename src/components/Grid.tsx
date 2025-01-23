@@ -7,7 +7,7 @@ type GridProps = {
     countriesList: Country[]
 };
 
-const Grid = ({countriesList}: GridProps) => {
+const Grid = ({countriesList}: GridProps) => { // {countriesList} because of destructuring
   return (
     <div className="card-container">
         {countriesList &&

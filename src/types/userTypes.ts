@@ -8,13 +8,14 @@ export type Country = {
     flags: Flag;
     independent: boolean;
     landlocked: boolean;
-    // languages: object; how to use this?
+    languages: object;
     maps: Map;
     name: Name;
     population: number;
     region: string;
     startOfWeek : string;
     timezones: string[];
+    
   };
   export type Map = { googleMaps: string; openStreetMaps: string };
 

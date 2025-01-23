@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Country } from "../types/userTypes";
 import Grid from "../components/Grid";
+// import Search from "../components/Search";
 
 
 
@@ -24,6 +25,10 @@ function Countries() {
       });
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+  }
+
   useEffect(() => {
     getCountries();
   }, []);
@@ -32,7 +37,10 @@ function Countries() {
     <div>
       <h1>World Countries App</h1>
 
+      <input type="text" onChange={handleInputChange} />
+
       <div>
+        {/* <Search/> */}
       {countriesList && <Grid countriesList={countriesList}/>}
       </div>
 
