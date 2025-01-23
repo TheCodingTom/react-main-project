@@ -1,5 +1,6 @@
 import { Button, Card, CardActionArea, CardActions, CardMedia, Typography } from '@mui/material'
 import { Country } from "../types/userTypes";
+// import ModalCard from './ModalCard';
 
 
 type CountryCardProps = {
@@ -30,6 +31,8 @@ function CountryCard({country}: CountryCardProps) {
           <Button size="small" color="primary">
             Discover more
           </Button>
+
+          {/* <ModalCard/> */}
         </CardActions>
       </Card>
     </div>
