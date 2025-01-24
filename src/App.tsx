@@ -1,30 +1,18 @@
-import { createContext, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
 import Countries from "./pages/Countries";
-import ReactSwitch from "react-switch";
-
-export const ThemeContext = createContext(null);
 
 function App() {
-  const [theme, setTheme] = useState("light");
-
-  const handleThemeChange = () => {
-    setTheme((curr) => (curr === "light" ? "dark" : "light")
-      
-    )
-  }
-
   return (
-    <ThemeContext.Provider value={{theme, handleThemeChange}}>
-      <div className="App" id={theme}>
-      <div className="switch">
-          <ReactSwitch onChange={handleThemeChange} checked={theme === "dark"}/>
-        </div>
+    <div>
+      <BrowserRouter>
+      <Routes>
+
+      <Route path="/countries" element={<Countries/>} />
+      </Routes>
       
-        <Countries />
-        
-      </div>
-    </ThemeContext.Provider>
+      </BrowserRouter>
+    </div>
   );
 }
 
