@@ -1,17 +1,22 @@
 // import React from 'react'
+import { NavLink } from 'react-router'
 
-import { Link } from "react-router";
-
-type Props = {};
-
-const NavBar = (props: Props) => {
+function NavBar() {
   return (
-    <nav className="nav-bar">
-      <Link to={"/"}>Home</Link>
-      <Link to={"/countries"}>Countries</Link>
-      <Link to={"/contact"}>Contact</Link>
+    <div>
+        <nav className="nav-bar">
+      <NavLink to={"/"} style={({isActive}) => {
+        return isActive ? {backgroundColor:"white"} : {}
+      }} >Home</NavLink>
+      <NavLink to={"/countries"} style={({isActive}) => {
+        return isActive ? {backgroundColor:"white"} : {}
+      }} >Countries</NavLink>
+      <NavLink to={"/contact"} style={({isActive}) => {
+        return isActive ? {backgroundColor:"white"} : {}
+      }} >Contact</NavLink>
     </nav>
-  );
-};
+    </div>
+  )
+}
 
-export default NavBar;
+export default NavBar
