@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {useParams } from "react-router";
+import NoMatchPage from "./NoMatchPage";
 
 
 type Country = {
@@ -13,7 +14,7 @@ type Image = { height: number; source: string; width: number };
 
 function SingleCountry() {
   const { countryName } = useParams();
-  const [country, setCountry] = useState<Country[] | null>(null);
+  const [country, setCountry] = useState<Country | null>(null);
 
   const url =
     "https://en.wikipedia.org/api/rest_v1/page/summary/" + countryName;
@@ -35,8 +36,9 @@ function SingleCountry() {
 
   return (
     <div>
-      <h1>More info about this country: {countryName} </h1>
-      <h3>More info about this country: {country.title} </h3>
+      
+      <h2>More info about this country:  {country ? country.title : <NoMatchPage/>} </h2>
+      <h2>Description: {country ? country.extract : <NoMatchPage/>} </h2>
     
     </div>
   );
