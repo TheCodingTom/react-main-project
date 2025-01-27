@@ -39,7 +39,7 @@ function SingleCountry() {
       const result = await response.json();
       console.log(result);
       setCountryData(result[0]);
-      console.log(countryData);
+      
       
     
     } catch (error) {
@@ -55,10 +55,14 @@ function SingleCountry() {
   return (
     <div>
       <h1>{wikiData?.title}</h1>
+
+      <img src={countryData?.flags.png} alt="" />
       {/* <div className="detail-container"> */}
       <h2>Description: {wikiData?.extract} </h2>
       {/* <img src={wikiData?.originalimage.source} alt="flag or image of a country" /> */}
-      <h3>here: {countryData?.region} </h3>
+      <h3>Continent: {countryData?.region} </h3>
+
+
       
     </div>
   );
