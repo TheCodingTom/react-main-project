@@ -23,6 +23,15 @@ body {
   min-width: 320px;
   min-height: 100vh;
 } */
+
+.nav-bar {
+  display: flex ;
+  flex-direction: row;
+  gap: 10px;
+}
+
+
+
 .top-container {
   display: flex;
   flex-direction: column;
@@ -44,13 +53,15 @@ h1 {
   text-align: center;
   height: 270px;
   width: 300px;
+  outline: solid 1px grey;
+
 }
 
 .mycard:hover {
   transform: scale(1.05);
 }
 
-.card-container {
+.cards-container {
   justify-content: center;
   display: flex;
   flex-direction: row;
@@ -58,3 +69,17 @@ h1 {
   gap: 20px;
 }
 
+.card-container {
+  text-decoration: none !important;
+  
+ }
+
+ .card-image {
+  outline: 1px solid grey;
+ }
+
+ .card-title {
+  margin: auto;
+ height: 10%;
+ 
+ }

@@ -48,8 +48,3 @@
   background-color: black;
 }
 
-.nav-bar {
-  display: flex ;
-  flex-direction: row;
-  gap: 10px;
-}

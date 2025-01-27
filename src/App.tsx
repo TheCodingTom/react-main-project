@@ -27,9 +27,10 @@ function App() {
           <Route element={<Root />}>
             <Route index element={<Home />} />
             <Route path="/countries" element={<Countries />} />
-            <Route path="/countries/:countryName" element={<SingleCountry />} />
+            <Route path="/countries/:countryName" element={<SingleCountry />}/>
+              
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NoMatchPage />} />{" "}
+            <Route path="*" element={<NoMatchPage />} />
             {/* the "*" means that whenever the page shown is not /countries or /contact, it will show the 404page */}
           </Route>
         </Routes>

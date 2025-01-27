@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {useParams } from "react-router";
-import NoMatchPage from "./NoMatchPage";
 
 
 type Country = {
@@ -37,8 +36,9 @@ function SingleCountry() {
   return (
     <div>
       
-      <h2>More info about this country:  {country ? country.title : <NoMatchPage/>} </h2>
-      <h2>Description: {country ? country.extract : <NoMatchPage/>} </h2>
+      <h2>More info about this country:  {country?.title} </h2>
+      <h2>Description: {country?.extract} </h2>
+      <img src={country?.originalimage.source} alt="flag or image of a country" />
     
     </div>
   );

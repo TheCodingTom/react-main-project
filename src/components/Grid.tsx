@@ -10,7 +10,7 @@ type GridProps = {
 const Grid = ({ countriesList }: GridProps) => {
   // {countriesList} because of destructuring
   return (
-    <div className="card-container">
+    <div className="cards-container">
       {countriesList &&
         countriesList.map((country) => {
           return (

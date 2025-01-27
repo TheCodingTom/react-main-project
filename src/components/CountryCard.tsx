@@ -1,7 +1,5 @@
 import {
-  Button,
   Card,
-  CardActionArea,
   CardActions,
   CardMedia,
   // Tooltip,
@@ -17,35 +15,28 @@ type CountryCardProps = {
 
 function CountryCard({ country }: CountryCardProps) {
   return (
-    <div className="card-container">
-      <Card variant="outlined" className="mycard" sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            sx={{ width: 300, height: 190 }}
-            image={country.flags.svg}
-            alt={country.flags.alt}
-          />
-        </CardActionArea>
+    <Card className="mycard" sx={{ maxWidth: 345 }}>
+      <CardMedia
+        className="card-image"
+        component="img"
+        sx={{ width: 300, height: 190 }}
+        image={country.flags.svg}
+        alt={country.flags.alt}
+      />
 
-        <Typography gutterBottom variant="h5" component="div">
+      <div className="card-title">
+        <Typography gutterBottom variant="h5">
           {country.name.common}
         </Typography>
+      </div>
 
-        <CardActions>
-          <Button size="small" color="primary">
-            Discover more
-          </Button>
-
-          {/* <Tooltip title="Add" placement="top">
+      <CardActions>
+        {/* <Tooltip title="Add" placement="top">
             <Button>top</Button>
           
           </Tooltip> */}
-
-          {/* <ModalCard/> */}
-        </CardActions>
-      </Card>
-    </div>
+      </CardActions>
+    </Card>
   );
 }
 
