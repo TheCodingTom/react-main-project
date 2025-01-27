@@ -1,13 +1,5 @@
-import {
-  Card,
-  CardActions,
-  CardMedia,
-  // Tooltip,
-  Typography,
-} from "@mui/material";
+import { Button, Card, CardMedia, Typography } from "@mui/material";
 import { Country } from "../types/userTypes";
-// import InfoIcon from "@mui/icons-material/Info";
-// import ModalCard from './ModalCard';
 
 type CountryCardProps = {
   country: Country;
@@ -30,12 +22,7 @@ function CountryCard({ country }: CountryCardProps) {
         </Typography>
       </div>
 
-      <CardActions>
-        {/* <Tooltip title="Add" placement="top">
-            <Button>top</Button>
-          
-          </Tooltip> */}
-      </CardActions>
+      <Button>Discover more</Button>
     </Card>
   );
 }

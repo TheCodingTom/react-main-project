@@ -11,9 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
-
 
 /* 
 body {
@@ -25,12 +23,10 @@ body {
 } */
 
 .nav-bar {
-  display: flex ;
+  display: flex;
   flex-direction: row;
   gap: 10px;
 }
-
-
 
 .top-container {
   display: flex;
@@ -54,7 +50,6 @@ h1 {
   height: 270px;
   width: 300px;
   outline: solid 1px grey;
-
 }
 
 .mycard:hover {
@@ -71,15 +66,24 @@ h1 {
 
 .card-container {
   text-decoration: none !important;
-  
- }
+}
 
- .card-image {
+.card-image {
   outline: 1px solid grey;
- }
+}
 
- .card-title {
+.card-title {
   margin: auto;
- height: 10%;
- 
- }
+  height: 10%;
+}
+
+.navbar-titles {
+  display: flex;
+  display: row;
+  gap: 20px;
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
