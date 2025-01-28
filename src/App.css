@@ -58,3 +58,60 @@ h1 {
   line-height: 1.1;
  
 }
+
+.top-container {
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+
+.mycard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 270px;
+  width: 300px;
+  outline: solid 1px grey;
+}
+
+.mycard:hover {
+  transform: scale(1.05);
+}
+
+.cards-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-container {
+  text-decoration: none !important;
+}
+
+.card-image {
+  outline: 1px solid grey;
+}
+
+.card-title {
+  margin: auto;
+  height: 10%;
+}
+
+.navbar-titles {
+  display: flex;
+  display: row;
+  gap: 20px;
+  
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: row-reverse;
+}

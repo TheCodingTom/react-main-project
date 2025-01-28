@@ -28,7 +28,7 @@ body {
   gap: 10px;
 } */
 
-.top-container {
+/* .top-container {
   display: flex;
   flex-direction: column;
 
@@ -83,5 +83,5 @@ body {
 .detail-container {
   display: flex;
   flex-direction: row-reverse;
-}
+} */
 
