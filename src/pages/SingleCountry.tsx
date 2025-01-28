@@ -16,7 +16,7 @@ type PixabayResult = {
   hits: PixabayData[];
   total: number;
   totalHits: number;
-}
+};
 
 type PixabayData = {
   previewURL: string;
@@ -62,12 +62,9 @@ function SingleCountry() {
   const getPixabayData = async () => {
     try {
       const response = await fetch(pixabayUrl);
-      const result = await response.json() as PixabayResult
+      const result = (await response.json()) as PixabayResult;
       console.log(result);
-      setPixabayData(result.hits)
-      
-
-     
+      setPixabayData(result.hits);
     } catch (error) {
       console.log("error in the fetch:", error);
     }
@@ -92,9 +89,23 @@ function SingleCountry() {
 
       <p>Description: {wikiData?.extract} </p>
 
-      {pixabayData  && pixabayData.map(item => (
-        <img src={item.previewURL}/>
-      ))}
+      <h2>Gallery</h2>
+
+      <div className="gallery-container">
+      {pixabayData &&
+        pixabayData.map((item) => {
+          return (
+            <div>
+              <img className="gallery-pic" src={item.webformatURL} />
+            </div>
+          );
+        })}
+
+      </div>
+
+      
+
+      
     </div>
   );
 }

@@ -117,3 +117,24 @@ h1 {
   display: flex;
   flex-direction: row-reverse;
 }
+
+.gallery-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+
+}
+
+.gallery-pic:hover {
+  filter: none;
+  -webkit-filter: grayscale(0);
+
+}
+
+.gallery-pic {
+  filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}
+
