@@ -1,14 +1,14 @@
 // import React from 'react'
 
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router";
 
 function NavBar() {
   return (
     <div>
-      <Navbar bg="primary" data-bs-theme="dark">
+      {/* <Navbar bg="primary" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand href="#home">Countryside</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link>
               <NavLink
@@ -39,8 +39,11 @@ function NavBar() {
                 Contact
               </NavLink></Nav.Link>
           </Nav>
+          <Navbar.Text>
+            Signed in as: <a href="#login">Mark Otto</a>
+          </Navbar.Text>
         </Container>
-      </Navbar>
+      </Navbar> */}
 
      
 

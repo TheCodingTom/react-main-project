@@ -17,7 +17,7 @@ function SingleCountry() {
   const [countryData, setCountryData] = useState<Country | null>(null);
 
   const WikiUrl =
-    "https://en.wikipedia.org/api/rest_v1/page/summary/" + countryName;
+    "https://en.wikipedia.org/api/rest_v1/page/summary/" + countryName; // è, ì, ù fetching info
 
   const restCountriesUrl = "https://restcountries.com/v3.1/name/" + countryName;
 
