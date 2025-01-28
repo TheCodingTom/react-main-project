@@ -21,6 +21,8 @@ function SingleCountry() {
 
   const restCountriesUrl = "https://restcountries.com/v3.1/name/" + countryName;
 
+  const pixabayUrl = `https://pixabay.com/api/?key=48499188-4a0bbbaf9b13a582b53d5d561&q=${countryName}&image_type=photo&pretty=true`
+
   const getWikiData = async () => {
     try {
       const response = await fetch(WikiUrl);
@@ -39,9 +41,17 @@ function SingleCountry() {
       const result = await response.json();
       console.log(result);
       setCountryData(result[0]);
+    } catch (error) {
+      console.log("error in the fetch:", error);
+    }
+  };
+
+  const getPixabayData = async () => {
+    try {
+      const response = await fetch(pixabayUrl);
+      const result = await response.json();
+      console.log(result);
       
-      
-    
     } catch (error) {
       console.log("error in the fetch:", error);
     }
@@ -50,6 +60,7 @@ function SingleCountry() {
   useEffect(() => {
     getWikiData();
     getCountryData();
+    getPixabayData()
   }, []);
 
   return (
