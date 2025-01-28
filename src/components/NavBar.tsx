@@ -4,7 +4,7 @@ import {
   AppBar,
   Box,
   Button,
-  IconButton,
+
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -12,42 +12,42 @@ import {
 import { NavLink } from "react-router";
 
 function NavBar() {
+
+
+  const myStyle = {
+    color: "black",
+    backgroundColor: "white",
+  };
   return (
     <nav>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar style={myStyle} className="nav-color" position="static">
           <Toolbar>
-            <IconButton
+            {/* <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
             >
-              {/* <MenuIcon /> */}
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <NavLink
+              <MenuIcon />
+            </IconButton> */}
+            <Typography className="navbar-titles" sx={{ flexGrow: 1 }}>
+              <NavLink 
+              style={{ textDecoration: 'none', color:"black"}}
                 to={"/"}
-                style={({ isActive }) => {
-                  return isActive ? { backgroundColor: "white" } : {};
-                }}
               >
                 Home
               </NavLink>
               <NavLink
                 to={"/countries"}
-                style={({ isActive }) => {
-                  return isActive ? { backgroundColor: "white" } : {};
-                }}
+                style={{ textDecoration: 'none', color:"black"}}
               >
                 Countries
               </NavLink>
               <NavLink
                 to={"/contact"}
-                style={({ isActive }) => {
-                  return isActive ? { backgroundColor: "white" } : {};
-                }}
+                style={{ textDecoration: 'none', color:"black"}}
               >
                 Contact
               </NavLink>

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Country } from "../types/userTypes";
-import styles from "../styles/singlecountry.module.css"
-
+import styles from "../styles/singlecountry.module.css";
 
 type WikiData = {
   description: string;
@@ -13,25 +12,37 @@ type WikiData = {
 
 type Image = { height: number; source: string; width: number };
 
+type PixabayResult = {
+  hits: PixabayData[];
+  total: number;
+  totalHits: number;
+}
+
+type PixabayData = {
+  previewURL: string;
+  webformatURL: string;
+};
+
 function SingleCountry() {
   const { countryName } = useParams();
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
   const [countryData, setCountryData] = useState<Country | null>(null);
+
+  const [pixabayData, setPixabayData] = useState<PixabayData[] | null>(null);
 
   const WikiUrl =
     "https://en.wikipedia.org/api/rest_v1/page/summary/" + countryName; // è, ì, ù fetching info
 
   const restCountriesUrl = "https://restcountries.com/v3.1/name/" + countryName;
 
-  const pixabayUrl = `https://pixabay.com/api/?key=48499188-4a0bbbaf9b13a582b53d5d561&q=${countryName}&image_type=photo&pretty=true`
+  const pixabayUrl = `https://pixabay.com/api/?key=48499188-4a0bbbaf9b13a582b53d5d561&q=city+landscape+${countryName}&image_type=photo&pretty=true&per_page=10`;
 
   const getWikiData = async () => {
     try {
       const response = await fetch(WikiUrl);
-      const result = await response.json();
-      console.log(result);
+      const result = await response.json(); // add as plus type
+      // console.log(result);
       setWikiData(result);
-      
     } catch (error) {
       console.log("error in the fetch:", error);
     }
@@ -51,9 +62,12 @@ function SingleCountry() {
   const getPixabayData = async () => {
     try {
       const response = await fetch(pixabayUrl);
-      const result = await response.json();
+      const result = await response.json() as PixabayResult
       console.log(result);
+      setPixabayData(result.hits)
       
+
+     
     } catch (error) {
       console.log("error in the fetch:", error);
     }
@@ -62,23 +76,25 @@ function SingleCountry() {
   useEffect(() => {
     getWikiData();
     getCountryData();
-    getPixabayData()
+    getPixabayData();
   }, []);
 
   return (
     <div>
-
-
       <h1>{wikiData?.title}</h1>
       <div>
-      <img className={styles.image}src={countryData?.flags.png} alt="" />
-      
-      <p>Capital: {countryData?.capital} </p>
-      <p>Continent: {countryData?.region} </p>
-      <p>Population: {countryData?.population} </p>
+        <img className={styles.image} src={countryData?.flags.png} alt="" />
+
+        <p>Capital: {countryData?.capital} </p>
+        <p>Continent: {countryData?.region} </p>
+        <p>Population: {countryData?.population} </p>
       </div>
 
       <p>Description: {wikiData?.extract} </p>
+
+      {pixabayData  && pixabayData.map(item => (
+        <img src={item.previewURL}/>
+      ))}
     </div>
   );
 }
