@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Country } from "../types/userTypes";
+import styles from "../styles/singlecountry.module.css"
+
 
 type WikiData = {
   description: string;
@@ -65,16 +67,18 @@ function SingleCountry() {
 
   return (
     <div>
+
+
       <h1>{wikiData?.title}</h1>
-
-      <img src={countryData?.flags.png} alt="" />
-      {/* <div className="detail-container"> */}
-      <h2>Description: {wikiData?.extract} </h2>
-      {/* <img src={wikiData?.originalimage.source} alt="flag or image of a country" /> */}
-      <h3>Continent: {countryData?.region} </h3>
-
-
+      <div>
+      <img className={styles.image}src={countryData?.flags.png} alt="" />
       
+      <p>Capital: {countryData?.capital} </p>
+      <p>Continent: {countryData?.region} </p>
+      <p>Population: {countryData?.population} </p>
+      </div>
+
+      <p>Description: {wikiData?.extract} </p>
     </div>
   );
 }

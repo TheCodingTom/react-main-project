@@ -6,7 +6,9 @@ import Contact from "./pages/Contact";
 import NavBar from "./components/NavBar";
 import NoMatchPage from "./pages/NoMatchPage";
 import SingleCountry from "./pages/SingleCountry";
-// import Foo from "./pages/Foo";
+
+
+
 
 
 const Root = () => {
@@ -33,6 +35,7 @@ function App() {
             <Route path="/countries/:countryName" element={<SingleCountry />}/>
               
             <Route path="/contact" element={<Contact />} />
+            
             <Route path="*" element={<NoMatchPage />} />
             {/* the "*" means that whenever the page shown is not /countries or /contact, it will show the 404page */}
           </Route>
