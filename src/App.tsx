@@ -6,6 +6,8 @@ import Contact from "./pages/Contact";
 import NavBar from "./components/NavBar";
 import NoMatchPage from "./pages/NoMatchPage";
 import SingleCountry from "./pages/SingleCountry";
+// import Foo from "./pages/Foo";
+
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -27,6 +29,7 @@ function App() {
           <Route element={<Root />}>
             <Route index element={<Home />} />
             <Route path="/countries" element={<Countries />} />
+       
             <Route path="/countries/:countryName" element={<SingleCountry />}/>
               
             <Route path="/contact" element={<Contact />} />
