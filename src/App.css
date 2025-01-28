@@ -108,8 +108,10 @@ h1 {
   display: flex;
   display: row;
   gap: 20px;
-  
+  text-decoration: none;
 }
+
+
 
 .detail-container {
   display: flex;
