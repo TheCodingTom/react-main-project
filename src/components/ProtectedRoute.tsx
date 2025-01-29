@@ -1,6 +1,6 @@
 import { ReactNode, useContext } from "react"
 import { AuthContext } from "../context/AuthContext";
-import { isUserLogged } from "./utils/AuthUtility";
+import { isUserLogged } from "../utils/AuthUtility";
 
 
 type ProtectedRouteType = {

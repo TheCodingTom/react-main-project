@@ -8,6 +8,8 @@ import NoMatchPage from "./pages/NoMatchPage";
 import SingleCountry from "./pages/SingleCountry";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { ThemeContextProvider } from "./context/ThemeContext";
+
 
 
 
@@ -27,8 +29,9 @@ const Root = () => {
 function App() {
   return (
     <>
-    <AuthContextProvider>
-
+   
+   <ThemeContextProvider>
+   <AuthContextProvider>
     <BrowserRouter>
         <Routes>
           <Route path="/" />
@@ -47,9 +50,9 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-
-
     </AuthContextProvider>
+   </ThemeContextProvider>
+    
       
     </>
   );

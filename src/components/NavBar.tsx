@@ -1,24 +1,29 @@
 // import React from 'react'
 
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Switch, Toolbar, Typography } from "@mui/material";
 import { useContext } from "react";
 
 import { NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
+import { ThemeContext } from "../context/ThemeContext";
+
 
 
 function NavBar() {
 
   const {user,login,logout} = useContext(AuthContext)
-  
-  const myStyle = {
-    color: "black",
-    backgroundColor: "white",
-  };
+  // const {darkMode, toggleDarkMode} = useContext(ThemeContext)
+
+
+  // const myStyle = {
+  //   color: "black",
+  //   backgroundColor: "white",
+  // };
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
   return (
     <nav>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar style={myStyle} className="nav-color" position="static">
+        <AppBar className="navbar-style" position="static">
           <Toolbar>
             {/* <IconButton
               size="large"
@@ -53,8 +58,15 @@ function NavBar() {
           </Toolbar>
         </AppBar>
       </Box>
+      <div>
+       Theme:
+      <Switch  {...label} defaultChecked />
+
+      </div>
     </nav>
-  );
+
+    
+  )
 }
 
-export default NavBar;
+export default NavBar
