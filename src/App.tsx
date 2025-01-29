@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import NoMatchPage from "./pages/NoMatchPage";
 import SingleCountry from "./pages/SingleCountry";
 import { AuthContextProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 
@@ -35,7 +36,9 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/countries" element={<Countries />} />
        
-            <Route path="/countries/:countryName" element={<SingleCountry />}/>
+            <Route path="/countries/:countryName" element={<ProtectedRoute>
+              <SingleCountry />
+            </ProtectedRoute>}/>
               
             <Route path="/contact" element={<Contact />} />
             

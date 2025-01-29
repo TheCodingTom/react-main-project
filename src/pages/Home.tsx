@@ -1,11 +1,14 @@
 // import React from 'react'
 
-type Props = {}
+import { useContext } from "react"
+import { AuthContext } from "../context/AuthContext"
 
-const Home = (props: Props) => {
+const Home = () => {
+
+  const {user} = useContext(AuthContext)
   return (
     <div>
-        <h1>Hello, friend!</h1>
+        {user ? <h1>Welcome, {user.username}!</h1> : <h1>Welcome, friend!</h1>}
     </div>
   )
 }
