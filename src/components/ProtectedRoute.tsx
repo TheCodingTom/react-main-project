@@ -1,5 +1,6 @@
 import { ReactNode, useContext } from "react"
 import { AuthContext } from "../context/AuthContext";
+import { isUserLogged } from "./utils/AuthUtility";
 
 
 type ProtectedRouteType = {
@@ -9,7 +10,7 @@ type ProtectedRouteType = {
 function ProtectedRoute({children}:ProtectedRouteType) {
 
     const {user} = useContext(AuthContext) // useContext always inside function
-    const isAuth = user ? true : false
+    const isAuth = isUserLogged(user)
    
     
   return (
