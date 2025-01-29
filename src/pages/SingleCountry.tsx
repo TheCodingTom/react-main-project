@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { Country } from "../types/userTypes";
 import styles from "../styles/singlecountry.module.css";
 
+
 type WikiData = {
   description: string;
   extract: string;
@@ -79,6 +80,8 @@ function SingleCountry() {
   return (
     <div>
       <h1>{wikiData?.title}</h1>
+
+     
       <div>
         <img className={styles.image} src={countryData?.flags.png} alt="" />
 
@@ -102,6 +105,7 @@ function SingleCountry() {
         })}
 
       </div>
+
 
       
 
