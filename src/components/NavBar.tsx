@@ -1,18 +1,26 @@
 // import React from 'react'
 
-import {
-  AppBar,
-  Box,
-  Button,
-
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 
 import { NavLink } from "react-router";
+import { User } from "../types/customTypes";
+import { useState } from "react";
 
 function NavBar() {
+  const user1: User = {
+    username: "Thom",
+    email: "thom@test.com",
+  };
+  const [user, setUser] = useState<User | null>(null);
 
+  const login = () => {
+    setUser(user1)
+  }
+
+  const logout = () => {
+    setUser(null)
+  }
+  
 
   const myStyle = {
     color: "black",
@@ -33,26 +41,26 @@ function NavBar() {
               <MenuIcon />
             </IconButton> */}
             <Typography className="navbar-titles" sx={{ flexGrow: 1 }}>
-              <NavLink 
-              style={{ textDecoration: 'none', color:"black"}}
+              <NavLink
+                style={{ textDecoration: "none", color: "black" }}
                 to={"/"}
               >
                 Home
               </NavLink>
               <NavLink
                 to={"/countries"}
-                style={{ textDecoration: 'none', color:"black"}}
+                style={{ textDecoration: "none", color: "black" }}
               >
                 Countries
               </NavLink>
               <NavLink
                 to={"/contact"}
-                style={{ textDecoration: 'none', color:"black"}}
+                style={{ textDecoration: "none", color: "black" }}
               >
                 Contact
               </NavLink>
             </Typography>
-            <Button color="inherit">Login</Button>
+            {user ? <Button onClick={logout} color="inherit">Logout</Button> : <Button onClick={login} color="inherit">Login</Button> }
           </Toolbar>
         </AppBar>
       </Box>

@@ -1,5 +1,5 @@
 import { Button, Card, CardMedia, Typography } from "@mui/material";
-import { Country } from "../types/userTypes";
+import { Country } from "../types/customTypes";
 
 type CountryCardProps = {
   country: Country;

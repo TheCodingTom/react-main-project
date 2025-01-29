@@ -25,4 +25,9 @@ export type Country = {
 
   export type Flag = {alt: string; png: string; svg: string}
 
+  export type User = {
+    username: string;
+    email: string;
+  }
+
   

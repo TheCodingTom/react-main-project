@@ -1,7 +1,7 @@
 // import React from 'react'
 
 import { useEffect, useState } from "react";
-import { Country } from "../types/userTypes";
+import { Country } from "../types/customTypes";
 import Grid from "../components/Grid";
 import Search from "../components/Search";
 

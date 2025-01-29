@@ -1,6 +1,6 @@
 // import React from "react";
 import CountryCard from "./CountryCard";
-import { Country } from "../types/userTypes";
+import { Country } from "../types/customTypes";
 import { Link } from "react-router";
 
 type GridProps = {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Country } from "../types/userTypes";
+import { Country } from "../types/customTypes";
 import styles from "../styles/singlecountry.module.css";
 
 
@@ -99,7 +99,7 @@ function SingleCountry() {
         pixabayData.map((item) => {
           return (
             <div>
-              <img className="gallery-pic" src={item.webformatURL} />
+              <img className="gallery-pic" src={item.webformatURL} alt={"picture of" + {countryName}}/>
             </div>
           );
         })}
