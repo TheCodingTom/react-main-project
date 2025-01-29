@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import NavBar from "./components/NavBar";
 import NoMatchPage from "./pages/NoMatchPage";
 import SingleCountry from "./pages/SingleCountry";
+import { AuthContextProvider } from "./context/AuthContext";
 
 
 
@@ -25,7 +26,9 @@ const Root = () => {
 function App() {
   return (
     <>
-      <BrowserRouter>
+    <AuthContextProvider>
+
+    <BrowserRouter>
         <Routes>
           <Route path="/" />
           <Route element={<Root />}>
@@ -41,6 +44,10 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+
+
+    </AuthContextProvider>
+      
     </>
   );
 }

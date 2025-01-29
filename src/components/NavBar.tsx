@@ -1,27 +1,16 @@
 // import React from 'react'
 
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { useContext } from "react";
 
 import { NavLink } from "react-router";
-import { User } from "../types/customTypes";
-import { useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 
 function NavBar() {
-  const user1: User = {
-    username: "Thom",
-    email: "thom@test.com",
-  };
-  const [user, setUser] = useState<User | null>(null);
 
-  const login = () => {
-    setUser(user1)
-  }
-
-  const logout = () => {
-    setUser(null)
-  }
+  const {user,login,logout} = useContext(AuthContext)
   
-
   const myStyle = {
     color: "black",
     backgroundColor: "white",
