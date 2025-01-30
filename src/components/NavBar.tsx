@@ -53,6 +53,12 @@ function NavBar() {
               >
                 Contact
               </NavLink>
+              <NavLink
+                to={"/register"}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Register
+              </NavLink>
             </Typography>
             {user ? <Button onClick={logout} color="inherit">Logout</Button> : <Button onClick={login} color="inherit">Login</Button> }
           </Toolbar>

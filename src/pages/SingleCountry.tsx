@@ -43,7 +43,7 @@ function SingleCountry() {
     try {
       const response = await fetch(WikiUrl);
       const result = await response.json(); // add as plus type
-      // console.log(result);
+      console.log(result);
       setWikiData(result);
     } catch (error) {
       console.log("error in the fetch:", error);
