@@ -10,7 +10,7 @@ type AuthContextType = {
   user: User | null;
   login: () => void;
   logout: () => void;
-  register: (email:string, password:string) => Promise<void>
+  register: (email: string, password: string) => Promise<void>;
 };
 
 //6. create variable with context initial value
@@ -32,7 +32,8 @@ const contextInitialValue: AuthContextType = {
 
 import { createContext, ReactNode, useState } from "react";
 import { User } from "../types/customTypes";
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config/firebaseConfig";
 
 export const AuthContext = createContext<AuthContextType>(contextInitialValue);
 
@@ -47,9 +48,21 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
   const [user, setUser] = useState<User | null>(null);
 
-  const register = async (email:string ,password:string) => {
-    console.log("in auth: ", email,password);
-  }
+  const register = async (email: string, password: string) => {
+    console.log("in auth: ", email, password);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
 
   const login = () => {
     setUser(user1);
@@ -61,7 +74,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   //7. include elements you wanna share in provider property value
 
-  return <div>
-    <AuthContext.Provider value={{user,login,logout,register}}>{children}</AuthContext.Provider>
-  </div>
+  return (
+    <div>
+      <AuthContext.Provider value={{ user, login, logout, register }}>
+        {children}
+      </AuthContext.Provider>
+    </div>
+  );
 };

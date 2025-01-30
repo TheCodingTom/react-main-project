@@ -27,7 +27,7 @@ export type Country = {
 
   export type User = {
     username: string;
-    email: string;
+    email: string
   }
 
   
