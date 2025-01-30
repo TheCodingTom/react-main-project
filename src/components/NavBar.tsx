@@ -12,7 +12,7 @@ import { ThemeContext } from "../context/ThemeContext";
 function NavBar() {
 
   const {user,login,logout} = useContext(AuthContext)
-  // const {darkMode, toggleDarkMode} = useContext(ThemeContext)
+  const {toggleDarkMode} = useContext(ThemeContext)
 
 
   // const myStyle = {
@@ -60,7 +60,7 @@ function NavBar() {
       </Box>
       <div>
        Theme:
-      <Switch  {...label} defaultChecked />
+      <Switch onClick={toggleDarkMode} {...label} defaultChecked />
 
       </div>
     </nav>

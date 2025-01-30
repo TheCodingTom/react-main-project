@@ -8,12 +8,10 @@ import NoMatchPage from "./pages/NoMatchPage";
 import SingleCountry from "./pages/SingleCountry";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { ThemeContextProvider } from "./context/ThemeContext";
+import { ThemeContext, ThemeContextProvider } from "./context/ThemeContext";
 
-
-
-
-
+import { useContext } from "react";
+import Register from "./pages/Register";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -27,33 +25,39 @@ const Root = () => {
 };
 
 function App() {
+  const { darkMode } = useContext(ThemeContext);
   return (
     <>
-   
-   <ThemeContextProvider>
-   <AuthContextProvider>
-    <BrowserRouter>
-        <Routes>
-          <Route path="/" />
-          <Route element={<Root />}>
-            <Route index element={<Home />} />
-            <Route path="/countries" element={<Countries />} />
-       
-            <Route path="/countries/:countryName" element={<ProtectedRoute>
-              <SingleCountry />
-            </ProtectedRoute>}/>
-              
-            <Route path="/contact" element={<Contact />} />
-            
-            <Route path="*" element={<NoMatchPage />} />
-            {/* the "*" means that whenever the page shown is not /countries or /contact, it will show the 404page */}
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </AuthContextProvider>
-   </ThemeContextProvider>
-    
-      
+      <AuthContextProvider>
+        <ThemeContextProvider>
+          <div className={darkMode ? "dark-mode" : "light-mode"}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" />
+                <Route element={<Root />}>
+                  <Route index element={<Home />} />
+                  <Route path="/countries" element={<Countries />} />
+
+                  <Route
+                    path="/countries/:countryName"
+                    element={
+                      <ProtectedRoute>
+                        <SingleCountry />
+                      </ProtectedRoute>
+                    }
+                  />
+
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/register" element={<Register />} />
+
+                  <Route path="*" element={<NoMatchPage />} />
+                  {/* the "*" means that whenever the page shown is not /countries or /contact, it will show the 404page */}
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </div>
+        </ThemeContextProvider>
+      </AuthContextProvider>
     </>
   );
 }
