@@ -13,6 +13,7 @@ import { ThemeContext, ThemeContextProvider } from "./context/ThemeContext";
 import { useContext } from "react";
 import Register from "./pages/Register";
 import { app, auth } from "./config/firebaseConfig";
+import Login from "./pages/Login";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -50,7 +51,7 @@ function App() {
                     }
                   />
 
-                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
 
                   <Route path="*" element={<NoMatchPage />} />

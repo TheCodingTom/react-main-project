@@ -48,10 +48,10 @@ function NavBar() {
                 Countries
               </NavLink>
               <NavLink
-                to={"/contact"}
+                to={"/login"}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                Contact
+                Login
               </NavLink>
               <NavLink
                 to={"/register"}
