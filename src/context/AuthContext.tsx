@@ -38,7 +38,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   //4. create in (or move to) the provider all states/functions you wanna share
 
   const user1: User = {
-    username: "Thom",
+    username: "Geri",
     email: "thom@test.com",
   };
   const [user, setUser] = useState<User | null>(null);

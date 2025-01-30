@@ -20,6 +20,7 @@ type PixabayResult = {
 };
 
 type PixabayData = {
+  id: number;
   previewURL: string;
   webformatURL: string;
 };
@@ -98,7 +99,7 @@ function SingleCountry() {
       {pixabayData &&
         pixabayData.map((item) => {
           return (
-            <div>
+            <div key={item.id} >
               <img className="gallery-pic" src={item.webformatURL} alt={"picture of" + {countryName}}/>
             </div>
           );
