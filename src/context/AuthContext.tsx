@@ -10,6 +10,7 @@ type AuthContextType = {
   user: User | null;
   login: () => void;
   logout: () => void;
+  register: (email:string, password:string) => Promise<void>
 };
 
 //6. create variable with context initial value
@@ -20,6 +21,9 @@ const contextInitialValue: AuthContextType = {
     throw Error("context not initialised");
   },
   logout: () => {
+    throw Error("context not initialised");
+  },
+  register: () => {
     throw Error("context not initialised");
   },
 };
@@ -43,6 +47,10 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
   const [user, setUser] = useState<User | null>(null);
 
+  const register = async (email:string ,password:string) => {
+    console.log("in auth: ", email,password);
+  }
+
   const login = () => {
     setUser(user1);
   };
@@ -54,6 +62,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   //7. include elements you wanna share in provider property value
 
   return <div>
-    <AuthContext.Provider value={{user,login,logout}}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{user,login,logout,register}}>{children}</AuthContext.Provider>
   </div>
 };

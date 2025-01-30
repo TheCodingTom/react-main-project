@@ -12,6 +12,7 @@ import { ThemeContext, ThemeContextProvider } from "./context/ThemeContext";
 
 import { useContext } from "react";
 import Register from "./pages/Register";
+import { app, auth } from "./config/firebaseConfig";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -25,6 +26,8 @@ const Root = () => {
 };
 
 function App() {
+  // console.log(app);
+  console.log(auth);
   const { darkMode } = useContext(ThemeContext);
   return (
     <>
