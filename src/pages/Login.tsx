@@ -16,7 +16,7 @@ function Login() {
     setPassword(e.target.value)
   }
 
-  const handleRegisterSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+  const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(email,password);
   }
@@ -26,7 +26,7 @@ function Login() {
     <div>
       <h2>Login</h2>
       <div>
-        <form onSubmit={handleRegisterSubmit}>
+        <form onSubmit={handleLoginSubmit}>
           <div className="form-input">
             <TextField
               id="outlined-textarea"
