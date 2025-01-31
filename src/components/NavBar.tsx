@@ -1,78 +1,147 @@
 // import React from 'react'
 
-import { AppBar, Box, Button, Switch, Toolbar, Typography } from "@mui/material";
-import { useContext } from "react";
-
+import {
+  AppBar,
+  Box,
+  Button,
+  CssBaseline,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import { useContext, useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router";
-import { AuthContext } from "../context/AuthContext";
-import { ThemeContext } from "../context/ThemeContext";
-
-
+// import { AuthContext } from "../context/AuthContext";
+// import { ThemeContext } from "../context/ThemeContext";
 
 function NavBar() {
+  // const { user, login, logout } = useContext(AuthContext);
+  // const { toggleDarkMode } = useContext(ThemeContext);
 
-  const {user,login,logout} = useContext(AuthContext)
-  const {toggleDarkMode} = useContext(ThemeContext)
+  const drawerWidth = 240;
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
+
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
+        CIAO
+      </Typography>
+      <Divider />
+      <List>
+        <ListItem >
+          <NavLink style={{ textDecoration: "none", color: "black" }} to={"/"}>
+            Home
+          </NavLink>
+        </ListItem>
+        <ListItem >
+          <NavLink style={{ textDecoration: "none", color: "black" }} to={"/countries"}>
+            Countries
+          </NavLink>
+        </ListItem>
+        <ListItem >
+          <NavLink style={{ textDecoration: "none", color: "black" }} to={"/register"}>
+            Register
+          </NavLink>
+        </ListItem>
+        <ListItem >
+          <NavLink style={{ textDecoration: "none", color: "black" }} to={"/login"}>
+            Login
+          </NavLink>
+        </ListItem>
+      </List>
+    </Box>
+  );
 
 
-  // const myStyle = {
-  //   color: "black",
-  //   backgroundColor: "white",
-  // };
-  const label = { inputProps: { 'aria-label': 'Switch demo' } };
   return (
-    <nav>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar className="navbar-style" position="static">
+    <>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar component="nav">
           <Toolbar>
-            {/* <IconButton
-              size="large"
-              edge="start"
+            <IconButton
               color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
             >
               <MenuIcon />
-            </IconButton> */}
-            <Typography className="navbar-titles" sx={{ flexGrow: 1 }}>
-              <NavLink
-                style={{ textDecoration: "none", color: "black" }}
-                to={"/"}
-              >
-                Home
-              </NavLink>
-              <NavLink
-                to={"/countries"}
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                Countries
-              </NavLink>
-              <NavLink
-                to={"/login"}
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                Login
-              </NavLink>
-              <NavLink
-                to={"/register"}
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                Register
-              </NavLink>
+            </IconButton>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            >
+              MUI
             </Typography>
-            {user ? <Button onClick={logout} color="inherit">Log out</Button> : <Button color="inherit">Logged out</Button> }
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              <Button sx={{ color: "#fff" }}>
+                <NavLink
+                  style={{ textDecoration: "none", color: "black" }}
+                  to={"/"}
+                >
+                  Home
+                </NavLink>
+              </Button>
+              <Button sx={{ color: "#fff" }}>
+                <NavLink
+                  style={{ textDecoration: "none", color: "black" }}
+                  to={"/countries"}
+                >
+                  Countries
+                </NavLink>
+              </Button>
+              <Button sx={{ color: "#fff" }}>
+                <NavLink
+                  style={{ textDecoration: "none", color: "black" }}
+                  to={"/register"}
+                >
+                  Register
+                </NavLink>
+              </Button>
+              <Button sx={{ color: "#fff" }}>
+                <NavLink
+                  style={{ textDecoration: "none", color: "black" }}
+                  to={"/login"}
+                >
+                  Login
+                </NavLink>
+              </Button>
+            </Box>
           </Toolbar>
         </AppBar>
       </Box>
-      <div>
-       Theme:
-      <Switch onClick={toggleDarkMode} {...label} defaultChecked />
-
-      </div>
-    </nav>
-
-    
-  )
+      <nav>
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </nav>
+    </>
+  );
 }
 
-export default NavBar
+export default NavBar;
