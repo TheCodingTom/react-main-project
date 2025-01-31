@@ -60,7 +60,7 @@ function NavBar() {
                 Register
               </NavLink>
             </Typography>
-            {user ? <Button onClick={logout} color="inherit">Logged in</Button> : <Button onClick={login} color="inherit">Logged out</Button> }
+            {user ? <Button onClick={logout} color="inherit">Log out</Button> : <Button color="inherit">Logged out</Button> }
           </Toolbar>
         </AppBar>
       </Box>

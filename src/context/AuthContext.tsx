@@ -30,11 +30,13 @@ const contextInitialValue: AuthContextType = {
 
 //1. create and export the context
 
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { User } from "../types/customTypes";
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 
@@ -99,19 +101,52 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     //   const email = user.email
     //   const id = user.uid
 
-      // console.log("user logged in");
-      // console.log(user);
+    // console.log("user logged in");
+    // console.log(user);
     // } catch (err) {
     //   const error = err as Error;
     //   console.log(error.message);
     // }
   };
 
+  const checkUserStatus = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const email = user.email;
+        const id = user.uid;
+        console.log(user);
+        console.log("user logged in");
+        if (user && email) {
+          setUser({ email, id });
+        } else {
+          throw new Error("User info not available");
+        }
+        // ...
+      } else {
+        // User is signed out
+        console.log("User is logged out");
+        setUser(null)
+      }
+    });
+  };
+
   const logout = () => {
-    setUser(null);
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      setUser(null)
+    }).catch((error) => {
+      // An error happened.
+      throw new Error("Couldn't sign out the user")
+    });
   };
 
   //7. include elements you wanna share in provider property value
+
+  useEffect(() => {
+    checkUserStatus();
+  }, []);
 
   return (
     <div>
