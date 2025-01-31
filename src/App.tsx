@@ -12,7 +12,7 @@ import { ThemeContext, ThemeContextProvider } from "./context/ThemeContext";
 
 import { useContext } from "react";
 import Register from "./pages/Register";
-import { auth } from "./config/firebaseConfig";
+import { auth, db } from "./config/firebaseConfig";
 import Login from "./pages/Login";
 
 const Root = () => {
@@ -28,13 +28,14 @@ const Root = () => {
 
 function App() {
   // console.log(app);
-  console.log(auth);
+  // console.log(auth);
+  console.log(db);
   const { darkMode } = useContext(ThemeContext);
   return (
     <>
       <AuthContextProvider>
         <ThemeContextProvider>
-          <div className={darkMode ? "dark-mode" : "light-mode"}>
+          {/* <div className={darkMode ? "dark-mode" : "light-mode"}> */}
             <BrowserRouter>
               <Routes>
                 <Route path="/" />
@@ -59,7 +60,7 @@ function App() {
                 </Route>
               </Routes>
             </BrowserRouter>
-          </div>
+          {/* </div> */}
         </ThemeContextProvider>
       </AuthContextProvider>
     </>

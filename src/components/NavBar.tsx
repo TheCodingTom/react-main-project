@@ -61,11 +61,14 @@ function NavBar() {
     </Box>
   );
 
+  const myStyle = {
+    marginBottom: "12vh"
+  }
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
+      <Box style={myStyle} sx={{ display: "flex" }}>
+        <CssBaseline  />
         <AppBar component="nav">
           <Toolbar>
             <IconButton

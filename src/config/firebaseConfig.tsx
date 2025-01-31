@@ -2,6 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // console.log(import.meta.env.VITE_API_KEY);
@@ -21,4 +22,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-export {app, auth}
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
+
+export {app, auth, db}
