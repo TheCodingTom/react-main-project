@@ -57,6 +57,11 @@ function NavBar() {
             Login
           </NavLink>
         </ListItem>
+        <ListItem >
+          <NavLink style={{ textDecoration: "none", color: "black" }} to={"/chat"}>
+            Chat
+          </NavLink>
+        </ListItem>
       </List>
     </Box>
   );
@@ -118,6 +123,14 @@ function NavBar() {
                   to={"/login"}
                 >
                   Login
+                </NavLink>
+              </Button>
+              <Button sx={{ color: "#fff" }}>
+                <NavLink
+                  style={{ textDecoration: "none", color: "black" }}
+                  to={"/chat"}
+                >
+                  Chat
                 </NavLink>
               </Button>
             </Box>

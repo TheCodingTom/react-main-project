@@ -12,7 +12,7 @@ import { ThemeContext, ThemeContextProvider } from "./context/ThemeContext";
 
 import { useContext } from "react";
 import Register from "./pages/Register";
-import { auth, db } from "./config/firebaseConfig";
+import { db } from "./config/firebaseConfig";
 import Login from "./pages/Login";
 import Chat from "./pages/Chat";
 
@@ -30,7 +30,7 @@ const Root = () => {
 function App() {
   // console.log(app);
   // console.log(auth);
-  console.log(db);
+  // console.log(db);
   const { darkMode } = useContext(ThemeContext);
   return (
     <>
