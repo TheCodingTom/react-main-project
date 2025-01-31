@@ -14,6 +14,7 @@ import { useContext } from "react";
 import Register from "./pages/Register";
 import { auth, db } from "./config/firebaseConfig";
 import Login from "./pages/Login";
+import Chat from "./pages/Chat";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -54,6 +55,7 @@ function App() {
 
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
+                  <Route path="/chat" element={<Chat />} />
 
                   <Route path="*" element={<NoMatchPage />} />
                   {/* the "*" means that whenever the page shown is not /countries or /contact, it will show the 404page */}
