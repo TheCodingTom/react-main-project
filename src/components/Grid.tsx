@@ -7,6 +7,10 @@ type GridProps = {
   countriesList: Country[];
 };
 
+const myStyle = {
+  textDecoration: "none"
+}
+
 const Grid = ({ countriesList }: GridProps) => {
   // {countriesList} because of destructuring
   return (
@@ -14,7 +18,7 @@ const Grid = ({ countriesList }: GridProps) => {
       {countriesList &&
         countriesList.map((country) => {
           return (
-            <Link to={`${country.name.common}`} key={country.flag}>
+            <Link style={myStyle} to={`${country.name.common}`} key={country.flag}>
               <CountryCard country={country}  />
             </Link>
           );

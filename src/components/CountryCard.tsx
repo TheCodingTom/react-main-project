@@ -6,6 +6,7 @@ type CountryCardProps = {
   country: Country;
 };
 
+
 function CountryCard({ country }: CountryCardProps) {
   return (
     

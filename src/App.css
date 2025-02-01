@@ -11,12 +11,20 @@
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  text-align: center;
+} 
+
+/* navbar */
+
+.active {
+  background-color: rgb(179, 220, 231);
+  border-radius: 30%;
 }
+
 
 .top-container {
   display: flex;
   flex-direction: column;
-
   text-align: center;
   padding: 15px;
   margin-bottom: 10px;
@@ -30,6 +38,7 @@ h1 {
   height: 270px;
   width: 300px;
   outline: solid 1px grey;
+  text-decoration: none;
 }
 
 .mycard:hover {
@@ -44,9 +53,6 @@ h1 {
   gap: 20px;
 }
 
-.card-container {
-  text-decoration: none !important;
-}
 
 .card-image {
   outline: 1px solid grey;
@@ -55,12 +61,9 @@ h1 {
 .card-title {
   margin: auto;
   height: 10%;
+  
 }
 
-.active {
-  background-color: rgb(179, 220, 231);
-  border-radius: 30%;
-}
 
 .form-input {
   display: flex;
