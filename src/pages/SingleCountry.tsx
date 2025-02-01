@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Country } from "../types/customTypes";
-import styles from "../styles/singlecountry.module.css";
+
+import styles from "../styles/singlecountry.module.css"
 
 
 type WikiData = {
@@ -95,12 +96,12 @@ function SingleCountry() {
 
       <h2>Gallery</h2>
 
-      <div className="gallery-container">
+      <div className={styles.container}>
       {pixabayData &&
         pixabayData.map((item) => {
           return (
             <div key={item.id} >
-              <img className="gallery-pic" src={item.webformatURL} alt={"picture of" + {countryName}}/>
+              <img className={styles.picture} src={item.webformatURL} alt={"picture of" + {countryName}}/>
             </div>
           );
         })}
