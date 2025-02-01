@@ -1,4 +1,5 @@
 import { Button, Card, CardMedia, Typography } from "@mui/material";
+// import { Button, Card } from "react-bootstrap";
 import { Country } from "../types/customTypes";
 
 type CountryCardProps = {
@@ -7,7 +8,8 @@ type CountryCardProps = {
 
 function CountryCard({ country }: CountryCardProps) {
   return (
-    <Card className="mycard" sx={{ maxWidth: 345 }}>
+    
+      <Card className="mycard" sx={{ maxWidth: 345 }}>
       <CardMedia
         className="card-image"
         component="img"
@@ -24,6 +26,7 @@ function CountryCard({ country }: CountryCardProps) {
 
       <Button>Discover more</Button>
     </Card>
+    
   );
 }
 
