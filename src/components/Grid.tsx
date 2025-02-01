@@ -9,7 +9,6 @@ type GridProps = {
 
 const myStyle = {
   textDecoration: "none",
-
 }
 
 const Grid = ({ countriesList }: GridProps) => {

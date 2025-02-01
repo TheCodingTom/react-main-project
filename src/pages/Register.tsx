@@ -25,7 +25,7 @@ function Register() {
 
   return (
     <div>
-      <h2>Register</h2>
+      <h1>Register</h1>
       <div>
         <form onSubmit={handleRegisterSubmit}>
           <div className="form-input">

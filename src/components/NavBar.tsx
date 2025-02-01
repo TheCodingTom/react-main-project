@@ -1,10 +1,14 @@
 
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { NavLink } from 'react-router'
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from 'react';
 
 
 
 function NavBarNew() {
+
+  const {user, logout} = useContext(AuthContext)
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark" >
       <Container>
@@ -35,12 +39,20 @@ function NavBarNew() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link>Something else</Nav.Link>
-            <Nav.Link>
-            <NavLink style={{ textDecoration: "none", color: "white" }} to={"/chat"}>
+            <Nav.Link><NavLink style={{ textDecoration: "none", color: "white" }} to={"/chat"}>
             Chat
-          </NavLink>
-            </Nav.Link>
+          </NavLink></Nav.Link>
+            
+            <div>
+              {user ? (
+              <Button onClick={logout} color="inherit">
+                Log out
+              </Button>
+            ) : (
+              <Button variant="danger">Logged out</Button>
+            )}
+            </div>
+           
           </Nav>
         </Navbar.Collapse>
       </Container>

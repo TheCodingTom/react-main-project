@@ -8,7 +8,7 @@ const Home = () => {
   const {user} = useContext(AuthContext)
   return (
     <div>
-        {user ? <h1>Welcome, {user.username}!</h1> : <h1>Welcome, friend!</h1>}
+        {user ? <h1>Welcome, {user.email}!</h1> : <h1>Welcome, friend!</h1>}
     </div>
   )
 }
