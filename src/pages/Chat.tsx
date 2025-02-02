@@ -1,18 +1,12 @@
-import {
-  addDoc,
-  collection,
-  getDocs,
-  orderBy,
-  query,
-  Timestamp,
-} from "firebase/firestore";
+import { addDoc, collection, getDocs, onSnapshot, query, Timestamp, where } from "firebase/firestore";
 import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
 import { db } from "../config/firebaseConfig";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { User } from "../types/customTypes";
 
 type MessageType = {
-  user: string;
+  user: User;
   text: string;
   date: Timestamp;
   id: string;
@@ -23,23 +17,40 @@ function Chat() {
   const [messages, setMessages] = useState<MessageType[] | null>(null);
   const [messageText, setMessageText] = useState<string>("");
 
-  const getMessages = async () => {
-    const querySnapshot = await getDocs(collection(db, "chat"));
-    const messagesArray: MessageType[] = [];
-    querySnapshot.forEach((doc) => {
-      //   console.log(`${doc.id} => ${doc.data().text}`);
-      // const message = doc.data() as MessageType;
-      const message: MessageType = {
-        text: doc.data().text,
-        date: doc.data().date,
-        user: doc.data().user,
-        id: doc.id,
-      };
-      messagesArray.push(message);
-      setMessages(messagesArray);
+  const getLiveMessages = () => {
+    const q = query(collection(db, "chat"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const messagesArray: MessageType[] = [];
+      querySnapshot.forEach((doc) => {
+        const message: MessageType = {
+          text: doc.data().text,
+          date: doc.data().date,
+          user: doc.data().user,
+          id: doc.id,
+        };
+        messagesArray.push(message);
+        setMessages(messagesArray)
+      });
     });
-    console.log(messagesArray);
   };
+
+  // const getMessages = async () => {
+  //   const querySnapshot = await getDocs(collection(db, "chat"));
+  //   const messagesArray: MessageType[] = [];
+  //   querySnapshot.forEach((doc) => {
+  //     //   console.log(`${doc.id} => ${doc.data().text}`);
+  //     // const message = doc.data() as MessageType;
+  //     const message: MessageType = {
+  //       text: doc.data().text,
+  //       date: doc.data().date,
+  //       user: doc.data().user,
+  //       id: doc.id,
+  //     };
+  //     messagesArray.push(message);
+  //     setMessages(messagesArray);
+  //   });
+  //   console.log(messagesArray);
+  // };
 
   const dateFormat = (seconds: number) => {
     const formattedDate = new Date(seconds * 1000).toLocaleString();
@@ -62,19 +73,19 @@ function Chat() {
       date: new Date(),
       user: user,
     };
-    const docRef = await addDoc(collection(db, "cities"), newMessage);
+    const docRef = await addDoc(collection(db, "chat"), newMessage);
 
     if (!docRef) {
       throw new Error("something went wrong while sending the message");
     }
 
     if (docRef) {
-      console.log("message sent successfully");
+      console.log("message sent successfully! ID: ", docRef.id);
     }
   };
 
   useEffect(() => {
-    getMessages();
+    getLiveMessages();
   }, []);
 
   return (
@@ -86,7 +97,7 @@ function Chat() {
             return (
               <Card style={{ width: "18rem" }} key={message.id}>
                 <Card.Body>
-                  <Card.Title>{message.user}</Card.Title>
+                  <Card.Title>{message.user.email}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     {dateFormat(message.date.seconds)}
                   </Card.Subtitle>
