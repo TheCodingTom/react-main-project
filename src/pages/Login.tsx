@@ -1,7 +1,8 @@
 import { Button, TextField } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-// import React from "react";
+import { useNavigate } from "react-router";
+
 
 function Login() {
   const {login} = useContext(AuthContext)
@@ -19,7 +20,21 @@ function Login() {
   const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(email,password);
+    autoRedirect()
   }
+
+  const goBackTo = useNavigate()
+  const redirectTo = () => { // with the other method you don't need this 2nd function
+    goBackTo("/")
+  }
+
+  const autoRedirect = () => {
+    setTimeout(() => {
+        redirectTo()
+    }, 0);
+  }
+
+ 
 
 
   return (

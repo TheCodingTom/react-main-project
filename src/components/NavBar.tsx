@@ -47,9 +47,9 @@ function NavBar() {
               >
                 Login
               </NavDropdown.Item>
-              <NavDropdown.Item>Play?</NavDropdown.Item>
+              <NavDropdown.Item>Profile</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item>Separated link</NavDropdown.Item>
+              <NavDropdown.Item>Play - Coming soon?</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav>

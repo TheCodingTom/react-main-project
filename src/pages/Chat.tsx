@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, onSnapshot, query, Timestamp, where } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, query, Timestamp } from "firebase/firestore";
 import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
 import { db } from "../config/firebaseConfig";
 import { useContext, useEffect, useState } from "react";
@@ -33,24 +33,6 @@ function Chat() {
       });
     });
   };
-
-  // const getMessages = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "chat"));
-  //   const messagesArray: MessageType[] = [];
-  //   querySnapshot.forEach((doc) => {
-  //     //   console.log(`${doc.id} => ${doc.data().text}`);
-  //     // const message = doc.data() as MessageType;
-  //     const message: MessageType = {
-  //       text: doc.data().text,
-  //       date: doc.data().date,
-  //       user: doc.data().user,
-  //       id: doc.id,
-  //     };
-  //     messagesArray.push(message);
-  //     setMessages(messagesArray);
-  //   });
-  //   console.log(messagesArray);
-  // };
 
   const dateFormat = (seconds: number) => {
     const formattedDate = new Date(seconds * 1000).toLocaleString();
