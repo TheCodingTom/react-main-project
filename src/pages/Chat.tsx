@@ -34,6 +34,7 @@ function Chat() {
 
   return (
     <>
+     <h1>Chat</h1>
       <Stack gap={3} className="align-items-center">
         {messages &&
           messages.map((message) => {
@@ -50,7 +51,7 @@ function Chat() {
             );
           })}
 
-        <h1>Chat</h1>
+       
         <Form>
           <FloatingLabel
             controlId="floatingInput"
