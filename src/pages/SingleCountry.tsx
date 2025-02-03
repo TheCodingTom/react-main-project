@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { Country } from "../types/customTypes";
 
 import styles from "../styles/singlecountry.module.css"
+import Chat from "./Chat";
+
 
 
 type WikiData = {
@@ -25,6 +27,7 @@ type PixabayData = {
   previewURL: string;
   webformatURL: string;
 };
+
 
 function SingleCountry() {
   const { countryName } = useParams();
@@ -106,7 +109,11 @@ function SingleCountry() {
           );
         })}
 
+        
+
       </div>
+
+      <Chat/>
 
 
       

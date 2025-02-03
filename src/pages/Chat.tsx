@@ -1,4 +1,4 @@
-import { addDoc, collection, onSnapshot, query, Timestamp } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, query, Timestamp, where } from "firebase/firestore";
 import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
 import { db } from "../config/firebaseConfig";
 import { useContext, useEffect, useState } from "react";
@@ -10,6 +10,7 @@ type MessageType = {
   text: string;
   date: Timestamp;
   id: string;
+  // country: string;
 };
 
 function Chat() {
@@ -26,6 +27,7 @@ function Chat() {
           text: doc.data().text,
           date: doc.data().date,
           user: doc.data().user,
+          // country: doc.data().country,
           id: doc.id,
         };
         messagesArray.push(message);

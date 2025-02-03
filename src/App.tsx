@@ -12,14 +12,14 @@ import { useContext } from "react";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Chat from "./pages/Chat";
-import NavBarNew from "./components/NavBar";
+import NavBar from "./components/NavBar";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
   return (
     // if I want to add a footer, it will go under outlet
     <>
-      <NavBarNew />
+      <NavBar />
       <Outlet />
     </>
   );

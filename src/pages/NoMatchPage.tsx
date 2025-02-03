@@ -11,15 +11,15 @@ function NoMatchPage() {
     goBackTo("/")
   }
 
-//   const autoRedirect = () => {
-//     setTimeout(() => {
-//         redirectTo()
-//     }, 3000);
-//   }
+  // const autoRedirect = () => {
+  //   setTimeout(() => {
+  //       redirectTo()
+  //   }, 3000);
+  // }
 
-//   useEffect(() => {
-//     autoRedirect()
-//   }, [])
+  // useEffect(() => {
+  //   autoRedirect()
+  // }, [])
   
 
   return (

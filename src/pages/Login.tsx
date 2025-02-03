@@ -24,7 +24,7 @@ function Login() {
   }
 
   const goBackTo = useNavigate()
-  const redirectTo = () => { // with the other method you don't need this 2nd function
+  const redirectTo = () => { 
     goBackTo("/")
   }
 
@@ -33,8 +33,6 @@ function Login() {
         redirectTo()
     }, 0);
   }
-
- 
 
 
   return (

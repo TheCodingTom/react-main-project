@@ -2,11 +2,13 @@ import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
+import BackButton from "./BackButton";
 
 function NavBar() {
   const { user, logout } = useContext(AuthContext);
   return (
-    <Navbar
+   <>
+     <Navbar
       collapseOnSelect
       expand="lg"
       className="bg-body-tertiary"
@@ -74,6 +76,11 @@ function NavBar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
+    <div>
+      <BackButton/>
+    </div>
+   </>
   );
 }
 
