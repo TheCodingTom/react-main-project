@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { Country } from "../types/customTypes";
 
 import styles from "../styles/singlecountry.module.css";
-import Chat from "./Chat";
+import Chat from "../components/Chat";
 import { Col, Container, Row } from "react-bootstrap";
 
 type WikiData = {

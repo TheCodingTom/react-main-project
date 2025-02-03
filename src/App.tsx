@@ -11,7 +11,7 @@ import { ThemeContext, ThemeContextProvider } from "./context/ThemeContext";
 import { useContext } from "react";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Chat from "./pages/Chat";
+import Chat from "./components/Chat";
 import NavBar from "./components/NavBar";
 
 const Root = () => {
