@@ -4,6 +4,7 @@ import { db } from "../config/firebaseConfig";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { User } from "../types/customTypes";
+import { CountriesContext } from "../context/CountriesContext";
 
 type MessageType = {
   user: User;
@@ -15,6 +16,7 @@ type MessageType = {
 
 function Chat() {
   const { user } = useContext(AuthContext);
+  // const {countriesList, url, getCountries} = useContext(CountriesContext)
   const [messages, setMessages] = useState<MessageType[] | null>(null);
   const [messageText, setMessageText] = useState<string>("");
 

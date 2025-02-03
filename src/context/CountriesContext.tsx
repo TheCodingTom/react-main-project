@@ -7,19 +7,20 @@ type CountriesContextProviderProps = {
 
 type CountriesContextType = {
   countriesList: Country[] | null;
-  url:string
-  getCountries:(url:string)=>void;
+  url: string;
+  getCountries: (url: string) => void;
 };
 
-const contextInitialValue:CountriesContextType = {
-    countriesList: null,
-    url:"",
-    getCountries:()=>{throw new Error("Context not initialised")}
-}
+const contextInitialValue: CountriesContextType = {
+  countriesList: null,
+  url: "",
+  getCountries: () => {
+    throw new Error("Context not initialised");
+  },
+};
 
-export const CountriesContext = createContext<CountriesContextType>(
-  contextInitialValue
-);
+export const CountriesContext =
+  createContext<CountriesContextType>(contextInitialValue);
 
 export const CountriesContextProvider = ({
   children,
@@ -44,6 +45,8 @@ export const CountriesContextProvider = ({
   }, []);
 
   return (
-    <CountriesContext.Provider value={{countriesList,url,getCountries}}>{children}</CountriesContext.Provider>
+    <CountriesContext.Provider value={{ countriesList, url, getCountries }}>
+      {children}
+    </CountriesContext.Provider>
   );
 };

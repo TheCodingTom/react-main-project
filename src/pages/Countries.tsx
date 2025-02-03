@@ -1,30 +1,17 @@
 // import React from 'react'
 
-import { useEffect, useState } from "react";
-import { Country } from "../types/customTypes";
+import { useContext, useEffect, useState } from "react";
+// import { Country } from "../types/customTypes";
 import Grid from "../components/Grid";
 import Search from "../components/Search";
-
-
+import { CountriesContext } from "../context/CountriesContext";
 
 function Countries() {
-  const [countriesList, setCountriesList] = useState<Country[] | null>(null);
+  const { countriesList, url, getCountries } = useContext(CountriesContext);
+  // const [countriesList, setCountriesList] = useState<Country[] | null>(null);
   // const [countriesList, setCountriesList] = useState<Country[]>([] as Country[]); - another way
 
   const [userSearch, setUserSearch] = useState("");
-
-  const url = "https://restcountries.com/v3.1/all";
-
-  const getCountries = async () => {
-    try {
-      const response = await fetch(url);
-      const result = await response.json();
-      console.log(result);
-      setCountriesList(result);
-    } catch (error) {
-      console.log("error in the fetch:", error);
-    }
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserSearch(e.target.value);
@@ -35,7 +22,7 @@ function Countries() {
   });
 
   useEffect(() => {
-    getCountries();
+    getCountries(url);
   }, []);
 
   return (
