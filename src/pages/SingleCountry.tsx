@@ -99,19 +99,7 @@ function SingleCountry() {
         </Row>
       </Container>
 
-      {/* <div>
-       <div>
-         <img className={styles.image} src={countryData?.flags.png} alt="" />
 
-        <p>Capital: {countryData?.capital} </p>
-        <p>Continent: {countryData?.region} </p>
-        <p>Population: {countryData?.population} </p>
-        <p>Description: {wikiData?.extract} </p>
-       </div>
-        
-          <Chat />
-        
-      </div> */}
 
       <h2>Gallery</h2>
 

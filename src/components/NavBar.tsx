@@ -55,13 +55,7 @@ function NavBar() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link
-              as={NavLink}
-              style={{ textDecoration: "none", color: "white" }}
-              to={"/chat"}
-            >
-              Chat
-            </Nav.Link>
+            
 
             <div>
               {user ? (

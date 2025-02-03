@@ -5,13 +5,15 @@ import { Country } from "../types/customTypes";
 import Grid from "../components/Grid";
 import Search from "../components/Search";
 
-const url = "https://restcountries.com/v3.1/all";
+
 
 function Countries() {
   const [countriesList, setCountriesList] = useState<Country[] | null>(null);
   // const [countriesList, setCountriesList] = useState<Country[]>([] as Country[]); - another way
 
   const [userSearch, setUserSearch] = useState("");
+
+  const url = "https://restcountries.com/v3.1/all";
 
   const getCountries = async () => {
     try {
