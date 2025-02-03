@@ -5,7 +5,7 @@ import { useContext } from "react";
 import BackButton from "./BackButton";
 
 function NavBar() {
-  const { user, logout } = useContext(AuthContext);
+  const { user, login, logout } = useContext(AuthContext);
   return (
    <>
      <Navbar
@@ -69,7 +69,7 @@ function NavBar() {
                   Log out
                 </Button>
               ) : (
-                <Button variant="danger">Logged out</Button>
+                <Button color="inherit" >Logged in</Button>
               )}
             </div>
           </Nav>

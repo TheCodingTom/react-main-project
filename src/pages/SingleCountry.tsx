@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Country } from "../types/customTypes";
 
-import styles from "../styles/singlecountry.module.css"
+import styles from "../styles/singlecountry.module.css";
 import Chat from "./Chat";
-
-
+import { Col, Container, Row } from "react-bootstrap";
 
 type WikiData = {
   description: string;
@@ -27,7 +26,6 @@ type PixabayData = {
   previewURL: string;
   webformatURL: string;
 };
-
 
 function SingleCountry() {
   const { countryName } = useParams();
@@ -86,39 +84,51 @@ function SingleCountry() {
     <div>
       <h1>{wikiData?.title}</h1>
 
-     
-      <div>
-        <img className={styles.image} src={countryData?.flags.png} alt="" />
+      <Container>
+        <Row>
+          <Col >
+            <img className={styles.image} src={countryData?.flags.png} alt="" />
+            <p>Capital: {countryData?.capital} </p>
+            <p>Continent: {countryData?.region} </p>
+            <p>Population: {countryData?.population} </p>
+            <p>Description: {wikiData?.extract} </p>
+          </Col>
+          <Col >
+            <Chat />
+          </Col>
+        </Row>
+      </Container>
+
+      {/* <div>
+       <div>
+         <img className={styles.image} src={countryData?.flags.png} alt="" />
 
         <p>Capital: {countryData?.capital} </p>
         <p>Continent: {countryData?.region} </p>
         <p>Population: {countryData?.population} </p>
-      </div>
-
-      <p>Description: {wikiData?.extract} </p>
+        <p>Description: {wikiData?.extract} </p>
+       </div>
+        
+          <Chat />
+        
+      </div> */}
 
       <h2>Gallery</h2>
 
       <div className={styles.container}>
-      {pixabayData &&
-        pixabayData.map((item) => {
-          return (
-            <div key={item.id} >
-              <img className={styles.picture} src={item.webformatURL} alt={"picture of" + {countryName}}/>
-            </div>
-          );
-        })}
-
-        
-
+        {pixabayData && // in another component to use Suspence
+          pixabayData.map((item) => {
+            return (
+              <div key={item.id}>
+                <img
+                  className={styles.picture}
+                  src={item.webformatURL}
+                  alt={"picture of" + { countryName }}
+                />
+              </div>
+            );
+          })}
       </div>
-
-      <Chat/>
-
-
-      
-
-      
     </div>
   );
 }
