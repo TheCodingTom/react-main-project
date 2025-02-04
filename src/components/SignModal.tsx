@@ -4,20 +4,37 @@ import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 const SignModal = () => {
-  const [show, setShow] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
 
-  const handleCloseSignIn = () => setShow(false);
-  const handleShowSignIn = () => setShow(true);
+  const handleCloseSignIn = () => {
+    setShowSignIn(false)
+    console.log("yes");
 
-  const handleCloseSignUp = () => setShow(false);
-  const handleShowSignUp = () => setShow(true);
+  }
+
+
+
+
+  const handleShowSignIn = () => {
+    setShowSignIn(true);
+    console.log("working");
+  }
+
+  const handleShowSignUp = () => {
+    setShowSignIn(false);
+    setShowSignUp(true);
+  }
+
+  const handleCloseSignUp = () => setShowSignUp(false);
+
   return (
     <div>
       <Button variant="primary" onClick={handleShowSignIn}>
         Login
       </Button>
 
-      <Modal show={show} onHide={handleCloseSignIn}>
+      <Modal show={showSignIn} onHide={handleCloseSignIn}>
         <Modal.Header closeButton>
           <Modal.Title><Button onClick={handleShowSignIn}>Sign in</Button><Button onClick={handleShowSignUp}>Sign up</Button></Modal.Title>
         </Modal.Header>
@@ -32,7 +49,7 @@ const SignModal = () => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={show} onHide={handleCloseSignUp}>
+      <Modal show={showSignUp} onHide={handleCloseSignUp}>
         <Modal.Header closeButton>
 
         <Modal.Title><Button onClick={handleShowSignIn}>Sign in</Button><Button onClick={handleShowSignUp}>Sign up</Button></Modal.Title>
