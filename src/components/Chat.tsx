@@ -33,41 +33,41 @@ function Chat() {
     }
 
     
-    // Query a reference to a subcollection
-    const querySnapshot = await getDocs(
-      collection(db, "chat", countryName, "messages")
-    );
+    // // Query a reference to a subcollection
+    // const querySnapshot = await getDocs(
+    //   collection(db, "chat", countryName, "messages")
+    // );
 
-    const messagesArray: MessageType[] = [];
+    // const messagesArray: MessageType[] = [];
 
-    querySnapshot.forEach((doc) => {
-      const message: MessageType = {
-        text: doc.data().text,
-        date: doc.data().date,
-        user: doc.data().user,
-        id: doc.id,
-      }
-      // doc.data() is never undefined for query doc snapshots
-      messagesArray.push(message);
-        setMessages(messagesArray);
-      console.log(doc.id, " => ", doc.data());
-    });
-
-    // const q = query(collection(db, "chat"));
-    // const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    //   const messagesArray: MessageType[] = [];
-    //   querySnapshot.forEach((doc) => {
-    //     const message: MessageType = {
-    //       text: doc.data().text,
-    //       date: doc.data().date,
-    //       user: doc.data().user,
-    //       id: doc.id,
-    //     };
-
-    //     messagesArray.push(message);
+    // querySnapshot.forEach((doc) => {
+    //   const message: MessageType = {
+    //     text: doc.data().text,
+    //     date: doc.data().date,
+    //     user: doc.data().user,
+    //     id: doc.id,
+    //   }
+    //   // doc.data() is never undefined for query doc snapshots
+    //   messagesArray.push(message);
     //     setMessages(messagesArray);
-    //   });
+    //   console.log(doc.id, " => ", doc.data());
     // });
+
+    const q = query(collection(db, "chat", countryName, "messages"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const messagesArray: MessageType[] = [];
+      querySnapshot.forEach((doc) => {
+        const message: MessageType = {
+          text: doc.data().text,
+          date: doc.data().date,
+          user: doc.data().user,
+          id: doc.id,
+        };
+
+        messagesArray.push(message);
+        setMessages(messagesArray);
+      });
+    });
   };
 
   const handleTextMessageChange = (e: React.ChangeEvent<HTMLFormElement>) => {
