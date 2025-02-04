@@ -1,15 +1,7 @@
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  query,
-  Timestamp,
-} from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
 import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
-import { db } from "../config/firebaseConfig";
-import { useContext, useEffect, useState } from "react";
+
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { User } from "../types/customTypes";
 import { CountriesContext } from "../context/CountriesContext";
@@ -20,71 +12,54 @@ type MessageType = {
   date: Timestamp;
   id: string;
 };
+interface ChatProps {
+  handleMessageSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  handleTextMessageChange: (e: React.ChangeEvent<HTMLFormElement>) => void;
+}
 
-function Chat() {
-  const { user } = useContext(AuthContext);
-  const { countriesList } = useContext(CountriesContext);
+function Chat({ handleMessageSubmit, handleTextMessageChange }: ChatProps) {
+  // const { user } = useContext(AuthContext);
+  // const { countriesList } = useContext(CountriesContext);
   const [messages, setMessages] = useState<MessageType[] | null>(null);
-  const [messageText, setMessageText] = useState<string>("");
+  // const [messageText, setMessageText] = useState<string>("");
 
+  // const getLiveMessages = () => {
+  //   const q = query(collection(db, "chat"));
+  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //     const messagesArray: MessageType[] = [];
+  //     querySnapshot.forEach((doc) => {
+  //       const message: MessageType = {
+  //         text: doc.data().text,
+  //         date: doc.data().date,
+  //         user: doc.data().user,
+  //         id: doc.id,
+  //       };
 
-  const getLiveMessages = () => {
-    const q = query(collection(db, "chat"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const messagesArray: MessageType[] = [];
-      querySnapshot.forEach((doc) => {
-        const message: MessageType = {
-          text: doc.data().text,
-          date: doc.data().date,
-          user: doc.data().user,
-          id: doc.id,
-        };
-
-        messagesArray.push(message);
-        setMessages(messagesArray);
-      });
-    });
-  };
+  //       messagesArray.push(message);
+  //       setMessages(messagesArray);
+  //     });
+  //   });
+  // };
 
   const dateFormat = (seconds: number) => {
     const formattedDate = new Date(seconds * 1000).toLocaleString();
     return formattedDate;
   };
 
-  const handleTextMessageChange = (e: React.ChangeEvent<HTMLFormElement>) => {
-    console.log(e.target.value);
-    const inputText = e.target.value;
-    setMessageText(inputText);
-  };
-
-  const handleMessageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  
-    const newMessage = {
-      text: messageText,
-      date: new Date(),
-      user: user,
-    };
-    const docRef = await addDoc(collection(db, "chat"), newMessage);
-
-    if (!docRef) {
-      throw new Error("something went wrong while sending the message");
-    }
-
-    if (docRef) {
-      console.log("message sent successfully! ID: ", docRef.id);
-    }
-  };
-
+  // const handleTextMessageChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+  //   console.log(e.target.value);
+  //   const inputText = e.target.value;
+  //   setMessageText(inputText);
+  // };
 
   // const handleDeleteComment = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   //   await console.log("message deleted");
   //   deleteDoc(doc(db, "chat"))
   // }
 
-  useEffect(() => {
-    getLiveMessages();
-  }, []);
+  // useEffect(() => {
+  //   getLiveMessages();
+  // }, []);
 
   return (
     <>

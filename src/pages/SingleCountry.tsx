@@ -1,12 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Country, User } from "../types/customTypes";
 
 import styles from "../styles/singlecountry.module.css";
 import Chat from "../components/Chat";
 import { Col, Container, Row } from "react-bootstrap";
-import { collection, onSnapshot, query, Timestamp } from "firebase/firestore";
+import {
+
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  setDoc,
+  Timestamp,
+  
+} from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
+import { AuthContext } from "../context/AuthContext";
 
 type WikiData = {
   description: string;
@@ -34,13 +44,18 @@ type MessageType = {
   text: string;
   date: Timestamp;
   id: string;
+
 };
 
+
+
 function SingleCountry() {
-  const { countryName } = useParams();
+  const { countryName } = useParams<string>();
+  const { user } = useContext(AuthContext);
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
   const [countryData, setCountryData] = useState<Country | null>(null);
-   const [messages, setMessages] = useState<MessageType[] | null>(null);
+  const [messages, setMessages] = useState<MessageType[] | null>(null);
+  const [messageText, setMessageText] = useState<string>("");
 
   const [pixabayData, setPixabayData] = useState<PixabayData[] | null>(null);
 
@@ -85,7 +100,12 @@ function SingleCountry() {
   };
 
   const getLiveMessages = () => {
-    const q = query(collection(db, "chat"));
+
+    if (!countryName) {
+      throw new Error("countryName is undefined!");
+    }
+
+    const q = query(collection(db, "chat"),);
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const messagesArray: MessageType[] = [];
       querySnapshot.forEach((doc) => {
@@ -94,6 +114,7 @@ function SingleCountry() {
           date: doc.data().date,
           user: doc.data().user,
           id: doc.id,
+          
         };
 
         messagesArray.push(message);
@@ -102,30 +123,47 @@ function SingleCountry() {
     });
   };
 
-    // const handleMessageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    //    e.preventDefault();
-     
-    //    const newMessage = {
-    //      text: messageText,
-    //      date: new Date(),
-    //      user: user,
-    //    };
-    //    const docRef = await addDoc(collection(db, "chat"), newMessage);
-   
-    //    if (!docRef) {
-    //      throw new Error("something went wrong while sending the message");
-    //    }
-   
-    //    if (docRef) {
-    //      console.log("message sent successfully! ID: ", docRef.id);
-    //    }
-    //  };
+  // const dateFormat = (seconds: number) => {
+  //   const formattedDate = new Date(seconds * 1000).toLocaleString();
+  //   return formattedDate;
+  // };
+
+  const handleTextMessageChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+    console.log(e.target.value);
+    const inputText = e.target.value;
+    setMessageText(inputText);
+  };
+
+  const handleMessageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const newMessage = {
+      text: messageText,
+      date: new Date(),
+      user: user,
+    };
+
+    if (!countryName) {
+      throw new Error("countryName is undefined!");
+    }
+
+    const docRef = doc(db, "chat", countryName); // Create document reference
+    await setDoc(docRef, newMessage); // Set the document data
+
+    if (!docRef) {
+      throw new Error("something went wrong while sending the message");
+    }
+
+    if (docRef) {
+      console.log("message sent successfully! ID: ", docRef.id);
+    }
+  };
 
   useEffect(() => {
     getWikiData();
     getCountryData();
     getPixabayData();
-    getLiveMessages()
+    getLiveMessages();
   }, []);
 
   return (
@@ -134,20 +172,18 @@ function SingleCountry() {
 
       <Container>
         <Row>
-          <Col >
+          <Col>
             <img className={styles.image} src={countryData?.flags.png} alt="" />
             <p>Capital: {countryData?.capital} </p>
             <p>Continent: {countryData?.region} </p>
             <p>Population: {countryData?.population} </p>
             <p>Description: {wikiData?.extract} </p>
           </Col>
-          <Col >
-            <Chat/>
+          <Col>
+            <Chat handleMessageSubmit={handleMessageSubmit} handleTextMessageChange={handleTextMessageChange} />
           </Col>
         </Row>
       </Container>
-
-
 
       <h2>Gallery</h2>
 
