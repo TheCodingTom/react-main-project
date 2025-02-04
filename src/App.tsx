@@ -6,14 +6,13 @@ import NoMatchPage from "./pages/NoMatchPage";
 import SingleCountry from "./pages/SingleCountry";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { ThemeContext } from "./context/ThemeContext";
-
-import { useContext } from "react";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Chat from "./components/Chat";
 import NavBar from "./components/NavBar";
 import { CountriesContextProvider } from "./context/CountriesContext";
+import Gallery from "./components/Gallery";
+import { db } from "./config/firebaseConfig";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -30,7 +29,7 @@ function App() {
   // console.log(app);
   // console.log(auth);
   // console.log(db);
-  const { darkMode } = useContext(ThemeContext);
+  // const { darkMode } = useContext(ThemeContext);
   return (
     <>
       <AuthContextProvider>
@@ -47,6 +46,7 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <SingleCountry />
+                     
                     </ProtectedRoute>
                   }
                 />

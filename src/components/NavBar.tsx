@@ -3,6 +3,7 @@ import { NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import BackButton from "./BackButton";
+import SignModal from "./SignModal";
 
 function NavBar() {
   const { user, login, logout } = useContext(AuthContext);
@@ -63,8 +64,12 @@ function NavBar() {
                   Log out
                 </Button>
               ) : (
-                <Button color="inherit" >Logged in</Button>
+                <Button color="inherit" >Logged out</Button>
               )}
+            </div>
+
+            <div>
+              <SignModal/>
             </div>
           </Nav>
         </Navbar.Collapse>

@@ -1,4 +1,12 @@
-import { addDoc, collection, onSnapshot, query, Timestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  Timestamp,
+} from "firebase/firestore";
 import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
 import { db } from "../config/firebaseConfig";
 import { useContext, useEffect, useState } from "react";
@@ -11,14 +19,14 @@ type MessageType = {
   text: string;
   date: Timestamp;
   id: string;
-  
 };
 
 function Chat() {
   const { user } = useContext(AuthContext);
-  // const {countriesList, url, getCountries} = useContext(CountriesContext)
+  const { countriesList } = useContext(CountriesContext);
   const [messages, setMessages] = useState<MessageType[] | null>(null);
   const [messageText, setMessageText] = useState<string>("");
+
 
   const getLiveMessages = () => {
     const q = query(collection(db, "chat"));
@@ -29,13 +37,11 @@ function Chat() {
           text: doc.data().text,
           date: doc.data().date,
           user: doc.data().user,
-          
           id: doc.id,
-          
         };
-        
+
         messagesArray.push(message);
-        setMessages(messagesArray)
+        setMessages(messagesArray);
       });
     });
   };
@@ -53,9 +59,7 @@ function Chat() {
 
   const handleMessageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // if no user? - protected route YES
-
+  
     const newMessage = {
       text: messageText,
       date: new Date(),
@@ -71,6 +75,12 @@ function Chat() {
       console.log("message sent successfully! ID: ", docRef.id);
     }
   };
+
+
+  // const handleDeleteComment = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  //   await console.log("message deleted");
+  //   deleteDoc(doc(db, "chat"))
+  // }
 
   useEffect(() => {
     getLiveMessages();
@@ -91,6 +101,7 @@ function Chat() {
                   </Card.Subtitle>
                   <Card.Text>{message.text}</Card.Text>
                 </Card.Body>
+                <Button>Delete</Button>
               </Card>
             );
           })}
