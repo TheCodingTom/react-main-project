@@ -6,14 +6,13 @@ import styles from "../styles/singlecountry.module.css";
 import Chat from "../components/Chat";
 import { Col, Container, Row } from "react-bootstrap";
 import {
-
+  addDoc,
   collection,
   doc,
   onSnapshot,
   query,
   setDoc,
   Timestamp,
-  
 } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
@@ -44,10 +43,7 @@ type MessageType = {
   text: string;
   date: Timestamp;
   id: string;
-
 };
-
-
 
 function SingleCountry() {
   const { countryName } = useParams<string>();
@@ -100,12 +96,11 @@ function SingleCountry() {
   };
 
   const getLiveMessages = () => {
-
     if (!countryName) {
       throw new Error("countryName is undefined!");
     }
 
-    const q = query(collection(db, "chat"),);
+    const q = query(collection(db, "chat"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const messagesArray: MessageType[] = [];
       querySnapshot.forEach((doc) => {
@@ -114,7 +109,6 @@ function SingleCountry() {
           date: doc.data().date,
           user: doc.data().user,
           id: doc.id,
-          
         };
 
         messagesArray.push(message);
@@ -147,16 +141,27 @@ function SingleCountry() {
       throw new Error("countryName is undefined!");
     }
 
-    const docRef = doc(db, "chat", countryName); // Create document reference
-    await setDoc(docRef, newMessage); // Set the document data
+    // const docRef = doc(db, "chat", countryName); // Create document reference
+    // await setDoc(docRef, newMessage); // Set the document data
 
-    if (!docRef) {
-      throw new Error("something went wrong while sending the message");
-    }
+    // if (!docRef) {
+    //   throw new Error("something went wrong while sending the message");
+    // }
 
-    if (docRef) {
-      console.log("message sent successfully! ID: ", docRef.id);
-    }
+    // if (docRef) {
+    //   console.log("message sent successfully! ID: ", docRef.id);
+    // }
+
+    const messagesCollectionRef = collection(
+      db,
+      "chat",
+      countryName,
+      "messages"
+    ); // Subcollection for messages
+
+    const docRef = await addDoc(messagesCollectionRef, newMessage);
+
+    console.log("Message added with ID:", docRef.id);
   };
 
   useEffect(() => {
@@ -180,7 +185,10 @@ function SingleCountry() {
             <p>Description: {wikiData?.extract} </p>
           </Col>
           <Col>
-            <Chat handleMessageSubmit={handleMessageSubmit} handleTextMessageChange={handleTextMessageChange} />
+            <Chat
+              handleMessageSubmit={handleMessageSubmit}
+              handleTextMessageChange={handleTextMessageChange}
+            />
           </Col>
         </Row>
       </Container>
