@@ -18,7 +18,7 @@ const SignModal = () => {
 
   const handleShowSignIn = () => {
     setShowSignIn(true);
-    console.log("working");
+    setShowSignUp(false);
   }
 
   const handleShowSignUp = () => {
