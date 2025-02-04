@@ -37,8 +37,19 @@ function Chat() {
     const querySnapshot = await getDocs(
       collection(db, "chat", countryName, "messages")
     );
+
+    const messagesArray: MessageType[] = [];
+
     querySnapshot.forEach((doc) => {
+      const message: MessageType = {
+        text: doc.data().text,
+        date: doc.data().date,
+        user: doc.data().user,
+        id: doc.id,
+      }
       // doc.data() is never undefined for query doc snapshots
+      messagesArray.push(message);
+        setMessages(messagesArray);
       console.log(doc.id, " => ", doc.data());
     });
 
@@ -97,7 +108,7 @@ function Chat() {
 
   useEffect(() => {
     getLiveMessages();
-  }, []);
+  }, [countryName]);
 
   return (
     <>
