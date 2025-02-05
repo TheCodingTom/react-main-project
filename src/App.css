@@ -14,6 +14,13 @@ h1 {
   text-align: center;
 } 
 
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 /* navbar */
 
 
@@ -71,4 +78,13 @@ h1 {
 }
 
 
+
+.logo {
+  height: 300px;
+  width: 300px;
+}
+
+/* .logo:hover {
+  transform: rotate(180deg); transition: 4s
+} */
 
