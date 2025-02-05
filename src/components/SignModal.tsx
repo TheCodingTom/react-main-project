@@ -1,10 +1,16 @@
 // import React from 'react'
 
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router";
 
 const SignModal = () => {
+  const {login} = useContext(AuthContext)
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
 
@@ -21,6 +27,32 @@ const SignModal = () => {
     setShowSignUp(true);
   };
 
+  
+  const handleEmailChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value)
+  }
+
+  const handlePasswordChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value)
+  }
+
+  const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    login(email,password);
+    autoRedirect()
+  }
+
+  const goBackTo = useNavigate()
+  const redirectTo = () => { 
+    goBackTo("/")
+  }
+
+  const autoRedirect = () => {
+    setTimeout(() => {
+        redirectTo()
+    }, 0);
+  }
+
   return (
     <div>
       <Button variant="primary" onClick={handleShowSignIn}>
@@ -35,7 +67,7 @@ const SignModal = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form onSubmit={handleLoginSubmit}>
             <div className="form-input">
               <h2>Sign in</h2>
               <TextField
@@ -43,14 +75,18 @@ const SignModal = () => {
                 label="Email"
                 placeholder="Type here"
                 multiline
+                value={email}
+             onChange={handleEmailChange}
               />
               <TextField
                 id="outlined-textarea"
                 label="Password"
                 placeholder="Type here"
                 multiline
+                value={password}
+              onChange={handlePasswordChange}
               />
-              <Button type="submit">Sign in</Button>
+              <Button type="submit" onClick={handleCloseSignIn}>Sign in</Button>
             </div>
           </form>
         </Modal.Body>
