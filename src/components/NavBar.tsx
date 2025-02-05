@@ -6,78 +6,52 @@ import BackButton from "./BackButton";
 import SignModal from "./SignModal";
 
 function NavBar() {
-  const { user, login, logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   return (
-   <>
-     <Navbar
-      collapseOnSelect
-      expand="lg"
-      className="bg-body-tertiary"
-      bg="dark"
-      data-bs-theme="dark"
-    >
-      <Container>
-        <Navbar.Brand>CIAO BELLO</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link
-              as={NavLink}
-              style={{ textDecoration: "none", color: "white" }}
-              to={"/"}
-            >
-              Home
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              style={{ textDecoration: "none", color: "white" }}
-              to={"/countries"}
-            >
-              Countries
-            </Nav.Link>
-            <NavDropdown title="User" id="collapsible-nav-dropdown">
-              <NavDropdown.Item
-                as={NavLink}
-                style={{ textDecoration: "none", color: "white" }}
-                to={"/register"}
-              >
-                Register
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                as={NavLink}
-                style={{ textDecoration: "none", color: "white" }}
-                to={"/login"}
-              >
-                Login
-              </NavDropdown.Item>
-              <NavDropdown.Item>Profile</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item>Play - Coming soon?</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Nav>
-            
+    <>
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        className="bg-body-tertiary"
+        bg="dark"
+        data-bs-theme="dark"
+      >
+        <Container>
+          <Navbar.Brand as={NavLink} to={"/"}>COUNTRY APP</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={NavLink} to={"/"}>
+                Home
+              </Nav.Link>
+              <Nav.Link as={NavLink} to={"/countries"}>
+                Countries
+              </Nav.Link>
+              <NavDropdown title="User" id="collapsible-nav-dropdown">
+                <NavDropdown.Item>Profile</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item>Play - Coming soon?</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            <Nav>
+              <div>
+                {user ? (
+                  <Button onClick={logout} color="inherit">
+                    Log out
+                  </Button>
+                ) : (
+                  <SignModal />
+                )}
+              </div>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
 
-            <div>
-              {user ? (
-                <Button onClick={logout} color="inherit">
-                  Log out
-                </Button>
-              ) : (
-                <SignModal/>
-              )}
-            </div>
-
-           
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-
-    <div>
-      <BackButton/>
-    </div>
-   </>
+      <div>
+        <BackButton />
+      </div>
+    </>
   );
 }
 
