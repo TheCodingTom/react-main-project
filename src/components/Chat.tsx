@@ -1,7 +1,6 @@
 import {
   addDoc,
   collection,
-  getDocs,
   onSnapshot,
   query,
   Timestamp,
@@ -31,27 +30,6 @@ function Chat() {
     if (!countryName) {
       throw new Error("countryName is undefined!");
     }
-
-    
-    // // Query a reference to a subcollection
-    // const querySnapshot = await getDocs(
-    //   collection(db, "chat", countryName, "messages")
-    // );
-
-    // const messagesArray: MessageType[] = [];
-
-    // querySnapshot.forEach((doc) => {
-    //   const message: MessageType = {
-    //     text: doc.data().text,
-    //     date: doc.data().date,
-    //     user: doc.data().user,
-    //     id: doc.id,
-    //   }
-    //   // doc.data() is never undefined for query doc snapshots
-    //   messagesArray.push(message);
-    //     setMessages(messagesArray);
-    //   console.log(doc.id, " => ", doc.data());
-    // });
 
     const q = query(collection(db, "chat", countryName, "messages"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -108,7 +86,7 @@ function Chat() {
 
   useEffect(() => {
     getLiveMessages();
-  }, [countryName]);
+  }, []);
 
   return (
     <>
