@@ -8,7 +8,7 @@ import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Chat from "./components/Chat";
+import Chat from "./components/Comments";
 import NavBar from "./components/NavBar";
 import { CountriesContextProvider } from "./context/CountriesContext";
 import Gallery from "./components/Gallery";

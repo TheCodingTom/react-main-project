@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   onSnapshot,
   query,
   Timestamp,
@@ -20,7 +22,7 @@ type MessageType = {
   id: string;
 };
 
-function Chat() {
+function Comments() {
   const { countryName } = useParams<string>();
   const { user } = useContext(AuthContext);
   const [messages, setMessages] = useState<MessageType[] | null>(null);
@@ -31,7 +33,7 @@ function Chat() {
       throw new Error("countryName is undefined!");
     }
 
-    const q = query(collection(db, "chat", countryName, "messages"));
+    const q = query(collection(db, "comments", countryName, "messages"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const messagesArray: MessageType[] = [];
       querySnapshot.forEach((doc) => {
@@ -74,7 +76,7 @@ function Chat() {
 
     const messagesCollectionRef = collection(
       db,
-      "chat",
+      "comments",
       countryName,
       "messages"
     ); // Subcollection for messages
@@ -84,14 +86,37 @@ function Chat() {
     console.log("Message added with ID:", docRef.id);
   };
 
+  // const handleMessageDelete = async (e: React.FormEvent<HTMLButtonElement>) => {
+
+
+  //   if (!countryName) {
+  //     throw new Error("countryName is undefined!");
+  //   }
+
+  //   const messagesCollectionRef = collection(
+  //     db,
+  //     "comments",
+  //     countryName,
+  //     "messages",
+      
+  //   );
+
+
+  //   await deleteDoc(doc(messagesCollectionRef, message ));
+  //   console.log("message deleted");
+  // }
+
+
+
   useEffect(() => {
     getLiveMessages();
   }, []);
 
   return (
     <>
-      <h1>Chat</h1>
       <Stack gap={3} className="align-items-center">
+        <h2>Let's talk about {countryName}</h2>
+
         {messages &&
           messages.map((message) => {
             return (
@@ -124,4 +149,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Comments;
