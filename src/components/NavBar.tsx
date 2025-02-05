@@ -64,13 +64,11 @@ function NavBar() {
                   Log out
                 </Button>
               ) : (
-                <Button color="inherit" >Logged out</Button>
+                <SignModal/>
               )}
             </div>
 
-            <div>
-              <SignModal/>
-            </div>
+           
           </Nav>
         </Navbar.Collapse>
       </Container>
