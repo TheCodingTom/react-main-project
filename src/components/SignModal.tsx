@@ -7,12 +7,14 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
 
 const SignModal = () => {
-  const {login} = useContext(AuthContext)
+  const {login, register} = useContext(AuthContext)
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+
+  // modal functions
 
   const handleCloseSignUp = () => setShowSignUp(false);
   const handleCloseSignIn = () => setShowSignIn(false);
@@ -27,7 +29,8 @@ const SignModal = () => {
     setShowSignUp(true);
   };
 
-  
+  // user input functions 
+
   const handleEmailChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
   }
@@ -36,11 +39,21 @@ const SignModal = () => {
     setPassword(e.target.value)
   }
 
+  // login/register on form submit
+
   const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(email,password);
     autoRedirect()
   }
+
+  const handleRegisterSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // console.log(email,password);
+    register(email,password);
+  }
+
+  // redirect user after sign in
 
   const goBackTo = useNavigate()
   const redirectTo = () => { 
@@ -105,7 +118,7 @@ const SignModal = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form onSubmit={handleRegisterSubmit}>
             <div className="form-input">
               <h2>Sign up</h2>
               <TextField
@@ -113,14 +126,18 @@ const SignModal = () => {
                 label="Email"
                 placeholder="Type here"
                 multiline
+                value={email}
+             onChange={handleEmailChange}
               />
               <TextField
                 id="outlined-textarea"
                 label="Password"
                 placeholder="Type here"
                 multiline
+                value={password}
+              onChange={handlePasswordChange}
               />
-              <Button type="submit">Sign up</Button>
+              <Button onClick={handleCloseSignUp} type="submit">Sign up</Button>
             </div>
           </form>
         </Modal.Body>
