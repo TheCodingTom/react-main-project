@@ -27,11 +27,11 @@ function NavBar() {
               <Nav.Link as={NavLink} to={"/countries"}>
                 Countries
               </Nav.Link>
-              <NavDropdown title="User" id="collapsible-nav-dropdown">
+              {user ? (<NavDropdown title="User" id="collapsible-nav-dropdown">
                 <NavDropdown.Item>Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item>Play - Coming soon?</NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown>) : ""}
             </Nav>
             <Nav>
               <div>
