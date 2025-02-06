@@ -32,7 +32,7 @@ function Comments() {
     if (!countryName) {
       throw new Error("countryName is undefined!");
     }
-
+    
     const q = query(collection(db, "comments", countryName, "messages"), orderBy("date", "asc"));
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {

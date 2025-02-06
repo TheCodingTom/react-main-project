@@ -64,7 +64,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       console.log(user);
 
       // when the first user signs up this function creates automatically a users collection in the firestore database
-      
+      // after that whenever a user signs up it creates a new document in that collection with a unique id
       const docRef = doc(db, "users", user.uid) // creating a doc reference object
       await setDoc(docRef, { // add the actual data in the doc reference object
         email: email
