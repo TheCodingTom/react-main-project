@@ -14,6 +14,8 @@ const Home = () => {
         {user ? "": "Do you want to discover more about the countries in the world?" }
         <img src={logo} className="logo" alt="" />
         {user ? <p>Travel around the world with this web app!</p> : <SignModal/>}
+
+
         
     </div>
   )

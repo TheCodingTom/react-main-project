@@ -1,9 +1,9 @@
 import {
   addDoc,
   collection,
-  deleteDoc,
-  doc,
+
   onSnapshot,
+  orderBy,
   query,
   Timestamp,
 } from "firebase/firestore";
@@ -15,7 +15,7 @@ import { useParams } from "react-router";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
 
-type MessageType = {
+type CommentType = {
   user: User;
   text: string;
   date: Timestamp;
@@ -25,35 +25,36 @@ type MessageType = {
 function Comments() {
   const { countryName } = useParams<string>();
   const { user } = useContext(AuthContext);
-  const [messages, setMessages] = useState<MessageType[] | null>(null);
-  const [messageText, setMessageText] = useState<string>("");
+  const [comments, setComments] = useState<CommentType[] | null>(null);
+  const [commentText, setCommentText] = useState<string>("");
 
   const getLiveMessages = async () => {
     if (!countryName) {
       throw new Error("countryName is undefined!");
     }
 
-    const q = query(collection(db, "comments", countryName, "messages"));
+    const q = query(collection(db, "comments", countryName, "messages"), orderBy("date", "asc"));
+
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const messagesArray: MessageType[] = [];
+      const arrayOfComments: CommentType[] = [];
       querySnapshot.forEach((doc) => {
-        const message: MessageType = {
+        const newComment: CommentType = {
           text: doc.data().text,
           date: doc.data().date,
           user: doc.data().user,
           id: doc.id,
         };
 
-        messagesArray.push(message);
-        setMessages(messagesArray);
+        arrayOfComments.push(newComment);
+        setComments(arrayOfComments);
       });
     });
   };
 
-  const handleTextMessageChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleTextCommentChange = (e: React.ChangeEvent<HTMLFormElement>) => {
     console.log(e.target.value);
     const inputText = e.target.value;
-    setMessageText(inputText);
+    setCommentText(inputText);
   };
 
   const dateFormat = (seconds: number) => {
@@ -61,11 +62,11 @@ function Comments() {
     return formattedDate;
   };
 
-  const handleMessageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCommentSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newMessage = {
-      text: messageText,
+    const newComment = {
+      text: commentText,
       date: new Date(),
       user: user,
     };
@@ -81,7 +82,7 @@ function Comments() {
       "messages"
     ); // Subcollection for messages
 
-    const docRef = await addDoc(messagesCollectionRef, newMessage);
+    const docRef = await addDoc(messagesCollectionRef, newComment);
 
     console.log("Message added with ID:", docRef.id);
   };
@@ -117,25 +118,25 @@ function Comments() {
       <Stack gap={3} className="align-items-center">
         <h2>Let's talk about {countryName}</h2>
 
-        {messages &&
-          messages.map((message) => {
+        {comments &&
+          comments.map((comment) => {
             return (
-              <Card style={{ width: "18rem" }} key={message.id}>
+              <Card style={{ width: "18rem" }} key={comment.id}>
                 <Card.Body>
-                  <Card.Title>{message.user.email}</Card.Title>
+                  <Card.Title>{comment.user.email}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
-                    {dateFormat(message.date.seconds)}
+                    {dateFormat(comment.date.seconds)}
                   </Card.Subtitle>
-                  <Card.Text>{message.text}</Card.Text>
+                  <Card.Text>{comment.text}</Card.Text>
                 </Card.Body>
                 <Button>Delete</Button>
               </Card>
             );
           })}
 
-        <Form onSubmit={handleMessageSubmit}>
+        <Form onSubmit={handleCommentSubmit}>
           <FloatingLabel
-            onChange={handleTextMessageChange}
+            onChange={handleTextCommentChange}
             controlId="floatingInput"
             label="message"
             className="mb-3"
