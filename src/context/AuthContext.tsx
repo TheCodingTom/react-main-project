@@ -38,7 +38,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth } from "../config/firebaseConfig";
+import { auth, db } from "../config/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
 
 export const AuthContext = createContext<AuthContextType>(contextInitialValue);
 
@@ -61,6 +62,13 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       const user = userCredential.user;
 
       console.log(user);
+
+      // when the first user signs up this function creates automatically a users collection in the firestore database
+      
+      const docRef = doc(db, "users", user.uid) // creating a doc reference object
+      await setDoc(docRef, { // add the actual data in the doc reference object
+        email: email
+      })
     } catch (err) {
       const error = err as Error;
       console.log(error.message);
