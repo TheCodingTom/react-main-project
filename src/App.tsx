@@ -9,9 +9,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 import NavBar from "./components/NavBar";
 import { CountriesContextProvider } from "./context/CountriesContext";
-import Gallery from "./components/Gallery";
-import BackButton from "./components/BackButton";
 
+import BackButton from "./components/BackButton";
+import Profile from "./pages/Profile";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -19,7 +19,7 @@ const Root = () => {
     // if I want to add a footer, it will go under outlet
     <>
       <NavBar />
-      <BackButton/>
+      <BackButton />
       <Outlet />
     </>
   );
@@ -46,12 +46,17 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <SingleCountry />
-                     
                     </ProtectedRoute>
                   }
                 />
-
-                
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute> 
+                  }
+                />
 
                 <Route path="*" element={<NoMatchPage />} />
                 {/* the "*" means that whenever the page shown is not /countries or /contact, it will show the 404page */}

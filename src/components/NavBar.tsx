@@ -27,7 +27,7 @@ function NavBar() {
                 Countries
               </Nav.Link>
               {user ? (<NavDropdown title="User" id="collapsible-nav-dropdown">
-                <NavDropdown.Item>Profile</NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to={"/profile"}>Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item>Play - Coming soon?</NavDropdown.Item>
               </NavDropdown>) : ""}

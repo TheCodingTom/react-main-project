@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Country } from "../types/customTypes";
 
@@ -7,7 +7,7 @@ import Chat from "../components/Comments";
 import { Col, Container, Row } from "react-bootstrap";
 
 
-import { AuthContext } from "../context/AuthContext";
+
 
 type WikiData = {
   description: string;
@@ -33,7 +33,7 @@ type PixabayData = {
 
 function SingleCountry() {
   const { countryName } = useParams<string>();
-  const { user } = useContext(AuthContext);
+ 
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
   const [countryData, setCountryData] = useState<Country | null>(null);
   // const [messages, setMessages] = useState<MessageType[] | null>(null);
