@@ -85,14 +85,14 @@ h1 {
   animation: roll 15s linear 0.5s infinite;
 }
 
-@keyframes roll{
+/* @keyframes roll{
   from{
     transform: rotate(0deg)
   }
   to{
     transform: rotate(360deg)
   }
-}
+} */
 
 /* .logo:hover {
   transform: rotate(180deg); transition: 4s
