@@ -2,7 +2,6 @@ import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
-import BackButton from "./BackButton";
 import SignModal from "./SignModal";
 
 function NavBar() {
@@ -47,10 +46,6 @@ function NavBar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <div>
-        <BackButton />
-      </div>
     </>
   );
 }
