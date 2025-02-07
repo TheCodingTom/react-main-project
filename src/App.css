@@ -85,6 +85,9 @@ h1 {
   animation: roll 15s linear 0.5s infinite;
 }
 
+.bg-body-tertiary {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
 /* @keyframes roll{
   from{
     transform: rotate(0deg)

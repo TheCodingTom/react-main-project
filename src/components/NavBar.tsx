@@ -12,8 +12,7 @@ function NavBar() {
         collapseOnSelect
         expand="lg"
         className="bg-body-tertiary"
-        bg="dark"
-        data-bs-theme="dark"
+        bg="light" data-bs-theme="light"
       >
         <Container>
           <Navbar.Brand as={NavLink} to={"/"}>COUNTRY APP</Navbar.Brand>

@@ -2,6 +2,10 @@ import {
   addDoc,
   collection,
 
+  deleteDoc,
+
+  doc,
+
   onSnapshot,
   orderBy,
   query,
@@ -32,7 +36,7 @@ function Comments() {
     if (!countryName) {
       throw new Error("countryName is undefined!");
     }
-    
+
     const q = query(collection(db, "comments", countryName, "messages"), orderBy("date", "asc"));
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -69,6 +73,7 @@ function Comments() {
       text: commentText,
       date: new Date(),
       user: user,
+      
     };
 
     if (!countryName) {
@@ -83,12 +88,14 @@ function Comments() {
     ); // Subcollection for messages
 
     const docRef = await addDoc(messagesCollectionRef, newComment);
+    console.log(newComment);
 
     console.log("Message added with ID:", docRef.id);
   };
 
+  
   // const handleMessageDelete = async (e: React.FormEvent<HTMLButtonElement>) => {
-
+  //   e.preventDefault()
 
   //   if (!countryName) {
   //     throw new Error("countryName is undefined!");
@@ -99,12 +106,10 @@ function Comments() {
   //     "comments",
   //     countryName,
   //     "messages",
-      
   //   );
 
-
-  //   await deleteDoc(doc(messagesCollectionRef, message ));
-  //   console.log("message deleted");
+  //   await deleteDoc(doc(messagesCollectionRef, "messages"));
+  //   console.log("Message deleted");
   // }
 
 
