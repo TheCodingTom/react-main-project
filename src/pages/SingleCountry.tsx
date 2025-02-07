@@ -5,7 +5,7 @@ import { Country } from "../types/customTypes";
 import styles from "../styles/singlecountry.module.css";
 import Chat from "../components/Comments";
 import { Col, Container, Row } from "react-bootstrap";
-
+import { Heart, HeartFill } from 'react-bootstrap-icons';
 
 
 
@@ -80,6 +80,10 @@ function SingleCountry() {
       console.log("error in the fetch:", error);
     }
   };
+  // const handleIconChange = (e:React.MouseEvent<SVGElement, MouseEvent>) => {
+  // console.log("clicked");
+  
+  // }
 
   useEffect(() => {
     getWikiData();
@@ -95,6 +99,8 @@ function SingleCountry() {
         <Row>
           <Col>
             <img className={styles.image} src={countryData?.flags.png} alt="" />
+            {/* <Heart onClick={handleIconChange}/> */}
+            
             <p>Capital: {countryData?.capital} </p>
             <p>Continent: {countryData?.region} </p>
             <p>Population: {countryData?.population} </p>

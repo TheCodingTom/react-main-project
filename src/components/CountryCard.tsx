@@ -2,9 +2,12 @@ import { Button, Card, CardMedia, Typography } from "@mui/material";
 // import { Button, Card } from "react-bootstrap";
 import { Country } from "../types/customTypes";
 
+
 type CountryCardProps = {
   country: Country;
 };
+
+
 
 
 function CountryCard({ country }: CountryCardProps) {
@@ -25,7 +28,10 @@ function CountryCard({ country }: CountryCardProps) {
         </Typography>
       </div>
 
+      <div>
       <Button>Discover more</Button>
+      
+      </div>
     </Card>
     
   );

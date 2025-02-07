@@ -97,24 +97,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         console.log(errorMessage);
       });
 
-    // try {
-    //   const userCredential = await signInWithEmailAndPassword(
-    //     auth,
-    //     email,
-    //     password
-    //   );
-    //   // Signed in
-    //   const user = userCredential.user;
-
-    //   const email = user.email
-    //   const id = user.uid
-
-    // console.log("user logged in");
-    // console.log(user);
-    // } catch (err) {
-    //   const error = err as Error;
-    //   console.log(error.message);
-    // }
   };
 
   const checkUserStatus = () => {
