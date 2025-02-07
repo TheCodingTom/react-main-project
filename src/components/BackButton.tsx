@@ -10,7 +10,7 @@ function BackButton() {
     }
 
   return (
-    <div>
+    <div className='back-button'>
         <Button onClick={redirectTo}>Back</Button>
     </div>
   )

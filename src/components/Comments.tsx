@@ -24,6 +24,7 @@ type CommentType = {
   text: string;
   date: Timestamp;
   id: string;
+  
 };
 
 function Comments() {
@@ -47,6 +48,7 @@ function Comments() {
           date: doc.data().date,
           user: doc.data().user,
           id: doc.id,
+          
         };
 
         arrayOfComments.push(newComment);

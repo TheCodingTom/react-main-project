@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 // import { AuthContext } from "../context/AuthContext";
 import { getAuth, updateProfile } from "firebase/auth";
-
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../config/firebaseConfig";
 
 function Profile() {
   const [username, setUsername] = useState<string>("");
@@ -18,34 +19,22 @@ function Profile() {
   ) => {
     e.preventDefault();
     if (user)
-      updateProfile(user, {
-        displayName: username,
-      })
-        .then(() => {
-          // Profile updated!
-          // ...
-        })
-        .catch((error) => {
-          // An error occurred
-          console.log(error);
+      try {
+        // updates profile in auth
+        await updateProfile(user, {
+          displayName: username,
+        });
+        // updates document in firestore database
+        const docRef = doc(db, "users", user?.uid);
+
+        await updateDoc(docRef, {
+          displayName: username,
         });
 
-        // if (!user) {
-        //     throw new Error("countryName is undefined!");
-            
-        //   }
-        //   const docRef = doc(db, "users", user?.uid, user?.displayName);
-
-    // Set the "capital" field of the city 'DC'
-    // await updateDoc(docRef, {
-    //   displayName: username,
-    // });
-    // console.log(user?.displayName);
-
-
-   
-
-    
+        console.log("username updated");
+      } catch (error) {
+        console.log("error while updating:", error);
+      }
   };
 
   return (

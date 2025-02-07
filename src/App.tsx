@@ -12,6 +12,7 @@ import { CountriesContextProvider } from "./context/CountriesContext";
 
 import BackButton from "./components/BackButton";
 import Profile from "./pages/Profile";
+import { ThemeContextProvider } from "./context/ThemeContext";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -34,41 +35,38 @@ function App() {
     <>
       <AuthContextProvider>
         <CountriesContextProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" />
-              <Route element={<Root />}>
-                <Route index element={<Home />} />
-                <Route path="/countries" element={<Countries />} />
+          
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" />
+                <Route element={<Root />}>
+                  <Route index element={<Home />} />
+                  <Route path="/countries" element={<Countries />} />
 
-                <Route
-                  path="/countries/:countryName"
-                  element={
-                    <ProtectedRoute>
-                      <SingleCountry />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute>
-                      <Profile />
-                    </ProtectedRoute> 
-                  }
-                />
+                  <Route
+                    path="/countries/:countryName"
+                    element={
+                      <ProtectedRoute>
+                        <SingleCountry />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <ProtectedRoute>
+                        <Profile />
+                      </ProtectedRoute>
+                    }
+                  />
 
-                <Route path="*" element={<NoMatchPage />} />
-                {/* the "*" means that whenever the page shown is not /countries or /contact, it will show the 404page */}
-              </Route>
-            </Routes>
-          </BrowserRouter>
+                  <Route path="*" element={<NoMatchPage />} />
+                  {/* the "*" means that whenever the page shown is not /countries or /contact, it will show the 404page */}
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          
         </CountriesContextProvider>
-        {/* <ThemeContextProvider> */}
-        {/* <div className={darkMode ? "dark-mode" : "light-mode"}> */}
-
-        {/* </div> */}
-        {/* </ThemeContextProvider> */}
       </AuthContextProvider>
     </>
   );
