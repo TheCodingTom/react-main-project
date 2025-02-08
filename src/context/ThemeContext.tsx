@@ -1,32 +1,34 @@
 import { createContext, ReactNode, useState } from "react";
 
 type ThemeContextProviderProps = {
-    children: ReactNode
-}
+  children: ReactNode;
+};
 
 type ThemeContextType = {
-    darkMode: boolean;
-    toggleDarkMode: ()=>void
+    theme: string;
+    toggleTheme: ()=>void
 }
 
 const contextInitialValue:ThemeContextType = {
-darkMode: false,
-toggleDarkMode: ()=>{throw new Error("context not initialised")}
-}
-
-export const ThemeContext = createContext<ThemeContextType>(contextInitialValue)
-
-export const ThemeContextProvider = ({children}:ThemeContextProviderProps) => {
-
-    const [darkMode, setDarkMode] = useState(false)
-    const toggleDarkMode = () => {
-      setDarkMode(!darkMode)
-      console.log(darkMode);
+    theme: "light",
+    toggleTheme: ()=>{throw new Error("context not initialised")}
     }
 
+export const ThemeContext = createContext<ThemeContextType>(contextInitialValue);
+
+export const ThemeContextProvider = ({
+  children,
+}: ThemeContextProviderProps) => {
+  const [theme, setTheme] = useState("light");
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light")); // if the current theme is...
+  };
+
   return (
-    <ThemeContext.Provider value={{darkMode, toggleDarkMode}}>
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
+      <div className="App" id="light">
         {children}
+      </div>
     </ThemeContext.Provider>
-  )
-}
+  );
+};

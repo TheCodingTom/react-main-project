@@ -2,16 +2,19 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 // import { AuthContext } from "../context/AuthContext";
 import { getAuth, updateProfile } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 function Profile() {
   const [username, setUsername] = useState<string>("");
   const auth = getAuth();
   const user = auth.currentUser;
+  
 
   const handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+    console.log(e.target.value);
+    const inputText = e.target.value;
+    setUsername(inputText);
   };
 
   const handleUsernameChange = async (
@@ -35,7 +38,12 @@ function Profile() {
       } catch (error) {
         console.log("error while updating:", error);
       }
+    
   };
+
+ 
+
+ 
 
   return (
     <>
@@ -51,6 +59,8 @@ function Profile() {
         {/* <button onClick={handleUsernameChange}>Update</button> */}
       </div>
       <h2>Username: {user?.displayName}</h2>
+
+      
 
       {/* <Form>
         <h2>Set a username</h2>
