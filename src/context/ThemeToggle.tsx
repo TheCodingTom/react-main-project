@@ -1,13 +1,23 @@
+import { useEffect, useState } from "react";
+
 const ThemeToggle = () => {
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
 
+  useEffect(() => {
+    document.body.classList.toggle("dark-theme", isDarkTheme);
+  }, [isDarkTheme]); // class will be activate only when isDarkTheme is true, otherwise it will remove the dark theme
 
-    return <>
-    <label>
-        <input type="checkbox" /> <span>Dark Mode</span>
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
 
-    </label>
+  return (
+    <>
+      <label>
+        <input type="checkbox" onClick={toggleTheme} /> <span>Dark Mode</span>
+      </label>
     </>
-  
-}
+  );
+};
 
-export default ThemeToggle
+export default ThemeToggle;
