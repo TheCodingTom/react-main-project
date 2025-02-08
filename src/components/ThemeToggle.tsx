@@ -21,12 +21,13 @@ const ThemeToggle = () => {
   };
 
   return (
-    <>
+    <div className="theme-toggle">
+    <span>Dark mode</span>
       <label className="switch">
-        <input type="checkbox" checked={isDarkTheme} onClick={toggleTheme} />
-        <span className="slider round"></span>
+        <input type="checkbox" checked={isDarkTheme} onClick={toggleTheme} /> 
+        <span className="slider round"></span> 
       </label>
-    </>
+    </div>
   );
 };
 

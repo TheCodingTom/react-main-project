@@ -10,10 +10,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import NavBar from "./components/NavBar";
 import { CountriesContextProvider } from "./context/CountriesContext";
 
-import BackButton from "./components/BackButton";
+// import BackButton from "./components/BackButton";
 import Profile from "./pages/Profile";
-
-import ThemeToggle from "./components/ThemeToggle";
+import TopContainer from "./components/BackButton";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -21,8 +20,7 @@ const Root = () => {
     // if I want to add a footer, it will go under outlet
     <>
       <NavBar />
-      <BackButton />
-      <ThemeToggle />
+      <TopContainer />
       <Outlet />
     </>
   );
@@ -37,7 +35,6 @@ function App() {
     <>
       <AuthContextProvider>
         <CountriesContextProvider>
-          
           <BrowserRouter>
             <Routes>
               <Route path="/" />

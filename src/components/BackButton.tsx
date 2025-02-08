@@ -1,6 +1,7 @@
 // import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router'
+import ThemeToggle from './ThemeToggle'
 
 
 function BackButton() { 
@@ -12,6 +13,7 @@ function BackButton() {
   return (
     <div className='back-button'>
         <Button onClick={redirectTo}>Back</Button>
+        <ThemeToggle/>
     </div>
   )
 }
