@@ -13,7 +13,7 @@ import { CountriesContextProvider } from "./context/CountriesContext";
 import BackButton from "./components/BackButton";
 import Profile from "./pages/Profile";
 
-import ThemeToggle from "./context/ThemeToggle";
+import ThemeToggle from "./components/ThemeToggle";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
