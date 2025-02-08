@@ -1,12 +1,22 @@
-/* .light-mode {
-  background-color: white;
-  color: black;
-} */
-/* 
-.dark-mode {
-  background-color: black;
-  color: white;
-} */
+:root {
+  --background-color: #fff;
+  --color: #000;
+}
+
+.dark-theme {
+  --background-color: #000;
+  --color: #fff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+*{
+  transition: 0.3s;
+}
+
 
 h1 {
   font-size: 3.2em;
