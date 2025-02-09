@@ -5,12 +5,17 @@ import { useContext, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
+import { Icon } from "react-icons-kit";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { eye } from "react-icons-kit/feather/eye";
 
 const SignModal = () => {
-  const {login, register} = useContext(AuthContext)
+  const { login, register } = useContext(AuthContext);
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState(eyeOff);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
 
@@ -29,41 +34,55 @@ const SignModal = () => {
     setShowSignUp(true);
   };
 
-  // user input functions 
+  // user input functions
 
-  const handleEmailChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-  }
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
 
-  const handlePasswordChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-  }
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(eye);
+      setType("text");
+    } else {
+      setIcon(eyeOff);
+      setType("password");
+    }
+  };
 
   // login/register on form submit
 
-  const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+  const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    login(email,password);
-    autoRedirect()
-  }
+    login(email, password);
+    autoRedirect();
+  };
 
-  const handleRegisterSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+  const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // console.log(email,password);
-    register(email,password);
-  }
+    register(email, password);
+  };
 
   // redirect user after sign in
 
-  const goBackTo = useNavigate()
-  const redirectTo = () => { 
-    goBackTo("/")
-  }
+  const goBackTo = useNavigate();
+  const redirectTo = () => {
+    goBackTo("/");
+  };
 
   const autoRedirect = () => {
     setTimeout(() => {
-        redirectTo()
+      redirectTo();
     }, 0);
+  };
+
+  const myStyle = {
+    width:"183px"
   }
 
   return (
@@ -72,34 +91,50 @@ const SignModal = () => {
         Login
       </Button>
 
-      <Modal className="dark-theme" show={showSignIn} onHide={handleCloseSignIn}>
-        <Modal.Header className="modal-top-btn" >
-          
-            <Button onClick={handleShowSignIn}>Sign in</Button>
-            <Button onClick={handleShowSignUp}>Sign up</Button>
-        
+      <Modal
+        className="dark-theme"
+        show={showSignIn}
+        onHide={handleCloseSignIn}
+      >
+        <Modal.Header className="modal-top-btn">
+          <Button onClick={handleShowSignIn}>Sign in</Button>
+          <Button onClick={handleShowSignUp}>Sign up</Button>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleLoginSubmit}>
             <div className="form-input">
               <h2>Sign in</h2>
-              <TextField
-                id="outlined-textarea"
-                label="Email"
-                placeholder="Type here"
-                multiline
-                value={email}
-             onChange={handleEmailChange}
-              />
-              <TextField
-                id="outlined-textarea"
-                label="Password"
-                placeholder="Type here"
-                multiline
-                value={password}
-              onChange={handlePasswordChange}
-              />
-              <Button type="submit" onClick={handleCloseSignIn}>Sign in</Button>
+              <div className="input-modal">
+                <input
+                  type="text"
+                  style={myStyle}
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+
+                <div className="input-password-modal">
+                <input
+                  type={type}
+                  name="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                />
+                <span
+                  className="flex justify-around items-center"
+                  onClick={handleToggle}
+                >
+                  <Icon className="absolute mr-10" icon={icon} size={25} />
+                </span>
+                </div>
+              </div>
+
+              <Button type="submit" onClick={handleCloseSignIn}>
+                Sign in
+              </Button>
             </div>
           </form>
         </Modal.Body>
@@ -112,10 +147,8 @@ const SignModal = () => {
 
       <Modal show={showSignUp} onHide={handleCloseSignUp}>
         <Modal.Header className="modal-top-btn">
-          
-            <Button onClick={handleShowSignIn}>Sign in</Button>
-            <Button onClick={handleShowSignUp}>Sign up</Button>
-         
+          <Button onClick={handleShowSignIn}>Sign in</Button>
+          <Button onClick={handleShowSignUp}>Sign up</Button>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleRegisterSubmit}>
@@ -127,7 +160,7 @@ const SignModal = () => {
                 placeholder="Type here"
                 multiline
                 value={email}
-             onChange={handleEmailChange}
+                onChange={handleEmailChange}
               />
               <TextField
                 id="outlined-textarea"
@@ -135,9 +168,11 @@ const SignModal = () => {
                 placeholder="Type here"
                 multiline
                 value={password}
-              onChange={handlePasswordChange}
+                onChange={handlePasswordChange}
               />
-              <Button onClick={handleCloseSignUp} type="submit">Sign up</Button>
+              <Button onClick={handleCloseSignUp} type="submit">
+                Sign up
+              </Button>
             </div>
           </form>
         </Modal.Body>
