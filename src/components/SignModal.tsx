@@ -97,13 +97,13 @@ const SignModal = () => {
         onHide={handleCloseSignIn}
       >
         <Modal.Header className="modal-top-btn">
-          <Button onClick={handleShowSignIn}>Sign in</Button>
-          <Button onClick={handleShowSignUp}>Sign up</Button>
+          <Button onClick={handleShowSignIn}>Login</Button>
+          <Button onClick={handleShowSignUp}>Register</Button>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleLoginSubmit}>
             <div className="form-input">
-              <h2>Sign in</h2>
+              <h2>Login</h2>
               <div className="input-modal">
                 <input
                   type="text"
@@ -133,7 +133,7 @@ const SignModal = () => {
               </div>
 
               <Button type="submit" onClick={handleCloseSignIn}>
-                Sign in
+                Login
               </Button>
             </div>
           </form>
@@ -147,13 +147,13 @@ const SignModal = () => {
 
       <Modal show={showSignUp} onHide={handleCloseSignUp}>
         <Modal.Header className="modal-top-btn">
-          <Button onClick={handleShowSignIn}>Sign in</Button>
-          <Button onClick={handleShowSignUp}>Sign up</Button>
+          <Button onClick={handleShowSignIn}>Login</Button>
+          <Button onClick={handleShowSignUp}>Register</Button>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleRegisterSubmit}>
             <div className="form-input">
-              <h2>Sign up</h2>
+              <h2>Register</h2>
               <TextField
                 id="outlined-textarea"
                 label="Email"
@@ -171,7 +171,7 @@ const SignModal = () => {
                 onChange={handlePasswordChange}
               />
               <Button onClick={handleCloseSignUp} type="submit">
-                Sign up
+                Register
               </Button>
             </div>
           </form>

@@ -2,7 +2,8 @@
 
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import logo from "../components/globe.svg";
+
+import logo from "../components/logo.png"
 import SignModal from "../components/SignModal";
 
 const Home = () => {
