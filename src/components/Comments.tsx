@@ -1,11 +1,6 @@
 import {
   addDoc,
   collection,
-
-  deleteDoc,
-
-  doc,
-
   onSnapshot,
   orderBy,
   query,
@@ -24,7 +19,6 @@ type CommentType = {
   text: string;
   date: Timestamp;
   id: string;
-  
 };
 
 function Comments() {
@@ -38,7 +32,10 @@ function Comments() {
       throw new Error("countryName is undefined!");
     }
 
-    const q = query(collection(db, "comments", countryName, "messages"), orderBy("date", "asc"));
+    const q = query(
+      collection(db, "comments", countryName, "messages"),
+      orderBy("date", "asc")
+    );
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const arrayOfComments: CommentType[] = [];
@@ -48,7 +45,6 @@ function Comments() {
           date: doc.data().date,
           user: doc.data().user,
           id: doc.id,
-          
         };
 
         arrayOfComments.push(newComment);
@@ -75,7 +71,6 @@ function Comments() {
       text: commentText,
       date: new Date(),
       user: user,
-      
     };
 
     if (!countryName) {
@@ -95,7 +90,6 @@ function Comments() {
     console.log("Message added with ID:", docRef.id);
   };
 
-  
   // const handleMessageDelete = async (e: React.FormEvent<HTMLButtonElement>) => {
   //   e.preventDefault()
 
@@ -113,8 +107,6 @@ function Comments() {
   //   await deleteDoc(doc(messagesCollectionRef, "messages"));
   //   console.log("Message deleted");
   // }
-
-
 
   useEffect(() => {
     getLiveMessages();
