@@ -12,8 +12,6 @@ import { CountriesContextProvider } from "./context/CountriesContext";
 
 import Profile from "./pages/Profile";
 import BackButtonThemeContainer from "./components/BackButtonThemeContainer";
-// import TopContainer from "./components/BackButton";
-// import ThemeToggle from "./components/ThemeToggle";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar

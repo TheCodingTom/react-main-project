@@ -76,6 +76,7 @@ body {
   color: var(--color);
 }
 
+
 * {
   transition: 0.2s;
 }
@@ -169,6 +170,17 @@ h1 {
   animation: roll 15s linear 0.5s infinite;
 }
 
+.modal-content {
+  color: #37474f;
+}
+
+.modal-top-btn {
+  display: flex;
+ flex-direction: row;
+justify-content: space-evenly;
+ 
+ 
+}
 /* @keyframes roll{
   from{
     transform: rotate(0deg)
@@ -181,3 +193,5 @@ h1 {
 /* .logo:hover {
   transform: rotate(180deg); transition: 4s
 } */
+
+

@@ -72,12 +72,12 @@ const SignModal = () => {
         Login
       </Button>
 
-      <Modal show={showSignIn} onHide={handleCloseSignIn}>
-        <Modal.Header closeButton>
-          <Modal.Title>
+      <Modal className="dark-theme" show={showSignIn} onHide={handleCloseSignIn}>
+        <Modal.Header className="modal-top-btn" >
+          
             <Button onClick={handleShowSignIn}>Sign in</Button>
             <Button onClick={handleShowSignUp}>Sign up</Button>
-          </Modal.Title>
+        
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleLoginSubmit}>
@@ -111,11 +111,11 @@ const SignModal = () => {
       </Modal>
 
       <Modal show={showSignUp} onHide={handleCloseSignUp}>
-        <Modal.Header closeButton>
-          <Modal.Title >
+        <Modal.Header className="modal-top-btn">
+          
             <Button onClick={handleShowSignIn}>Sign in</Button>
             <Button onClick={handleShowSignUp}>Sign up</Button>
-          </Modal.Title>
+         
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleRegisterSubmit}>
