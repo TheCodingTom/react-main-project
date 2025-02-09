@@ -4,18 +4,19 @@ import { useNavigate } from 'react-router'
 import ThemeToggle from './ThemeToggle'
 
 
-function BackButton() { 
-    const goBackTo = useNavigate()
+function BackButtonThemeContainer() { 
+
+    const backButton = useNavigate()
     const redirectTo = () => { 
-      goBackTo(-1)
+      backButton(-1)
     }
 
   return (
-    <div className='back-button'>
+    <div className='backButton-dark-container'>
         <Button onClick={redirectTo}>Back</Button>
         <ThemeToggle/>
     </div>
   )
 }
 
-export default BackButton
+export default BackButtonThemeContainer

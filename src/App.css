@@ -118,6 +118,7 @@ h1 {
   width: 300px;
   outline: solid 1px grey;
   text-decoration: none;
+
 }
 
 .mycard:hover {
@@ -149,7 +150,7 @@ h1 {
   gap: 10px;
 }
 
-.back-button {
+.backButton-dark-container {
   padding: 10px;
   display: flex;
   flex-direction: row;
