@@ -194,6 +194,15 @@ h1 {
   align-items: center;
   gap: 10px;
 }
+
+.comment-delete-button {
+  width: 80px;
+  height: 40px;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  
+}
 /* @keyframes roll{
   from{
     transform: rotate(0deg)

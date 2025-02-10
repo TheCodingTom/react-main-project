@@ -16,6 +16,8 @@ import { User } from "../types/customTypes";
 import { useParams } from "react-router";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
+import { Trash } from 'react-bootstrap-icons';
+import { Icon } from "react-icons-kit";
 
 
 type CommentType = {
@@ -111,23 +113,23 @@ function Comments() {
     }
   };
 
-  const handleCommentEdit = async (commentId: string) => {
-    if (!countryName) {
-      throw new Error("countryName is undefined!");
-    }
+  // const handleCommentEdit = async (commentId: string) => {
+  //   if (!countryName) {
+  //     throw new Error("countryName is undefined!");
+  //   }
   
-    try {
-      const commentDocRef = doc(db, "comments", countryName, "messages", commentId);
-      await updateDoc(commentDocRef, {
-        text: commentText,
-      date: new Date(),
-      user: user,
-      });
-      console.log("Message edited with ID:", commentId);
-    } catch (error) {
-      console.error("Error editing message:", error);
-    }
-  };
+  //   try {
+  //     const commentDocRef = doc(db, "comments", countryName, "messages", commentId);
+  //     await updateDoc(commentDocRef, {
+  //       text: commentText,
+  //     date: new Date(),
+  //     user: user,
+  //     });
+  //     console.log("Message edited with ID:", commentId);
+  //   } catch (error) {
+  //     console.error("Error editing message:", error);
+  //   }
+  // };
 
 
   useEffect(() => {
@@ -150,8 +152,12 @@ function Comments() {
                   </Card.Subtitle>
                   <Card.Text>{comment.text}</Card.Text>
                 </Card.Body>
-                <Button onClick={() => handleCommentDelete(comment.id)}>Delete</Button>
-                <Button onClick={() => handleCommentEdit(comment.id)}>Edit</Button>
+                <div>
+                <Button className="comment-delete-button" onClick={() => handleCommentDelete(comment.id)}>Delete</Button>
+                </div>
+                
+                
+                
               </Card>
             );
           })}
