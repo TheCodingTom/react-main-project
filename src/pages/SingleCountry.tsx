@@ -81,10 +81,6 @@ function SingleCountry() {
       console.log("error in the fetch:", error);
     }
   };
-  // const handleIconChange = (e:React.MouseEvent<SVGElement, MouseEvent>) => {
-  // console.log("clicked");
-  
-  // }
 
   useEffect(() => {
     getWikiData();
@@ -98,16 +94,14 @@ function SingleCountry() {
 
       <Container>
         <Row>
-          <Col>
-            <img className={styles.image} src={countryData?.flags.png} alt="" />
-            {/* <Heart onClick={handleIconChange}/> */}
-            
-            <p>Capital: {countryData?.capital} </p>
-            <p>Continent: {countryData?.region} </p>
-            <p>Population: {countryData?.population} </p>
+          <Col className={styles.countryDetails}>
+            <img className={styles.flag} src={countryData?.flags.png} alt={`flag of ${countryName}`} />
+            <h4>Capital: {countryData?.capital} </h4>
+            <h4>Continent: {countryData?.region} </h4>
+            <h4>Population: {countryData?.population.toLocaleString()} </h4>
             <p>Description: {wikiData?.extract} </p>
           </Col>
-          <Col>
+          <Col >
             <Chat />
           </Col>
         </Row>

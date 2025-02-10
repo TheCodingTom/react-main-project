@@ -7,7 +7,6 @@ import {
   orderBy,
   query,
   Timestamp,
-
 } from "firebase/firestore";
 import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
 
@@ -17,14 +16,12 @@ import { useParams } from "react-router";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
 
-
 type CommentType = {
   user: User;
   text: string;
   date: Timestamp;
   id: string;
 };
-
 
 function Comments() {
   const { countryName } = useParams<string>();
@@ -53,43 +50,16 @@ function Comments() {
         };
         arrayOfComments.push(newComment);
       });
-     
+
       if (arrayOfComments.length > 0) {
         setComments(arrayOfComments);
-      } else {setComments(null)}
-
-
-      // querySnapshot.docChanges().forEach((change) => {
-      //   console.log('change.doc.data() :>> ', change.doc.data());
-      //   if (change.type === "added") {
-      //       console.log("New comment: ", change.doc.data());
-      //            const newComment: CommentType = {
-      //     text: change.doc.data().text,
-      //     date: change.doc.data().date,
-      //     user: change.doc.data().user,
-      //     id: change.doc.id,
-      //   };
-
-       
-      
-
-      //   arrayOfComments.push(newComment);
-      //   }
-      //   if (change.type === "modified") {
-      //       console.log("Modified comment: ", change.doc.data());
-      //   }
-      //   if (change.type === "removed") {
-      //       console.log("Removed comment: ", change.doc.data());
-      //   };
-      // });
-      // setComments(arrayOfComments)
-
+      } else {
+        setComments(null);
+      }
     });
-
   };
 
   const handleTextCommentChange = (e: React.ChangeEvent<HTMLFormElement>) => {
-    
     const inputText = e.target.value;
     setCommentText(inputText);
   };
@@ -120,19 +90,22 @@ function Comments() {
     ); // Subcollection for messages
 
     const docRef = await addDoc(messagesCollectionRef, newComment);
-    console.log(newComment);
-
     console.log("Message added with ID:", docRef.id);
-    
   };
 
   const handleCommentDelete = async (commentId: string) => {
     if (!countryName) {
       throw new Error("countryName is undefined!");
     }
-  
+
     try {
-      const commentDocRef = doc(db, "comments", countryName, "messages", commentId);
+      const commentDocRef = doc(
+        db,
+        "comments",
+        countryName,
+        "messages",
+        commentId
+      );
       await deleteDoc(commentDocRef);
       console.log("Message deleted with ID:", commentId);
     } catch (error) {
@@ -144,7 +117,7 @@ function Comments() {
   //   if (!countryName) {
   //     throw new Error("countryName is undefined!");
   //   }
-  
+
   //   try {
   //     const commentDocRef = doc(db, "comments", countryName, "messages", commentId);
   //     await updateDoc(commentDocRef, {
@@ -157,7 +130,6 @@ function Comments() {
   //     console.error("Error editing message:", error);
   //   }
   // };
-
 
   useEffect(() => {
     getLiveMessages();
@@ -180,11 +152,13 @@ function Comments() {
                   <Card.Text>{comment.text}</Card.Text>
                 </Card.Body>
                 <div>
-                <Button className="comment-delete-button" onClick={() => handleCommentDelete(comment.id)}>Delete</Button>
+                  <Button
+                    className="comment-delete-button"
+                    onClick={() => handleCommentDelete(comment.id)}
+                  >
+                    Delete
+                  </Button>
                 </div>
-                
-                
-                
               </Card>
             );
           })}

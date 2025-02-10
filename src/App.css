@@ -74,6 +74,7 @@ input:checked + .slider:before {
 body {
   background-color: var(--background-color);
   color: var(--color);
+  font-family: "Space Grotesk", serif;
 }
 
 * {

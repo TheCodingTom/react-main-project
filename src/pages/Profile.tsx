@@ -2,14 +2,15 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 // import { AuthContext } from "../context/AuthContext";
 import { getAuth, updateProfile } from "firebase/auth";
-import { collection, doc, onSnapshot, query, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 function Profile() {
-  const [username, setUsername] = useState<string>("");
+  
   const [usernameText, setUsernameText] = useState<string>("");
   const auth = getAuth();
   const user = auth.currentUser;
+  const [username, setUsername] = useState<string>();
 
   // const getLiveUsername = () => {
    
