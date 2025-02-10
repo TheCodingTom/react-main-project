@@ -93,19 +93,23 @@ function Comments() {
     console.log(newComment);
 
     console.log("Message added with ID:", docRef.id);
+    
   };
 
- 
-  // const deleteComment = async (docId) => {
+  const handleCommentDelete = async (commentId: string) => {
+    if (!countryName) {
+      throw new Error("countryName is undefined!");
+    }
+  
+    try {
+      const commentDocRef = doc(db, "comments", countryName, "messages", commentId);
+      await deleteDoc(commentDocRef);
+      console.log("Message deleted with ID:", commentId);
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
+  };
 
-  //   if (!countryName || !docId) {
-  //     throw new Error("countryName is undefined!");
-  //   }
-  //   await deleteDoc(doc(db, "comments", countryName, "messages", docId));
-  
-  //  }
-  
-  //  deleteComment(doc.id)
 
   useEffect(() => {
     getLiveMessages();
@@ -127,7 +131,7 @@ function Comments() {
                   </Card.Subtitle>
                   <Card.Text>{comment.text}</Card.Text>
                 </Card.Body>
-                <Button>Delete</Button>
+                <Button onClick={() => handleCommentDelete(comment.id)}>Delete</Button>
               </Card>
             );
           })}
