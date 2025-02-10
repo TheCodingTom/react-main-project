@@ -1,6 +1,4 @@
-// import React from 'react'
 
-import { TextField } from "@mui/material";
 import { useContext, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
@@ -120,7 +118,7 @@ const SignModal = () => {
                   name="password"
                   placeholder="Password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={handlePasswordChange}
                   autoComplete="current-password"
                 />
                 <span
@@ -154,22 +152,33 @@ const SignModal = () => {
           <form onSubmit={handleRegisterSubmit}>
             <div className="form-input">
               <h2>Register</h2>
-              <TextField
-                id="outlined-textarea"
-                label="Email"
-                placeholder="Type here"
-                multiline
-                value={email}
-                onChange={handleEmailChange}
-              />
-              <TextField
-                id="outlined-textarea"
-                label="Password"
-                placeholder="Type here"
-                multiline
-                value={password}
-                onChange={handlePasswordChange}
-              />
+              <div className="input-modal">
+                <input
+                  type="text"
+                  style={myStyle}
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+
+                <div className="input-password-modal">
+                <input
+                  type={type}
+                  name="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  autoComplete="current-password"
+                />
+                <span
+                  className="flex justify-around items-center"
+                  onClick={handleToggle}
+                >
+                  <Icon className="absolute mr-10" icon={icon} size={25} />
+                </span>
+                </div>
+              </div>
               <Button onClick={handleCloseSignUp} type="submit">
                 Register
               </Button>

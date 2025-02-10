@@ -5,7 +5,7 @@ import { Country } from "../types/customTypes";
 import styles from "../styles/singlecountry.module.css";
 import Chat from "../components/Comments";
 import { Col, Container, Row } from "react-bootstrap";
-import { Heart, HeartFill } from 'react-bootstrap-icons';
+
 
 
 
@@ -49,6 +49,7 @@ function SingleCountry() {
   const pixabayUrl = `https://pixabay.com/api/?key=48499188-4a0bbbaf9b13a582b53d5d561&q=city+landscape+${countryName}&image_type=photo&pretty=true&per_page=10`;
 
   const getWikiData = async () => {
+    
     try {
       const response = await fetch(WikiUrl);
       const result = await response.json(); // add as plus type
