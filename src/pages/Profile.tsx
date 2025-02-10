@@ -2,19 +2,42 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 // import { AuthContext } from "../context/AuthContext";
 import { getAuth, updateProfile } from "firebase/auth";
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { collection, doc, onSnapshot, query, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 function Profile() {
   const [username, setUsername] = useState<string>("");
+  const [usernameText, setUsernameText] = useState<string>("");
   const auth = getAuth();
   const user = auth.currentUser;
-  
+
+  // const getLiveUsername = () => {
+   
+  //   if (user) {
+  //     const q = query(
+  //       collection(db, "users", user?.uid, displayName))
+  //       onSnapshot(q, (querySnapshot) => {
+  //         const arrayOfComments: CommentType[] = [];
+  //         querySnapshot.forEach((doc) => {
+  //           const newComment: CommentType = {
+  //             text: doc.data().text,
+  //             date: doc.data().date,
+  //             user: doc.data().user,
+  //             id: doc.id,
+  //           };
+    
+  //           arrayOfComments.push(newComment);
+  //           setComments(arrayOfComments);
+  //         });
+  //       });
+  //   }
+  // }
+
 
   const handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     const inputText = e.target.value;
-    setUsername(inputText);
+    setUsernameText(inputText);
   };
 
   const handleUsernameChange = async (

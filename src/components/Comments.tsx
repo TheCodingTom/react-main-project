@@ -7,6 +7,7 @@ import {
   orderBy,
   query,
   Timestamp,
+  updateDoc,
 } from "firebase/firestore";
 import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
 
@@ -106,7 +107,25 @@ function Comments() {
       await deleteDoc(commentDocRef);
       console.log("Message deleted with ID:", commentId);
     } catch (error) {
-      console.error("Error deleting comment:", error);
+      console.error("Error deleting message:", error);
+    }
+  };
+
+  const handleCommentEdit = async (commentId: string) => {
+    if (!countryName) {
+      throw new Error("countryName is undefined!");
+    }
+  
+    try {
+      const commentDocRef = doc(db, "comments", countryName, "messages", commentId);
+      await updateDoc(commentDocRef, {
+        text: commentText,
+      date: new Date(),
+      user: user,
+      });
+      console.log("Message edited with ID:", commentId);
+    } catch (error) {
+      console.error("Error editing message:", error);
     }
   };
 
@@ -132,6 +151,7 @@ function Comments() {
                   <Card.Text>{comment.text}</Card.Text>
                 </Card.Body>
                 <Button onClick={() => handleCommentDelete(comment.id)}>Delete</Button>
+                <Button onClick={() => handleCommentEdit(comment.id)}>Edit</Button>
               </Card>
             );
           })}
