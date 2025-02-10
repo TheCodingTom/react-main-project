@@ -7,7 +7,7 @@ import {
   orderBy,
   query,
   Timestamp,
-  updateDoc,
+
 } from "firebase/firestore";
 import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
 
@@ -16,8 +16,6 @@ import { User } from "../types/customTypes";
 import { useParams } from "react-router";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
-import { Trash } from 'react-bootstrap-icons';
-import { Icon } from "react-icons-kit";
 
 
 type CommentType = {
@@ -53,16 +51,45 @@ function Comments() {
           user: doc.data().user,
           id: doc.id,
         };
-
         arrayOfComments.push(newComment);
-        setComments(arrayOfComments);
       });
+     
+      if (arrayOfComments.length > 0) {
+        setComments(arrayOfComments);
+      } else {setComments(null)}
+
+
+      // querySnapshot.docChanges().forEach((change) => {
+      //   console.log('change.doc.data() :>> ', change.doc.data());
+      //   if (change.type === "added") {
+      //       console.log("New comment: ", change.doc.data());
+      //            const newComment: CommentType = {
+      //     text: change.doc.data().text,
+      //     date: change.doc.data().date,
+      //     user: change.doc.data().user,
+      //     id: change.doc.id,
+      //   };
+
+       
+      
+
+      //   arrayOfComments.push(newComment);
+      //   }
+      //   if (change.type === "modified") {
+      //       console.log("Modified comment: ", change.doc.data());
+      //   }
+      //   if (change.type === "removed") {
+      //       console.log("Removed comment: ", change.doc.data());
+      //   };
+      // });
+      // setComments(arrayOfComments)
+
     });
 
   };
 
   const handleTextCommentChange = (e: React.ChangeEvent<HTMLFormElement>) => {
-    console.log(e.target.value);
+    
     const inputText = e.target.value;
     setCommentText(inputText);
   };

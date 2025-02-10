@@ -37,7 +37,7 @@ function Profile() {
   const handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     const inputText = e.target.value;
-    setUsernameText(inputText);
+    setUsername(inputText);
   };
 
   const handleUsernameChange = async (

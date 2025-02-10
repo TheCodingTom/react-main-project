@@ -92,7 +92,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
+        
         const errorMessage = error.message;
         console.log(errorMessage);
       });
@@ -127,8 +127,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       // Sign-out successful.
       setUser(null)
     }).catch((error) => {
-      // An error happened.
-      throw new Error("Couldn't sign out the user")
+      console.log(error);
     });
   };
 
