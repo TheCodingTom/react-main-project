@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   onSnapshot,
   orderBy,
   query,
@@ -14,6 +16,7 @@ import { useParams } from "react-router";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
 
+
 type CommentType = {
   user: User;
   text: string;
@@ -21,13 +24,14 @@ type CommentType = {
   id: string;
 };
 
+
 function Comments() {
   const { countryName } = useParams<string>();
   const { user } = useContext(AuthContext);
   const [comments, setComments] = useState<CommentType[] | null>(null);
   const [commentText, setCommentText] = useState<string>("");
 
-  const getLiveMessages = async () => {
+  const getLiveMessages = () => {
     if (!countryName) {
       throw new Error("countryName is undefined!");
     }
@@ -37,7 +41,7 @@ function Comments() {
       orderBy("date", "asc")
     );
 
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    onSnapshot(q, (querySnapshot) => {
       const arrayOfComments: CommentType[] = [];
       querySnapshot.forEach((doc) => {
         const newComment: CommentType = {
@@ -51,6 +55,7 @@ function Comments() {
         setComments(arrayOfComments);
       });
     });
+
   };
 
   const handleTextCommentChange = (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -90,23 +95,17 @@ function Comments() {
     console.log("Message added with ID:", docRef.id);
   };
 
-  // const handleMessageDelete = async (e: React.FormEvent<HTMLButtonElement>) => {
-  //   e.preventDefault()
+ 
+  // const deleteComment = async (docId) => {
 
-  //   if (!countryName) {
+  //   if (!countryName || !docId) {
   //     throw new Error("countryName is undefined!");
   //   }
-
-  //   const messagesCollectionRef = collection(
-  //     db,
-  //     "comments",
-  //     countryName,
-  //     "messages",
-  //   );
-
-  //   await deleteDoc(doc(messagesCollectionRef, "messages"));
-  //   console.log("Message deleted");
-  // }
+  //   await deleteDoc(doc(db, "comments", countryName, "messages", docId));
+  
+  //  }
+  
+  //  deleteComment(doc.id)
 
   useEffect(() => {
     getLiveMessages();

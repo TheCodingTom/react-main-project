@@ -1,3 +1,4 @@
+
 export type Country = {
     borders: string[];
     capital: string[];
@@ -30,5 +31,6 @@ export type Country = {
     email: string;
     id: string;
   }
+
 
   

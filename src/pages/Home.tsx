@@ -3,11 +3,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-import logo from "../components/logo.png"
+import logo from "../components/logo.png";
 import SignModal from "../components/SignModal";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
+
   return (
     <div className="home-container">
       {user ? <h1>Welcome, {user.email}!</h1> : <h1>Welcome, friend!</h1>}

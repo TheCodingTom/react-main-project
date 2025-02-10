@@ -76,7 +76,6 @@ body {
   color: var(--color);
 }
 
-
 * {
   transition: 0.2s;
 }
@@ -100,6 +99,10 @@ h1 {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
+.dropdown-menu {
+  margin-bottom: 15px;
+}
+
 /* countries page */
 
 .top-container {
@@ -119,7 +122,6 @@ h1 {
   width: 300px;
   outline: solid 1px grey;
   text-decoration: none;
-
 }
 
 .mycard:hover {
@@ -176,10 +178,8 @@ h1 {
 
 .modal-top-btn {
   display: flex;
- flex-direction: row;
-justify-content: space-evenly;
- 
- 
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .input-modal {
@@ -191,8 +191,8 @@ justify-content: space-evenly;
 .input-password-modal {
   display: flex;
   flex-direction: row;
-  align-items:center ;
-  gap:10px
+  align-items: center;
+  gap: 10px;
 }
 /* @keyframes roll{
   from{
@@ -206,5 +206,3 @@ justify-content: space-evenly;
 /* .logo:hover {
   transform: rotate(180deg); transition: 4s
 } */
-
-
