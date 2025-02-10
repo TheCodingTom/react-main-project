@@ -15,7 +15,7 @@ function NavBar() {
         bg="light" data-bs-theme="light"
       >
         <Container>
-          <Navbar.Brand as={NavLink} to={"/"}>COUNTRY APP</Navbar.Brand>
+          <Navbar.Brand as={NavLink} to={"/"}>COUNTRY EXPLORER</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">

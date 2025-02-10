@@ -169,7 +169,21 @@ h1 {
 .logo {
   height: 300px;
   width: 300px;
-  animation: roll 15s linear 0.5s infinite;
+  /* animation: roll 15s linear 0.5s infinite; */
+}
+
+.error-picture {
+  height: 300px;
+  width: 300px;
+}
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  gap: 5px;
 }
 
 .modal-content {
@@ -201,7 +215,6 @@ h1 {
   position: absolute;
   top: 8px;
   right: 16px;
-  
 }
 /* @keyframes roll{
   from{

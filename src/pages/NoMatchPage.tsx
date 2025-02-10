@@ -1,8 +1,11 @@
-// import React from 'react'
 
-import { Button } from "@mui/material";
-// import { useEffect } from "react";
 import { useNavigate } from "react-router";
+
+import picture from "../images/error-logo.png"
+import { Button } from "react-bootstrap";
+import { useEffect } from "react";
+
+
 
 function NoMatchPage() {
   const goBackTo = useNavigate();
@@ -11,30 +14,24 @@ function NoMatchPage() {
     goBackTo("/")
   }
 
-  // const autoRedirect = () => {
-  //   setTimeout(() => {
-  //       redirectTo()
-  //   }, 3000);
-  // }
+  const autoRedirect = () => {
+    setTimeout(() => {
+        redirectTo()
+    }, 3000);
+  }
 
-  // useEffect(() => {
-  //   autoRedirect()
-  // }, [])
+  useEffect(() => {
+    autoRedirect()
+  }, [])
   
 
   return (
-    <div>
+    <div className="error-page">
       <h1>Sorry, nothing to display here</h1>
-      {/* <h2>You'll be redirected to the home page in 3 seconds </h2> */}
+      <img src={picture} className="error-picture" alt="" />
+      <h4>You'll be redirected to the home page in 3 seconds </h4>
      <Button onClick={redirectTo}>Go back to home page</Button>
-
-      {/* <Button
-        onClick={() => {
-          goBackTo("/");
-        }}
-      >
-        Go back home
-      </Button> */}
+     
     </div>
   );
 }
