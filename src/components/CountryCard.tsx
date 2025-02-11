@@ -1,19 +1,15 @@
 import { Button, Card, CardMedia, Typography } from "@mui/material";
 // import { Button, Card } from "react-bootstrap";
 import { Country } from "../types/customTypes";
-
+import { Link } from "react-router";
 
 type CountryCardProps = {
   country: Country;
 };
 
-
-
-
 function CountryCard({ country }: CountryCardProps) {
   return (
-    
-      <Card className="mycard" sx={{ maxWidth: 345 }}>
+    <Card className="mycard" sx={{ maxWidth: 345 }}>
       <CardMedia
         className="card-image"
         component="img"
@@ -29,11 +25,11 @@ function CountryCard({ country }: CountryCardProps) {
       </div>
 
       <div>
-      <Button>Discover more</Button>
-      
+        <Link to={`${country.name.common}`}>
+          <Button>Discover more</Button>
+        </Link>
       </div>
     </Card>
-    
   );
 }
 
