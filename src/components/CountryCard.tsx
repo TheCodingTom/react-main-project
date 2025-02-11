@@ -2,10 +2,15 @@ import { Button, Card, CardMedia, Typography } from "@mui/material";
 // import { Button, Card } from "react-bootstrap";
 import { Country } from "../types/customTypes";
 import { Link } from "react-router";
+import { Heart } from 'react-bootstrap-icons';
+
 
 type CountryCardProps = {
   country: Country;
 };
+
+
+
 
 function CountryCard({ country }: CountryCardProps) {
   return (
@@ -20,14 +25,16 @@ function CountryCard({ country }: CountryCardProps) {
 
       <div className="card-title">
         <Typography gutterBottom variant="h5">
-          {country.name.common}
+          {country.name.common} <Heart/>
         </Typography>
+        
       </div>
 
       <div>
         <Link to={`${country.name.common}`}>
           <Button>Discover more</Button>
         </Link>
+        
       </div>
     </Card>
   );

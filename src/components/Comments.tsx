@@ -11,10 +11,11 @@ import {
 import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
 
 import { useContext, useEffect, useState } from "react";
-import { User } from "../types/customTypes";
+
 import { useParams } from "react-router";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
+import { User } from "../types/customTypes";
 
 type CommentType = {
   user: User;
