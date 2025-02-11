@@ -15,16 +15,6 @@ function Profile() {
   const [user, setUser] = useState<User | null>(auth.currentUser);
   const [username, setUsername] = useState<string>("");
 
-  // Listen for auth state changes and update user state
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (updatedUser) => {
-      setUser(updatedUser);
-    });
-
-    return () => unsubscribe();
-  }, [auth]);
-
-
   const handleUsernameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value;
     setUsername(inputText);
@@ -53,6 +43,16 @@ function Profile() {
         console.log("error while updating:", error);
       }
   };
+
+  // It runs whenever the auth is changed (in this case when the user updates the profile) and update user state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (updatedUser) => {
+      setUser(updatedUser);
+    });
+
+    return () => unsubscribe();
+  }, [auth]);
+
 
   return (
     <>

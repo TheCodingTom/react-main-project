@@ -80,7 +80,7 @@ const SignModal = () => {
   };
 
   const myStyle = {
-    width:"183px"
+    width:"205px"
   }
 
   return (
