@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 
 export type Country = {
     borders: string[];
@@ -31,6 +32,13 @@ export type Country = {
     email: string;
     id: string;
   }
+
+  export type CommentType = {
+    user: User;
+    text: string;
+    date: Timestamp;
+    id: string;
+  };
 
 
   

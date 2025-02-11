@@ -1,28 +1,20 @@
 import {
   addDoc,
   collection,
-  deleteDoc,
-  doc,
   onSnapshot,
   orderBy,
   query,
-  Timestamp,
 } from "firebase/firestore";
-import { Button, Card, FloatingLabel, Form, Stack } from "react-bootstrap";
+import { Button, FloatingLabel, Form, Stack } from "react-bootstrap";
 
 import { useContext, useEffect, useState } from "react";
 
 import { useParams } from "react-router";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
-import { User } from "../types/customTypes";
+import { CommentType } from "../types/customTypes";
+import CommentsCard from "./CommentsCard";
 
-type CommentType = {
-  user: User;
-  text: string;
-  date: Timestamp;
-  id: string;
-};
 
 function Comments() {
   const { countryName } = useParams<string>();
@@ -65,10 +57,6 @@ function Comments() {
     setCommentText(inputText);
   };
 
-  const dateFormat = (seconds: number) => {
-    const formattedDate = new Date(seconds * 1000).toLocaleString();
-    return formattedDate;
-  };
 
   const handleCommentSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -94,44 +82,7 @@ function Comments() {
     console.log("Message added with ID:", docRef.id);
   };
 
-  const handleCommentDelete = async (commentId: string) => {
-    if (!countryName) {
-      throw new Error("countryName is undefined!");
-    }
-
-    try {
-      const commentDocRef = doc(
-        db,
-        "comments",
-        countryName,
-        "messages",
-        commentId
-      );
-      await deleteDoc(commentDocRef);
-      console.log("Message deleted with ID:", commentId);
-    } catch (error) {
-      console.error("Error deleting message:", error);
-    }
-  };
-
-  // const handleCommentEdit = async (commentId: string) => {
-  //   if (!countryName) {
-  //     throw new Error("countryName is undefined!");
-  //   }
-
-  //   try {
-  //     const commentDocRef = doc(db, "comments", countryName, "messages", commentId);
-  //     await updateDoc(commentDocRef, {
-  //       text: commentText,
-  //     date: new Date(),
-  //     user: user,
-  //     });
-  //     console.log("Message edited with ID:", commentId);
-  //   } catch (error) {
-  //     console.error("Error editing message:", error);
-  //   }
-  // };
-
+ 
   useEffect(() => {
     getLiveMessages();
   }, []);
@@ -144,23 +95,7 @@ function Comments() {
         {comments &&
           comments.map((comment) => {
             return (
-              <Card style={{ width: "18rem" }} key={comment.id}>
-                <Card.Body>
-                  <Card.Title>{comment.user.email}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    {dateFormat(comment.date.seconds)}
-                  </Card.Subtitle>
-                  <Card.Text>{comment.text}</Card.Text>
-                </Card.Body>
-                <div>
-                  <Button
-                    className="comment-delete-button"
-                    onClick={() => handleCommentDelete(comment.id)}
-                  >
-                    Delete
-                  </Button>
-                </div>
-              </Card>
+              <CommentsCard comment={comment} key={comment.id} />
             );
           })}
 
