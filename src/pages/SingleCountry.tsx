@@ -29,15 +29,9 @@ type PixabayData = {
 
 function SingleCountry() {
   const { countryName } = useParams<string>();
-
-  const redirect = useNavigate();
-
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
   const [countryData, setCountryData] = useState<Country | null>(null);
-  // const [messages, setMessages] = useState<MessageType[] | null>(null);
-  // const [messageText, setMessageText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-
   const [pixabayData, setPixabayData] = useState<PixabayData[] | null>(null);
 
   const WikiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${countryName}`;
@@ -46,6 +40,8 @@ function SingleCountry() {
 
   const pixabayUrl = `https://pixabay.com/api/?key=48499188-4a0bbbaf9b13a582b53d5d561&q=city+landscape+${countryName}&image_type=photo&pretty=true&per_page=10`;
 
+  const redirect = useNavigate();
+  
   const getWikiData = async () => {
     try {
       const response = await fetch(WikiUrl);
@@ -102,13 +98,10 @@ function SingleCountry() {
   };
 
   useEffect(() => {
-    if (!countryName) return;
-
-    setError(null);
     getWikiData();
     getCountryData();
     getPixabayData();
-  }, [countryName]);
+  }, []);
 
   return (
     <div>
