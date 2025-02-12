@@ -13,8 +13,7 @@ import { useParams } from "react-router";
 import { db } from "../config/firebaseConfig";
 import { AuthContext } from "../context/AuthContext";
 import { CommentType } from "../types/customTypes";
-import CommentsCard from "./CommentsCard";
-
+import CommentCard from "./CommentCard";
 
 function Comments() {
   const { countryName } = useParams<string>();
@@ -57,7 +56,6 @@ function Comments() {
     setCommentText(inputText);
   };
 
-
   const handleCommentSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -82,7 +80,8 @@ function Comments() {
     console.log("Message added with ID:", docRef.id);
   };
 
- 
+
+
   useEffect(() => {
     getLiveMessages();
   }, []);
@@ -94,9 +93,7 @@ function Comments() {
 
         {comments &&
           comments.map((comment) => {
-            return (
-              <CommentsCard comment={comment} key={comment.id} />
-            );
+            return <CommentCard comment={comment} key={comment.id} />;
           })}
 
         <Form onSubmit={handleCommentSubmit}>

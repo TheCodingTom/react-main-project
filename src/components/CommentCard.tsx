@@ -9,13 +9,14 @@ type CommentCardProps = {
     comment: CommentType
 }
 
-function CommentsCard({comment}:CommentCardProps) {
+function CommentCard({comment}:CommentCardProps) {
     const { countryName } = useParams<string>();
 
     const dateFormat = (seconds: number) => {
         const formattedDate = new Date(seconds * 1000).toLocaleString();
         return formattedDate;
       };
+     
 
       const handleCommentDelete = async (commentId: string) => {
         if (!countryName) {
@@ -58,4 +59,4 @@ function CommentsCard({comment}:CommentCardProps) {
   )
 }
 
-export default CommentsCard
+export default CommentCard

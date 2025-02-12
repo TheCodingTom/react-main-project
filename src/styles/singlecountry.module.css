@@ -20,7 +20,7 @@ outline: 2px grey solid;
 }
 
 .picture {
-  padding:5px;
+  padding: 5px;
   width: 100% !important;
   height: auto !important;
   filter: grayscale(100%);
