@@ -1,14 +1,10 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { Country } from "../types/customTypes";
 
 import styles from "../styles/singlecountry.module.css";
 import Chat from "../components/Comments";
 import { Col, Container, Row } from "react-bootstrap";
-import NoMatchPage from "./NoMatchPage";
-
-
-
 
 type WikiData = {
   description: string;
@@ -31,14 +27,11 @@ type PixabayData = {
   webformatURL: string;
 };
 
-
 function SingleCountry() {
   const { countryName } = useParams<string>();
 
-  const redirect = useNavigate()
+  const redirect = useNavigate();
 
-  
- 
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
   const [countryData, setCountryData] = useState<Country | null>(null);
   // const [messages, setMessages] = useState<MessageType[] | null>(null);
@@ -47,24 +40,17 @@ function SingleCountry() {
 
   const [pixabayData, setPixabayData] = useState<PixabayData[] | null>(null);
 
-  const WikiUrl =
-    `https://en.wikipedia.org/api/rest_v1/page/summary/${countryName}`; 
+  const WikiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${countryName}`;
 
   const restCountriesUrl = `https://restcountries.com/v3.1/name/${countryName}`;
 
   const pixabayUrl = `https://pixabay.com/api/?key=48499188-4a0bbbaf9b13a582b53d5d561&q=city+landscape+${countryName}&image_type=photo&pretty=true&per_page=10`;
 
-
-  if (!countryName || countryName.trim() === "") {
-    return <h2>Please enter a valid country name.</h2>;
-  }
-
-
   const getWikiData = async () => {
     try {
       const response = await fetch(WikiUrl);
       if (response.status === 404) {
-        redirect("/") // Redirect to home
+        redirect("/"); // Redirect to home
         return;
       }
       if (!response.ok) throw new Error("Wikipedia data not found");
@@ -77,17 +63,26 @@ function SingleCountry() {
     }
   };
 
-
   const getCountryData = async () => {
     try {
       const response = await fetch(restCountriesUrl);
 
       if (response.status === 404) {
-        redirect("/") // Redirect to home
+        redirect("/"); // Redirect to home
         return;
       }
       if (!response.ok) throw new Error("Wikipedia data not found");
+
       const result = await response.json();
+
+      const countryNames = result.map((country: any) =>
+        country.name.common.toLowerCase()
+      );
+
+      if (countryName && !countryNames.includes(countryName.toLowerCase())) {
+        redirect("/");
+      }
+
       console.log(result);
       setCountryData(result[0]);
     } catch (error) {
@@ -122,13 +117,17 @@ function SingleCountry() {
       <Container>
         <Row>
           <Col className={styles.countryDetails}>
-            <img className={styles.flag} src={countryData?.flags.png} alt={`flag of ${countryName}`} />
+            <img
+              className={styles.flag}
+              src={countryData?.flags.png}
+              alt={`flag of ${countryName}`}
+            />
             <h4>Capital: {countryData?.capital} </h4>
             <h4>Continent: {countryData?.region} </h4>
             <h4>Population: {countryData?.population.toLocaleString()} </h4>
             <>Description: {wikiData?.extract} </>
           </Col>
-          <Col >
+          <Col>
             <Chat />
           </Col>
         </Row>
