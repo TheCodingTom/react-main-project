@@ -6,11 +6,12 @@ type SearchProps = {
 
 function Search({ handleInputChange }: SearchProps) {
   return (
-    <div>
+    <div >
       <input
+      style={{padding:"10px"}}
         type="text"
         onChange={handleInputChange}
-        placeholder="type something here"
+        placeholder="Search a country..."
       />
     </div>
   );

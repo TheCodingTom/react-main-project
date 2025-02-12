@@ -3,9 +3,11 @@ import { NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import SignModal from "./SignModal";
+import { isUserLogged } from "../utils/AuthUtility";
 
 function NavBar() {
   const { user, logout } = useContext(AuthContext);
+  const isAuth = isUserLogged(user)
   return (
     <>
       <Navbar
@@ -25,7 +27,7 @@ function NavBar() {
               <Nav.Link as={NavLink} to={"/countries"}>
                 Countries
               </Nav.Link>
-              {user ? (<NavDropdown title="User" id="collapsible-nav-dropdown">
+              {isAuth ? (<NavDropdown title="User" id="collapsible-nav-dropdown">
                 <NavDropdown.Item as={NavLink} to={"/profile"}>Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item>Play - Coming soon?</NavDropdown.Item>
@@ -33,7 +35,7 @@ function NavBar() {
             </Nav>
             <Nav>
               <div>
-                {user ? (
+                {isAuth ? (
                   <Button onClick={logout} color="inherit">
                     Log out
                   </Button>

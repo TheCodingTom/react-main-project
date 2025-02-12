@@ -35,7 +35,7 @@ function Countries() {
   return (
     <div>
       <div className="top-container">
-        <h1>World Countries App</h1>
+        <h1>Country Explorer</h1>
 
         <Search handleInputChange={handleInputChange} />
       </div>

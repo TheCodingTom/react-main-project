@@ -6,7 +6,7 @@ function ProtectedRoutePage() {
    
   return (
     <div className="protected-route-page">
-        <h2>Login to see more!</h2>
+        <h1>Login to see more!</h1>
         <p>Sorry, this content is available only for users that already have an account.</p>
         <img src={lock} className="logo" alt="image of a lock" />
         <SignModal/>
