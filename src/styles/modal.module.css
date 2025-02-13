@@ -1,0 +1,26 @@
+.formInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
+}
+
+.topButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.inputModal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputPassword {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}

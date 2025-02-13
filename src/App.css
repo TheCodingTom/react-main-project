@@ -71,6 +71,8 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/* general */
+
 body {
   background-color: var(--background-color);
   color: var(--color);
@@ -87,6 +89,12 @@ h1 {
   text-align: center;
 }
 
+.modal-content {
+  color: #37474f;
+}
+
+/* home page */
+
 .home-container {
   margin-top: 10px;
   display: flex;
@@ -94,6 +102,12 @@ h1 {
   align-items: center;
   text-align: center;
   gap: 10px;
+}
+
+.logo {
+  height: 300px;
+  width: 300px;
+  /* animation: roll 15s linear 0.5s infinite; */
 }
 
 /* navbar */
@@ -116,9 +130,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-.country-card:hover {
-  transform: scale(1.05);
-}
+/* countries grid */
 
 .cards-container {
   justify-content: center;
@@ -128,24 +140,7 @@ h1 {
   gap: 30px;
 }
 
-.card-image {
-  outline: 2px solid grey;
-  border-radius: 2%;
-}
-
-.card-data {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form-input {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  gap: 10px;
-}
+/* back button and theme toggle container */
 
 .backButton-dark-container {
   padding: 20px;
@@ -160,16 +155,7 @@ h1 {
   align-items: center;
 }
 
-.logo {
-  height: 300px;
-  width: 300px;
-  /* animation: roll 15s linear 0.5s infinite; */
-}
-
-.error-picture {
-  height: 300px;
-  width: 300px;
-}
+/* error page */
 
 .error-page {
   display: flex;
@@ -180,28 +166,17 @@ h1 {
   gap: 5px;
 }
 
-.modal-content {
-  color: #37474f;
-}
+/* protected page */
 
-.modal-top-btn {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.input-modal {
+.protected-route-page {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.input-password-modal {
-  display: flex;
-  flex-direction: row;
   align-items: center;
+  text-align: center;
   gap: 10px;
 }
+
 
 .comment-card {
   background-color: white;
@@ -229,14 +204,7 @@ h1 {
   cursor: not-allowed;
 }
 
-.protected-route-page {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-}
+
 /* @keyframes roll{
   from{
     transform: rotate(0deg)

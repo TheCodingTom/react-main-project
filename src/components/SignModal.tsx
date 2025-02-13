@@ -7,6 +7,8 @@ import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 
+import styles from "../styles/modal.module.css"
+
 const SignModal = () => {
   const { login, register } = useContext(AuthContext);
 
@@ -94,15 +96,15 @@ const SignModal = () => {
         show={showSignIn}
         onHide={handleCloseSignIn}
       >
-        <Modal.Header className="modal-top-btn">
+        <Modal.Header className={styles.topButton}>
           <Button onClick={handleShowSignIn}>Login</Button>
           <Button onClick={handleShowSignUp}>Register</Button>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleLoginSubmit}>
-            <div className="form-input">
+            <div className={styles.formInput}>
               <h2>Login</h2>
-              <div className="input-modal">
+              <div className={styles.inputModal}>
                 <input
                   type="text"
                   style={myStyle}
@@ -112,7 +114,7 @@ const SignModal = () => {
                   onChange={handleEmailChange}
                 />
 
-                <div className="input-password-modal">
+                <div className={styles.inputPassword}>
                 <input
                   type={type}
                   name="password"
@@ -125,7 +127,7 @@ const SignModal = () => {
                   className="flex justify-around items-center"
                   onClick={handleToggle}
                 >
-                  {/* <Icon className="absolute mr-10" icon={icon} size={25} /> */}
+                  <Icon className="absolute mr-10" icon={icon} size={25} />
                 </span>
                 </div>
               </div>
@@ -144,7 +146,7 @@ const SignModal = () => {
       </Modal>
 
       <Modal show={showSignUp} onHide={handleCloseSignUp}>
-        <Modal.Header className="modal-top-btn">
+        <Modal.Header className={styles.topButton}>
           <Button onClick={handleShowSignIn}>Login</Button>
           <Button onClick={handleShowSignUp}>Register</Button>
         </Modal.Header>
@@ -152,7 +154,7 @@ const SignModal = () => {
           <form onSubmit={handleRegisterSubmit}>
             <div className="form-input">
               <h2>Register</h2>
-              <div className="input-modal">
+              <div className={styles.inputModal}>
                 <input
                   type="text"
                   style={myStyle}
@@ -162,7 +164,7 @@ const SignModal = () => {
                   onChange={handleEmailChange}
                 />
 
-                <div className="input-password-modal">
+                <div className={styles.inputPassword}>
                 <input
                   type={type}
                   name="password"
@@ -175,7 +177,7 @@ const SignModal = () => {
                   className="flex justify-around items-center"
                   onClick={handleToggle}
                 >
-                  {/* <Icon className="absolute mr-10" icon={icon} size={25} /> */}
+                  <Icon className="absolute mr-10" icon={icon} size={25} />
                 </span>
                 </div>
               </div>

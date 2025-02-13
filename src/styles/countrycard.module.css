@@ -1,0 +1,15 @@
+
+.countryCard:hover {
+  transform: scale(1.05);
+}
+
+.cardImage {
+  outline: 2px solid grey;
+  border-radius: 2%;
+}
+
+.cardData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
