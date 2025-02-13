@@ -79,9 +79,9 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user1 = userCredential.user;
-        const email = user1.email;
-        const id = user1.uid;
+        const user = userCredential.user;
+        const email = user.email;
+        const id = user.uid;
         console.log("user logged in");
         console.log(user);
         if (user && email) {

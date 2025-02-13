@@ -52,6 +52,7 @@ function SingleCountry() {
       if (!response.ok) throw new Error("Wikipedia data not found");
 
       const result = await response.json();
+      console.log(result);
       setWikiData(result);
     } catch (error) {
       setError("Failed to fetch Wikipedia data.");
@@ -118,7 +119,7 @@ function SingleCountry() {
             <h4>Capital: {countryData?.capital} </h4>
             <h4>Continent: {countryData?.region} </h4>
             <h4>Population: {countryData?.population.toLocaleString()} </h4>
-            <>Description: {wikiData?.extract} </>
+            <p>Extract: {wikiData?.extract} </p>
           </Col>
           <Col>
             <Chat />

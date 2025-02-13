@@ -36,11 +36,11 @@ const Home = () => {
   return (
     <div className="home-container">
       {user ? <h1>Welcome, {username}!</h1> : <h1>Welcome, friend!</h1>}
+      <img src={logo} className="logo" alt="" />
       {isAuth
         ? ""
         : "Do you want to discover more about the countries in the world?"}
-      <img src={logo} className="logo" alt="" />
-
+     
       {isAuth ? (
         <p>Travel around the world with this web app!</p>
       ) : (

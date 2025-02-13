@@ -92,6 +92,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 10px;
 }
 
@@ -132,12 +133,10 @@ h1 {
   border-radius: 2%;
 }
 
-
 .card-data {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
 
 .form-input {
@@ -202,6 +201,14 @@ h1 {
   flex-direction: row;
   align-items: center;
   gap: 10px;
+}
+
+.comment-card {
+  background-color: white;
+}
+
+.user-comment-card {
+  background-color: rgb(239, 255, 255);
 }
 
 .comment-delete {
