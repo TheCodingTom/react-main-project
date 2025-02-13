@@ -125,7 +125,7 @@ const SignModal = () => {
                   className="flex justify-around items-center"
                   onClick={handleToggle}
                 >
-                  <Icon className="absolute mr-10" icon={icon} size={25} />
+                  {/* <Icon className="absolute mr-10" icon={icon} size={25} /> */}
                 </span>
                 </div>
               </div>
@@ -175,7 +175,7 @@ const SignModal = () => {
                   className="flex justify-around items-center"
                   onClick={handleToggle}
                 >
-                  <Icon className="absolute mr-10" icon={icon} size={25} />
+                  {/* <Icon className="absolute mr-10" icon={icon} size={25} /> */}
                 </span>
                 </div>
               </div>

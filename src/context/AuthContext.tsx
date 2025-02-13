@@ -79,13 +79,13 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
-        const email = user.email;
-        const id = user.uid;
+        const user1 = userCredential.user;
+        const email = user1.email;
+        const id = user1.uid;
         console.log("user logged in");
         console.log(user);
         if (user && email) {
-          setUser({ email, id });
+          // setUser({ email, id });
         } else {
           throw new Error("User info not available");
         }
@@ -126,7 +126,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     signOut(auth).then(() => {
       // Sign-out successful.
       setUser(null)
-    }).catch((error) => {
+    }).catch((error) => { 
       console.log(error);
     });
   };
