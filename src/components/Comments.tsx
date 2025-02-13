@@ -21,6 +21,7 @@ function Comments() {
   const { user } = useContext(AuthContext);
   const [comments, setComments] = useState<CommentType[] | null>(null);
   const [commentText, setCommentText] = useState<string>("");
+  
 
   const getLiveMessages = () => {
     if (!countryName) {
