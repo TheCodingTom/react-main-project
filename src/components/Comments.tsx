@@ -1,6 +1,7 @@
 import {
   addDoc,
   collection,
+
   onSnapshot,
   orderBy,
   query,
@@ -51,6 +52,7 @@ function Comments() {
     });
   };
 
+
   const handleTextCommentChange = (e: React.ChangeEvent<HTMLFormElement>) => {
     const inputText = e.target.value;
     setCommentText(inputText);
@@ -84,6 +86,7 @@ function Comments() {
 
   useEffect(() => {
     getLiveMessages();
+    
   }, []);
 
   return (
