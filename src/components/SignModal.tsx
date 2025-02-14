@@ -30,14 +30,27 @@ const SignModal = () => {
     return password.length >= 6;
   };
 
+  const handleShowLoginModal = () => {
+    setShowSignIn(true);
+    setShowSignUp(false);
+  };
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    setErrors({ ...errors, email: validateEmail(e.target.value) ? "" : "Invalid email format" });
+    setErrors({
+      ...errors,
+      email: validateEmail(e.target.value) ? "" : "Invalid email format",
+    });
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    setErrors({ ...errors, password: validatePassword(e.target.value) ? "" : "Password must be at least 6 characters" });
+    setErrors({
+      ...errors,
+      password: validatePassword(e.target.value)
+        ? ""
+        : "Password must be at least 6 characters",
+    });
   };
 
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -45,7 +58,9 @@ const SignModal = () => {
     if (!validateEmail(email) || !validatePassword(password)) {
       setErrors({
         email: validateEmail(email) ? "" : "Invalid email format",
-        password: validatePassword(password) ? "" : "Password must be at least 6 characters",
+        password: validatePassword(password)
+          ? ""
+          : "Password must be at least 6 characters",
       });
       return;
     }
@@ -58,7 +73,9 @@ const SignModal = () => {
     if (!validateEmail(email) || !validatePassword(password)) {
       setErrors({
         email: validateEmail(email) ? "" : "Invalid email format",
-        password: validatePassword(password) ? "" : "Password must be at least 6 characters",
+        password: validatePassword(password)
+          ? ""
+          : "Password must be at least 6 characters",
       });
       return;
     }
@@ -70,13 +87,19 @@ const SignModal = () => {
     setIcon(type === "password" ? eye : eyeOff);
   };
 
+  const myStyle = {
+    width: "250px",
+  };
+
   return (
     <div>
-      <Button variant="primary" onClick={() => setShowSignIn(true)}>Login</Button>
+      <Button variant="primary" onClick={() => setShowSignIn(true)}>
+        Login
+      </Button>
 
       <Modal show={showSignIn} onHide={() => setShowSignIn(false)}>
         <Modal.Header className={styles.topButton}>
-          <Button onClick={() => setShowSignIn(true)}>Login</Button>
+          <Button onClick={handleShowLoginModal}>Login</Button>
           <Button onClick={() => setShowSignUp(true)}>Register</Button>
         </Modal.Header>
         <Modal.Body>
@@ -84,43 +107,49 @@ const SignModal = () => {
             <div className={styles.formInput}>
               <h2>Login</h2>
               <input
+                style={myStyle}
                 type="email"
                 name="email"
                 placeholder="Email"
                 value={email}
                 onChange={handleEmailChange}
-                className={errors.email ? styles.errorInput : ""}
+                className={errors.email ? styles.errorInput : styles.input}
               />
               {errors.email && <p className={styles.error}>{errors.email}</p>}
 
               <div className={styles.inputPassword}>
                 <input
+                  style={myStyle}
                   type={type}
                   name="password"
                   placeholder="Password"
                   value={password}
                   onChange={handlePasswordChange}
                   autoComplete="current-password"
-                  className={errors.password ? styles.errorInput : ""}
+                  className={errors.password ? styles.errorInput : styles.input}
                 />
                 <span onClick={handleToggle}>
                   <Icon icon={icon} size={25} />
                 </span>
               </div>
-              {errors.password && <p className={styles.error}>{errors.password}</p>}
+              {errors.password && (
+                <p className={styles.error}>{errors.password}</p>
+              )}
 
               <Button type="submit">Login</Button>
             </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowSignIn(false)}>Close</Button>
+          <Button variant="secondary" onClick={() => setShowSignIn(false)}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
 
       <Modal show={showSignUp} onHide={() => setShowSignUp(false)}>
         <Modal.Header className={styles.topButton}>
-          <Button onClick={() => setShowSignIn(true)}>Login</Button>
+          <Button onClick={handleShowLoginModal}>Login</Button>
           <Button onClick={() => setShowSignUp(true)}>Register</Button>
         </Modal.Header>
         <Modal.Body>
@@ -128,6 +157,7 @@ const SignModal = () => {
             <div className={styles.formInput}>
               <h2>Register</h2>
               <input
+                style={myStyle}
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -139,6 +169,7 @@ const SignModal = () => {
 
               <div className={styles.inputPassword}>
                 <input
+                  style={myStyle}
                   type={type}
                   name="password"
                   placeholder="Password"
@@ -151,14 +182,18 @@ const SignModal = () => {
                   <Icon icon={icon} size={25} />
                 </span>
               </div>
-              {errors.password && <p className={styles.error}>{errors.password}</p>}
+              {errors.password && (
+                <p className={styles.error}>{errors.password}</p>
+              )}
 
               <Button type="submit">Register</Button>
             </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowSignUp(false)}>Close</Button>
+          <Button variant="secondary" onClick={() => setShowSignUp(false)}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>

@@ -1,15 +1,16 @@
-.formInput {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  gap: 10px;
-}
-
 .topButton {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.formInput {
+  align-items: left;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
 }
 
 .inputModal {
@@ -25,10 +26,13 @@
   gap: 10px;
 }
 
+.input {
+  border: 1px solid black
+}
+
 .error {
   color: red;
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 15px;
 }
 .errorInput {
   border: 1px solid red;
