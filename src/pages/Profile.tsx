@@ -7,11 +7,17 @@ import {
   updateProfile,
   User,
 } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
+import {doc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
+
+import avatar from "../images/avatar-logo.png"
+
 
 function Profile() {
   const auth = getAuth();
+  
+ 
+  
   const [user, setUser] = useState<User | null>(auth.currentUser);
   const [username, setUsername] = useState<string>("");
 
@@ -44,6 +50,7 @@ function Profile() {
       }
   };
 
+
   // It runs whenever the auth is changed (in this case when the user updates the profile) and update user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (updatedUser) => {
@@ -54,10 +61,17 @@ function Profile() {
   }, [auth]);
 
 
+
+
+
   return (
     <>
       <h1>Your profile</h1>
-      <div>
+      <div className="profile-page">
+        <img src={avatar} className="logo"alt="" />
+      <h3>Email: {user?.email}</h3>
+      <h3>Username: {user?.displayName || "No username set"}</h3>
+      <div className="profile-input">
         <input
           type="text"
           placeholder="Enter new username"
@@ -66,7 +80,8 @@ function Profile() {
         />
         <Button onClick={handleUsernameChange}>Update</Button>
       </div>
-      <h2>Username: {user?.displayName || "No username set"}</h2>
+      </div>
+      
     </>
   );
 }

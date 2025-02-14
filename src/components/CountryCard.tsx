@@ -1,10 +1,10 @@
 import { Country } from "../types/customTypes";
-import { Link, useParams } from "react-router";
+import { Link } from "react-router";
 import { Button, Card } from "react-bootstrap";
 import styles from "../styles/countrycard.module.css";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 type CountryCardProps = {
@@ -13,14 +13,11 @@ type CountryCardProps = {
 
 function CountryCard({ country }: CountryCardProps) {
   const {user} = useContext(AuthContext)
-  const { countryName } = useParams<string>();
   const addLikeDoc = async () => {
 
-
-    
     if (user && country.name.common) {
       try {
-        const likeRef = doc(db, "likes", user.id, "countries", country.flag);
+        const likeRef = doc(db, "likes", user.id, "countries", country.name.common);
         const userLike = {
           isLiked: true
         }
