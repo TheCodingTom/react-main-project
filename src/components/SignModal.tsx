@@ -30,10 +30,6 @@ const SignModal = () => {
     return password.length >= 6;
   };
 
-  const handleShowLoginModal = () => {
-    setShowSignIn(true);
-    setShowSignUp(false);
-  };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -45,12 +41,14 @@ const SignModal = () => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    setErrors({
-      ...errors,
-      password: validatePassword(e.target.value)
-        ? ""
-        : "Password must be at least 6 characters",
-    });
+      setErrors({
+        ...errors,
+        password: validatePassword(e.target.value) 
+          ? ""
+          : "Password must be at least 6 characters",
+      });
+    
+    
   };
 
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -86,6 +84,16 @@ const SignModal = () => {
     setType(type === "password" ? "text" : "password");
     setIcon(type === "password" ? eye : eyeOff);
   };
+
+  const handleShowLoginModal = () => {
+    setShowSignIn(true);
+    setShowSignUp(false);
+  };
+
+  const handleCloseBothModals = () => {
+    setShowSignIn(false);
+    setShowSignUp(false);
+  }
 
   const myStyle = {
     width: "250px",
@@ -147,7 +155,7 @@ const SignModal = () => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={showSignUp} onHide={() => setShowSignUp(false)}>
+      <Modal show={showSignUp} onHide={handleCloseBothModals}>
         <Modal.Header className={styles.topButton}>
           <Button onClick={handleShowLoginModal}>Login</Button>
           <Button onClick={() => setShowSignUp(true)}>Register</Button>
@@ -191,7 +199,7 @@ const SignModal = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowSignUp(false)}>
+          <Button variant="secondary" onClick={handleCloseBothModals}>
             Close
           </Button>
         </Modal.Footer>
