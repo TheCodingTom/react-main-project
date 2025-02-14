@@ -19,7 +19,7 @@ const SignModal = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
 
-  const goBackTo = useNavigate();
+  const goToHome = useNavigate();
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -50,7 +50,7 @@ const SignModal = () => {
       return;
     }
     login(email, password);
-    goBackTo("/");
+    goToHome("/");
   };
 
   const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
