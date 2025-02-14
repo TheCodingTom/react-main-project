@@ -44,6 +44,8 @@ const SignModal = () => {
     setPassword(e.target.value);
   };
 
+  // toggle icon in modal
+
   const handleToggle = () => {
     if (type === "password") {
       setIcon(eye);
@@ -59,7 +61,7 @@ const SignModal = () => {
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(email, password);
-    autoRedirect();
+    redirectTo();
   };
 
   const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -71,14 +73,9 @@ const SignModal = () => {
   // redirect user after sign in
 
   const goBackTo = useNavigate();
+
   const redirectTo = () => {
     goBackTo("/");
-  };
-
-  const autoRedirect = () => {
-    setTimeout(() => {
-      redirectTo();
-    }, 0);
   };
 
   const myStyle = {
@@ -152,7 +149,7 @@ const SignModal = () => {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleRegisterSubmit}>
-            <div className="form-input">
+            <div className={styles.formInput}>
               <h2>Register</h2>
               <div className={styles.inputModal}>
                 <input

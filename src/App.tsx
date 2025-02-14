@@ -12,6 +12,7 @@ import { CountriesContextProvider } from "./context/CountriesContext";
 
 import Profile from "./pages/Profile";
 import BackButtonThemeContainer from "./components/BackButtonThemeContainer";
+import QuizGame from "./pages/FooQuiz";
 
 
 
