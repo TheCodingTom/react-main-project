@@ -218,6 +218,11 @@ h1 {
   gap: 10px;
 }
 
+.avatar {
+  height: 200px;
+  width: 200px;
+}
+
 
 /* @keyframes roll{
   from{
@@ -231,3 +236,19 @@ h1 {
 /* .logo:hover {
   transform: rotate(180deg); transition: 4s
 } */
+
+
+#spin {
+  color: white;
+  position:absolute;
+  top:40%;
+  left:35%;
+  margin:50px;
+  animation: orbit 10s forwards infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes orbit {
+    from {  -webkit-transform: rotate(0deg) translateX(150px) rotate(0deg); }
+    to   {  -webkit-transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+}

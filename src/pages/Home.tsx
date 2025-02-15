@@ -36,7 +36,7 @@ const Home = () => {
   return (
     <div className="home-container">
       {user ? <h1>Welcome, {username}!</h1> : <h1>Welcome, friend!</h1>}
-      <img src={logo} className="logo" alt="" />
+      <img src={logo} className="logo" alt="" /> <p id="spin" >You</p>
       {isAuth
         ? ""
         : "Do you want to discover more about the countries in the world?"}
