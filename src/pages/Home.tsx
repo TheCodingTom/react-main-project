@@ -8,6 +8,7 @@ import SignModal from "../components/SignModal";
 import { isUserLogged } from "../utils/AuthUtility";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
+import CircularText from "../components/CircularText";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -36,11 +37,19 @@ const Home = () => {
   return (
     <div className="home-container">
       {user ? <h1>Welcome, {username}!</h1> : <h1>Welcome, friend!</h1>}
-      <img src={logo} className="logo" alt="" /> <p id="spin" >You</p>
+      <div className="logo-text-container">
+      <CircularText
+        text="TRAVEL*AROUND*THE*WORLD*"
+        onHover="speedUp"
+        spinDuration={20}
+        className="custom-class"
+      />
+      <img src={logo} className="logo" alt="image of a globe" />
+      </div>
+      {/* {isAuth ? <p id="spin">You</p> : ""} */}
       {isAuth
         ? ""
         : "Do you want to discover more about the countries in the world?"}
-     
       {isAuth ? (
         <p>Travel around the world with this web app!</p>
       ) : (

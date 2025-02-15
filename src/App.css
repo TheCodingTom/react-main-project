@@ -107,6 +107,7 @@ h1 {
 .logo {
   height: 300px;
   width: 300px;
+  padding: 5px;
   /* animation: roll 15s linear 0.5s infinite; */
 }
 
@@ -223,6 +224,39 @@ h1 {
   width: 200px;
 }
 
+.circular-text {
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 300px;
+  height:300px;
+  font-weight: bold;
+  color: #fff;
+  font-weight: 900;
+  text-align: center;
+  cursor: pointer;
+}
+
+.circular-text span {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 24px;
+  transition: all 0.5s cubic-bezier(0, 0, 0, 1);
+}
+
+.logo-text-container {
+  position: relative;
+  text-align: center;
+}
+
+.custom-class {
+  position: absolute;
+  transform: translate(-50%, -50%);
+color: var(--color);
+}
 
 /* @keyframes roll{
   from{
@@ -243,7 +277,7 @@ h1 {
   position:absolute;
   top:40%;
   left:35%;
-  margin:50px;
+  margin:45px;
   animation: orbit 10s forwards infinite;
   animation-timing-function: linear;
 }
