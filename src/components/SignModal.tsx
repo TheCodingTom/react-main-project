@@ -2,9 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
-import { Icon } from "react-icons-kit";
-import { eyeOff } from "react-icons-kit/feather/eyeOff";
-import { eye } from "react-icons-kit/feather/eye";
+
 import styles from "../styles/modal.module.css";
 
 const SignModal = () => {
@@ -15,7 +13,7 @@ const SignModal = () => {
   const [errors, setErrors] = useState({ email: "", password: "" });
 
   const [type, setType] = useState("password");
-  const [icon, setIcon] = useState(eyeOff);
+
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
 
@@ -31,7 +29,6 @@ const SignModal = () => {
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    
     setEmail(e.target.value);
     setErrors({
       ...errors,
@@ -80,7 +77,6 @@ const SignModal = () => {
 
   const handleToggle = () => {
     setType(type === "password" ? "text" : "password");
-    setIcon(type === "password" ? eye : eyeOff);
   };
 
   const handleShowLoginModal = () => {
@@ -93,9 +89,10 @@ const SignModal = () => {
     setShowSignUp(false);
   };
 
-  // const myStyle = {
-  //   width: "250px",
-  // };
+  const myStyle = {
+    width: "250px",
+    height: "40px",
+  };
 
   return (
     <div>
@@ -114,26 +111,54 @@ const SignModal = () => {
               <h2>Login</h2>
               <div className={styles.modalInputs}>
                 <input
+                  style={myStyle}
                   type="email"
                   name="email"
                   placeholder="Email"
                   value={email}
                   onChange={handleEmailChange}
-                  className={errors.email && email.length > 0 ? styles.errorInput : styles.input}
+                  className={
+                    errors.email && email.length > 0
+                      ? styles.errorInput
+                      : styles.input
+                  }
                 />
-                {errors.email && email.length > 0 ? <p className={styles.error}>{errors.email}</p> : ""}
+                {errors.email && email.length > 0 ? (
+                  <p className={styles.error}>{errors.email}</p>
+                ) : (
+                  ""
+                )}
 
-                <input
-                  type={type}
-                  name="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={handlePasswordChange}
-                  autoComplete="current-password"
-                  className={errors.password && password.length > 0 ? styles.errorInput : styles.input}
-                />
+                <div className={styles.passwordContainer}>
+                  <input
+                    style={myStyle}
+                    type={type}
+                    name="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    autoComplete="current-password"
+                    className={
+                      errors.password && password.length > 0
+                        ? styles.errorInput
+                        : styles.input
+                    }
+                  />
 
-{errors.password && password.length > 0 ? <p className={styles.error}>{errors.password}</p> : ""}
+                  <span onClick={handleToggle}>
+                    {type === "password" ? (
+                      <Button>Show</Button>
+                    ) : (
+                      <Button>Hide</Button>
+                    )}
+                  </span>
+                </div>
+
+                {errors.password && password.length > 0 ? (
+                  <p className={styles.error}>{errors.password}</p>
+                ) : (
+                  ""
+                )}
               </div>
 
               <Button type="submit">Login</Button>
@@ -154,35 +179,59 @@ const SignModal = () => {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleRegisterSubmit}>
-            <div className={styles.formInput}>
+            <div className={styles.formModal}>
               <h2>Register</h2>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={handleEmailChange}
-                className={errors.email ? styles.errorInput : ""}
-              />
-              {errors.email && <p className={styles.error}>{errors.email}</p>}
-
-              <div className={styles.inputPassword}>
+              <div className={styles.modalInputs}>
                 <input
-                  type={type}
-                  name="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={handlePasswordChange}
-                  autoComplete="current-password"
-                  className={errors.password ? styles.errorInput : ""}
+                  style={myStyle}
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  className={
+                    errors.email && email.length > 0
+                      ? styles.errorInput
+                      : styles.input
+                  }
                 />
-                <span onClick={handleToggle}>
-                  <Icon icon={icon} size={25} />
-                </span>
+                {errors.email && email.length > 0 ? (
+                  <p className={styles.error}>{errors.email}</p>
+                ) : (
+                  ""
+                )}
+
+                <div className={styles.passwordContainer}>
+                  <input
+                    style={myStyle}
+                    type={type}
+                    name="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    autoComplete="current-password"
+                    className={
+                      errors.password && password.length > 0
+                        ? styles.errorInput
+                        : styles.input
+                    }
+                  />
+
+                  <span onClick={handleToggle}>
+                    {type === "password" ? (
+                      <Button>Show</Button>
+                    ) : (
+                      <Button>Hide</Button>
+                    )}
+                  </span>
+                </div>
+
+                {errors.password && password.length > 0 ? (
+                  <p className={styles.error}>{errors.password}</p>
+                ) : (
+                  ""
+                )}
               </div>
-              {errors.password && (
-                <p className={styles.error}>{errors.password}</p>
-              )}
 
               <Button type="submit">Register</Button>
             </div>
