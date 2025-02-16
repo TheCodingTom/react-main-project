@@ -8,6 +8,7 @@ import { isUserLogged } from "../utils/AuthUtility";
 function NavBar() {
   const { user, logout } = useContext(AuthContext);
   const isAuth = isUserLogged(user)
+  
   return (
     <>
       <Navbar

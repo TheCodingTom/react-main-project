@@ -93,9 +93,10 @@ const SignModal = () => {
     width: "250px",
     height: "40px",
   };
+  
 
   return (
-    <div>
+    <>
       <Button variant="primary" onClick={() => setShowSignIn(true)}>
         Login
       </Button>
@@ -243,7 +244,7 @@ const SignModal = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };
 

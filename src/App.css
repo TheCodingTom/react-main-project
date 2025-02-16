@@ -77,6 +77,11 @@ body {
   background-color: var(--background-color);
   color: var(--color);
   font-family: "Space Grotesk", serif;
+  padding-right: 0px !important
+}
+
+body.modal-open {
+  padding-right: 0px !important;
 }
 
 * {
@@ -93,22 +98,10 @@ h1 {
   color: #37474f;
 }
 
-/* home page */
-
-.home-container {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-}
-
 .logo {
   height: 300px;
   width: 300px;
-  padding: 5px;
-  /* animation: roll 15s linear 0.5s infinite; */
+  padding: 10px;
 }
 
 /* navbar */
@@ -231,7 +224,6 @@ h1 {
   width: 300px;
   height: 300px;
   font-weight: bold;
-  color: #fff;
   font-weight: 900;
   text-align: center;
   cursor: pointer;
@@ -246,17 +238,6 @@ h1 {
   bottom: 0;
   font-size: 24px;
   transition: all 0.5s cubic-bezier(0, 0, 0, 1);
-}
-
-.logo-text-container {
-  position: relative;
-  text-align: center;
-}
-
-.custom-class {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  color: var(--color);
 }
 
 

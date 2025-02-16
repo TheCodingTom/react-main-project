@@ -9,6 +9,9 @@ import { isUserLogged } from "../utils/AuthUtility";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import CircularText from "../components/CircularText";
+import { NavLink } from "react-bootstrap";
+import { Link } from "react-router";
+import styles from "../styles/home.module.css"
 
 
 const Home = () => {
@@ -36,27 +39,25 @@ const Home = () => {
   }, [user]); // Run the effect when the user changes
 
   return (
-    <div className="home-container">
+    <div className={styles.container}>
       {user ? <h1>Welcome, {username}!</h1> : <h1>Welcome, friend!</h1>}
-      <div className="logo-text-container">
+      <div className={styles.logoTextContainer}>
         <CircularText
           text="TRAVEL*AROUND*THE*WORLD*"
           onHover="speedUp"
-          spinDuration={20}
-          className="custom-class"
+          spinDuration={30}
+          className={styles.customClass}
         />
-        <img src={logo} className="logo" alt="image of a globe" />
+ 
+        <img src={logo} className={styles.logo} alt="image of a globe" />
+       
       </div>
+      <p>Do you want to discover more about the countries in the world?</p>
       
-      {/* {isAuth ? <p id="spin">You</p> : ""} */}
       {isAuth
-        ? ""
-        : "Do you want to discover more about the countries in the world?"}
-      {isAuth ? (
-        <p>Travel around the world with this web app!</p>
-      ) : (
-        <SignModal />
-      )}
+        ? <NavLink to={"/countries"} as={Link}><p className={styles.CTA}>Let's go!</p></NavLink>
+        : <SignModal />}
+      
     </div>
   );
 };
