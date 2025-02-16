@@ -46,10 +46,12 @@ function CountryCard({ country }: CountryCardProps) {
         <Card.Body className={styles.cardData}>
           <Card.Title>{country.name.common}</Card.Title>
 
-          <Link to={`${country.name.common}`}>
+         <div className={styles.cardButtons}>
+         <Link to={`${country.name.common}`}>
             <Button variant="primary">Discover more</Button>
           </Link>
-          <Button onClick={addLikeDoc} variant="primary">Like</Button>
+         {user ?  <Button onClick={addLikeDoc} variant="primary">Like</Button> : ""}
+         </div>
         </Card.Body>
       </Card>
     </div>
