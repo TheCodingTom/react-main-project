@@ -5,9 +5,12 @@ import { useContext } from "react";
 import SignModal from "./SignModal";
 import { isUserLogged } from "../utils/AuthUtility";
 
+
 function NavBar() {
   const { user, logout } = useContext(AuthContext);
   const isAuth = isUserLogged(user)
+  
+
   
   return (
     <>
@@ -35,7 +38,8 @@ function NavBar() {
               </NavDropdown>) : ""}
             </Nav>
             <Nav>
-              <div>
+              <div >
+                
                 {isAuth ? (
                   <Button onClick={logout} color="inherit">
                     Log out

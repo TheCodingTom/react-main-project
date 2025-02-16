@@ -7,7 +7,25 @@
     gap: 10px;
   }
 
+  .welcome {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
 
+  .welcome img {
+    height: 70px;
+  }
+
+  @media (max-width: 767px) {
+    .welcome {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+    
+    }
+  }
   
   .logo {
     height: 300px;

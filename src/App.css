@@ -114,6 +114,12 @@ h1 {
   margin-bottom: 10px;
 }
 
+.nav-bar-avatar {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+}
+
 /* countries page */
 
 .top-container {

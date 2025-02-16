@@ -19,6 +19,7 @@ const Home = () => {
   const isAuth = isUserLogged(user);
 
   const [username, setUsername] = useState<string | null>(null);
+  const [avatar, setAvatar] = useState<string | null>(null)
 
   const getUsername = async () => {
     const querySnapshot = await getDocs(collection(db, "users"));
@@ -34,14 +35,31 @@ const Home = () => {
     });
   };
 
+  const getAvatar = async () => {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    querySnapshot.forEach((doc) => {
+      if (user && user.id === doc.id) {
+        const avatarUrl = doc.data().avatar;
+        setAvatar(avatarUrl);
+
+        if (!avatarUrl) {
+          setAvatar("");
+        }
+      }
+    });
+  };
+
+
   useEffect(() => {
     getUsername();
+    getAvatar()
   }, [user]); // Run the effect when the user changes
 
   return (
     <div className={styles.container}>
       <div className={styles.welcome}>
       {user ? <h1>Welcome, {username}!</h1> : <h1>Welcome, friend!</h1>}
+      {user && avatar ? <img src={avatar} alt="user avatar" className={styles.avatarHome}/>: ""}
       </div>
 
       <div className={styles.logoTextContainer}>
