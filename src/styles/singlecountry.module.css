@@ -1,3 +1,11 @@
+.topContainer {
+  padding: 30px;
+} 
+
+.flag {
+  outline: 2px grey solid;
+  }
+
 .container {
   line-height: 0;
   -webkit-column-count: 4;
@@ -12,11 +20,11 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
-.flag {
-outline: 2px grey solid;
+h2 {
+text-align: center;
 }
 
 .picture {
@@ -36,6 +44,11 @@ p {
   font-size: medium
 }
 
+@media (max-width: 767px) {
+  .countryDetails {
+    margin-bottom: 10px;
+  }
+}
 
 @media (max-width: 1200px) {
   .container {

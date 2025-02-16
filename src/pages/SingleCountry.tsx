@@ -31,7 +31,6 @@ function SingleCountry() {
   const { countryName } = useParams<string>();
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
   const [countryData, setCountryData] = useState<Country | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [pixabayData, setPixabayData] = useState<PixabayData[] | null>(null);
 
   const WikiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${countryName}`;
@@ -55,8 +54,8 @@ function SingleCountry() {
       console.log(result);
       setWikiData(result);
     } catch (error) {
-      setError("Failed to fetch Wikipedia data.");
-      console.error("Error fetching Wikipedia data:", error);
+      
+      console.log("error in the fetch:", error);
     }
   };
 
@@ -68,7 +67,7 @@ function SingleCountry() {
         redirect("/"); // Redirect to home
         return;
       }
-      if (!response.ok) throw new Error("Wikipedia data not found");
+      if (!response.ok) throw new Error("country data not found");
 
       const result = await response.json();
 
@@ -77,7 +76,7 @@ function SingleCountry() {
       );
 
       if (countryName && !countryNames.includes(countryName.toLowerCase())) {
-        redirect("/");
+        redirect("/"); // fixes "è", "à" fetch
       }
 
       console.log(result);
@@ -108,6 +107,7 @@ function SingleCountry() {
     <div>
       <h1>{wikiData?.title}</h1>
 
+      <div className={styles.topContainer}>
       <Container>
         <Row>
           <Col className={styles.countryDetails}>
@@ -126,11 +126,12 @@ function SingleCountry() {
           </Col>
         </Row>
       </Container>
+      </div>
 
       <h2>Gallery</h2>
 
       <div className={styles.container}>
-        {pixabayData && // in another component to use Suspence
+        {pixabayData && 
           pixabayData.map((item) => {
             return (
               <div key={item.id}>

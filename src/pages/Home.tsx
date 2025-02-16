@@ -40,7 +40,10 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.welcome}>
       {user ? <h1>Welcome, {username}!</h1> : <h1>Welcome, friend!</h1>}
+      </div>
+
       <div className={styles.logoTextContainer}>
         <CircularText
           text="TRAVEL*AROUND*THE*WORLD*"

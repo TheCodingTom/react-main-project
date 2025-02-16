@@ -16,6 +16,7 @@ import { AuthContext } from "../context/AuthContext";
 import { CommentType } from "../types/customTypes";
 import CommentCard from "./CommentCard";
 
+
 function Comments() {
   const { countryName } = useParams<string>();
   const { user } = useContext(AuthContext);
@@ -91,7 +92,7 @@ function Comments() {
   }, []);
 
   return (
-    <>
+    
       <Stack gap={3} className="align-items-center">
         <h2>Let's talk about {countryName}</h2>
 
@@ -112,7 +113,8 @@ function Comments() {
           <Button type="submit">Send</Button>
         </Form>
       </Stack>
-    </>
+      
+
   );
 }
 
