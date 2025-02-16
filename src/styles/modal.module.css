@@ -4,7 +4,7 @@
   justify-content: space-evenly;
 }
 
-.formInput {
+.formModal {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -12,21 +12,14 @@
   padding: 20px;
 }
 
-.inputModal {
+.modalInputs {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.inputPassword {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-
 .input {
-  border: 1px solid black
+  border: 1px solid black;
 }
 
 .error {
@@ -36,3 +29,5 @@
 .errorInput {
   border: 1px solid red;
 }
+
+

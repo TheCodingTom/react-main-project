@@ -30,8 +30,8 @@ const SignModal = () => {
     return password.length >= 6;
   };
 
-
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    
     setEmail(e.target.value);
     setErrors({
       ...errors,
@@ -41,14 +41,12 @@ const SignModal = () => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-      setErrors({
-        ...errors,
-        password: validatePassword(e.target.value) 
-          ? ""
-          : "Password must be at least 6 characters",
-      });
-    
-    
+    setErrors({
+      ...errors,
+      password: validatePassword(e.target.value)
+        ? ""
+        : "Password must be at least 6 characters",
+    });
   };
 
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -93,11 +91,11 @@ const SignModal = () => {
   const handleCloseBothModals = () => {
     setShowSignIn(false);
     setShowSignUp(false);
-  }
-
-  const myStyle = {
-    width: "250px",
   };
+
+  // const myStyle = {
+  //   width: "250px",
+  // };
 
   return (
     <div>
@@ -112,37 +110,31 @@ const SignModal = () => {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleLoginSubmit}>
-            <div className={styles.formInput}>
+            <div className={styles.formModal}>
               <h2>Login</h2>
-              <input
-                style={myStyle}
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={handleEmailChange}
-                className={errors.email ? styles.errorInput : styles.input}
-              />
-              {errors.email && <p className={styles.error}>{errors.email}</p>}
-
-              <div className={styles.inputPassword}>
+              <div className={styles.modalInputs}>
                 <input
-                  style={myStyle}
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  className={errors.email && email.length > 0 ? styles.errorInput : styles.input}
+                />
+                {errors.email && email.length > 0 ? <p className={styles.error}>{errors.email}</p> : ""}
+
+                <input
                   type={type}
                   name="password"
                   placeholder="Password"
                   value={password}
                   onChange={handlePasswordChange}
                   autoComplete="current-password"
-                  className={errors.password ? styles.errorInput : styles.input}
+                  className={errors.password && password.length > 0 ? styles.errorInput : styles.input}
                 />
-                <span onClick={handleToggle}>
-                  <Icon icon={icon} size={25} />
-                </span>
+
+{errors.password && password.length > 0 ? <p className={styles.error}>{errors.password}</p> : ""}
               </div>
-              {errors.password && (
-                <p className={styles.error}>{errors.password}</p>
-              )}
 
               <Button type="submit">Login</Button>
             </div>
@@ -165,7 +157,6 @@ const SignModal = () => {
             <div className={styles.formInput}>
               <h2>Register</h2>
               <input
-                style={myStyle}
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -177,7 +168,6 @@ const SignModal = () => {
 
               <div className={styles.inputPassword}>
                 <input
-                  style={myStyle}
                   type={type}
                   name="password"
                   placeholder="Password"
