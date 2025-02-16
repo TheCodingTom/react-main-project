@@ -64,12 +64,22 @@ function Profile() {
     <>
       <h1>Your Profile</h1>
       <div className="profile-page">
-        <img src={avatarUrl || "https://api.dicebear.com/7.x/avataaars/svg?seed=default"} className="avatar" alt="User Avatar" />
+       
+          <img
+            src={
+              avatarUrl ||
+              "https://api.dicebear.com/7.x/avataaars/svg?seed=default"
+            }
+            className="avatar"
+            alt="User Avatar"
+          />
+
         <Button onClick={generateAvatar}>Randomize Avatar</Button>
         <h3>Email: {user?.email}</h3>
         <h3>Username: {user?.displayName || "No username set"}</h3>
         <div className="profile-input">
           <input
+            className="username-input"
             type="text"
             placeholder="Enter new username"
             value={username}
