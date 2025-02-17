@@ -84,6 +84,8 @@ const Home = () => {
         <SignModal />
       )}
 
+      <p className={styles.copyright}>Copyright 2025 Thomas D'Astolto</p>
+
   
     </div>
   );

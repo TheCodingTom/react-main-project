@@ -40,7 +40,7 @@ function QuizBeta() {
       <div>
         {gameState === "start" && <StartScreen onStart={handleStart} />}
         {gameState === "playing" && (
-          <div>
+          <div >
             <QuestionCard
               question={Questions[currentQuestion]}
               onAnswerSelect={handleAnswer}
@@ -49,7 +49,7 @@ function QuizBeta() {
               currentQuestion={currentQuestion}
             />
 
-            <div>
+            <div className="text-center">
               Score: {score}/{Questions.length}
             </div>
           </div>

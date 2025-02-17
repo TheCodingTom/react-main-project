@@ -50,7 +50,9 @@ function App() {
               <Route element={<Root />}>
                 <Route index element={<Home />} />
                 <Route path="/countries" element={<Countries />} />
-                <Route path="/quiz" element={<QuizBeta />} />
+                <Route path="/quiz" element={<ProtectedRoute>
+                      <QuizBeta />
+                    </ProtectedRoute>} />
 
                 <Route
                   path="/countries/:countryName"
