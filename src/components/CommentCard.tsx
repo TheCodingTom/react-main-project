@@ -15,12 +15,12 @@ function CommentCard({ comment }: CommentCardProps) {
   const { countryName } = useParams<string>();
   const {user} = useContext(AuthContext)
 
-    // const [username, setUsername] = useState<string | null>(null);
 
   const dateFormat = (seconds: number) => {
     const formattedDate = new Date(seconds * 1000).toLocaleString();
     return formattedDate;
   };
+
 
   const handleCommentDelete = async (commentId: string) => {
     if (!countryName) {
@@ -43,22 +43,6 @@ function CommentCard({ comment }: CommentCardProps) {
       }
     };
     }
-
-    //  const getUsername = async () => {
-    //     const querySnapshot = await getDocs(collection(db, "users"));
-    //     querySnapshot.forEach((doc) => {
-    //       if (user && user.id === doc.id) {
-    //         const displayName = doc.data().displayName;
-    //         setUsername(displayName);
-    //       }
-    //     });
-    //   };
-    
-    //   useEffect(() => {
-    //     getUsername();
-    //   }, [user]); // Run the effect when the user changes
-
-
 
 
   return (

@@ -50,7 +50,8 @@ function Profile() {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (updatedUser) => { // onAuthStateChanges works whenever the user logs in/out or updates profile
+    const unsubscribe = onAuthStateChanged(auth, (updatedUser) => {
+      // onAuthStateChanges works whenever the user logs in/out or updates profile
       setUser(updatedUser);
       if (updatedUser?.photoURL) {
         setAvatarUrl(updatedUser.photoURL);

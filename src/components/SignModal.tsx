@@ -20,8 +20,8 @@ const SignModal = () => {
   const goToHome = useNavigate();
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regulare expression used to validate emails
+    return emailRegex.test(email); // test method checks if the email string matches the pattern
   };
 
   const validatePassword = (password: string) => {
@@ -93,7 +93,6 @@ const SignModal = () => {
     width: "250px",
     height: "40px",
   };
-  
 
   return (
     <>

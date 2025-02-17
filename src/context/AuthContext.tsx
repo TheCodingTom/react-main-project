@@ -65,10 +65,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
       // when the first user signs up this function creates automatically a users collection in the firestore database
       // after that whenever a user signs up it creates a new document in that collection with a unique id
-      const docRef = doc(db, "users", user.uid) // creating a doc reference object
-      await setDoc(docRef, { // add the actual data in the doc reference object
-        email: email
-      })
+      const docRef = doc(db, "users", user.uid); // creating a doc reference object
+      await setDoc(docRef, {
+        // add the actual data in the doc reference object
+        email: email,
+      });
     } catch (err) {
       const error = err as Error;
       console.log(error.message);
@@ -85,18 +86,16 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         console.log("user logged in");
         console.log(user);
         if (user && email) {
-          // setUser({ email, id });
+          setUser({ email, id });
         } else {
           throw new Error("User info not available");
         }
         // ...
       })
       .catch((error) => {
-        
         const errorMessage = error.message;
         console.log(errorMessage);
       });
-
   };
 
   const checkUserStatus = () => {
@@ -117,18 +116,20 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       } else {
         // User is signed out
         console.log("User is logged out");
-        setUser(null)
+        setUser(null);
       }
     });
   };
 
   const logout = () => {
-    signOut(auth).then(() => {
-      // Sign-out successful.
-      setUser(null)
-    }).catch((error) => { 
-      console.log(error);
-    });
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        setUser(null);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   //7. include elements you wanna share in provider property value

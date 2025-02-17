@@ -12,8 +12,7 @@ const Grid = ({ countriesList }: GridProps) => {
     <div className="cards-container">
       {countriesList &&
         countriesList.map((country) => {
-          return <CountryCard country={country} key={country.flag}/>
-      
+          return <CountryCard country={country} key={country.flag} />;
         })}
     </div>
   );

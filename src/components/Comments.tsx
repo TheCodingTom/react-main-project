@@ -1,7 +1,6 @@
 import {
   addDoc,
   collection,
-
   onSnapshot,
   orderBy,
   query,
@@ -16,13 +15,11 @@ import { AuthContext } from "../context/AuthContext";
 import { CommentType } from "../types/customTypes";
 import CommentCard from "./CommentCard";
 
-
 function Comments() {
   const { countryName } = useParams<string>();
   const { user } = useContext(AuthContext);
   const [comments, setComments] = useState<CommentType[] | null>(null);
   const [commentText, setCommentText] = useState<string>("");
-  
 
   const getLiveMessages = () => {
     if (!countryName) {
@@ -54,7 +51,6 @@ function Comments() {
     });
   };
 
-
   const handleTextCommentChange = (e: React.ChangeEvent<HTMLFormElement>) => {
     const inputText = e.target.value;
     setCommentText(inputText);
@@ -84,37 +80,31 @@ function Comments() {
     console.log("Message added with ID:", docRef.id);
   };
 
-
-
   useEffect(() => {
     getLiveMessages();
-    
   }, []);
 
   return (
-    
-      <Stack gap={3} className="align-items-center">
-        <h2>Let's talk about {countryName}</h2>
+    <Stack gap={3} className="align-items-center">
+      <h2>Let's talk about {countryName}</h2>
 
-        {comments &&
-          comments.map((comment) => {
-            return <CommentCard comment={comment} key={comment.id} />;
-          })}
+      {comments &&
+        comments.map((comment) => {
+          return <CommentCard comment={comment} key={comment.id} />;
+        })}
 
-        <Form onSubmit={handleCommentSubmit}>
-          <FloatingLabel
-            onChange={handleTextCommentChange}
-            controlId="floatingInput"
-            label="message"
-            className="mb-3"
-          >
-            <Form.Control as="textarea" placeholder="message" />
-          </FloatingLabel>
-          <Button type="submit">Send</Button>
-        </Form>
-      </Stack>
-      
-
+      <Form onSubmit={handleCommentSubmit}>
+        <FloatingLabel
+          onChange={handleTextCommentChange}
+          controlId="floatingInput"
+          label="message"
+          className="mb-3"
+        >
+          <Form.Control as="textarea" placeholder="message" />
+        </FloatingLabel>
+        <Button type="submit">Send</Button>
+      </Form>
+    </Stack>
   );
 }
 

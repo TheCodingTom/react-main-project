@@ -40,7 +40,7 @@ function SingleCountry() {
   const pixabayUrl = `https://pixabay.com/api/?key=48499188-4a0bbbaf9b13a582b53d5d561&q=city+landscape+${countryName}&image_type=photo&pretty=true&per_page=10`;
 
   const redirect = useNavigate();
-  
+
   const getWikiData = async () => {
     try {
       const response = await fetch(WikiUrl);
@@ -54,7 +54,6 @@ function SingleCountry() {
       console.log(result);
       setWikiData(result);
     } catch (error) {
-      
       console.log("error in the fetch:", error);
     }
   };
@@ -108,30 +107,30 @@ function SingleCountry() {
       <h1>{wikiData?.title}</h1>
 
       <div className={styles.topContainer}>
-      <Container>
-        <Row>
-          <Col className={styles.countryDetails}>
-            <img
-              className={styles.flag}
-              src={countryData?.flags.png}
-              alt={`flag of ${countryName}`}
-            />
-            <h4>Capital: {countryData?.capital} </h4>
-            <h4>Continent: {countryData?.region} </h4>
-            <h4>Population: {countryData?.population.toLocaleString()} </h4>
-            <p>Extract: {wikiData?.extract} </p>
-          </Col>
-          <Col>
-            <Chat />
-          </Col>
-        </Row>
-      </Container>
+        <Container>
+          <Row>
+            <Col className={styles.countryDetails}>
+              <img
+                className={styles.flag}
+                src={countryData?.flags.png}
+                alt={`flag of ${countryName}`}
+              />
+              <h4>Capital: {countryData?.capital} </h4>
+              <h4>Continent: {countryData?.region} </h4>
+              <h4>Population: {countryData?.population.toLocaleString()} </h4>
+              <p>Extract: {wikiData?.extract} </p>
+            </Col>
+            <Col>
+              <Chat />
+            </Col>
+          </Row>
+        </Container>
       </div>
 
       <h2>Gallery</h2>
 
       <div className={styles.container}>
-        {pixabayData && 
+        {pixabayData &&
           pixabayData.map((item) => {
             return (
               <div key={item.id}>

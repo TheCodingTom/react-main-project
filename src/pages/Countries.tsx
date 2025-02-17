@@ -3,7 +3,6 @@ import Grid from "../components/Grid";
 import Search from "../components/Search";
 import { Country } from "../types/customTypes";
 
-
 function Countries() {
   const [userSearch, setUserSearch] = useState("");
   const [countriesList, setCountriesList] = useState<Country[] | null>(null);

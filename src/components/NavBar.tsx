@@ -5,23 +5,23 @@ import { useContext } from "react";
 import SignModal from "./SignModal";
 import { isUserLogged } from "../utils/AuthUtility";
 
-
 function NavBar() {
   const { user, logout } = useContext(AuthContext);
-  const isAuth = isUserLogged(user)
-  
+  const isAuth = isUserLogged(user);
 
-  
   return (
     <>
       <Navbar
         collapseOnSelect
         expand="lg"
         className="bg-body-tertiary"
-        bg="light" data-bs-theme="light"
+        bg="light"
+        data-bs-theme="light"
       >
         <Container>
-          <Navbar.Brand as={NavLink} to={"/"}>COUNTRY EXPLORER</Navbar.Brand>
+          <Navbar.Brand as={NavLink} to={"/"}>
+            COUNTRY EXPLORER
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -31,15 +31,20 @@ function NavBar() {
               <Nav.Link as={NavLink} to={"/countries"}>
                 Countries
               </Nav.Link>
-              {isAuth ? (<NavDropdown title="User" id="collapsible-nav-dropdown">
-                <NavDropdown.Item as={NavLink} to={"/profile"}>Profile</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item>Play - Coming soon?</NavDropdown.Item>
-              </NavDropdown>) : ""}
+              {isAuth ? (
+                <NavDropdown title="User" id="collapsible-nav-dropdown">
+                  <NavDropdown.Item as={NavLink} to={"/profile"}>
+                    Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item>Play - Coming soon?</NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                ""
+              )}
             </Nav>
             <Nav>
-              <div >
-                
+              <div>
                 {isAuth ? (
                   <Button onClick={logout} color="inherit">
                     Log out
@@ -52,7 +57,6 @@ function NavBar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      
     </>
   );
 }

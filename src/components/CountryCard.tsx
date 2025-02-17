@@ -12,15 +12,20 @@ type CountryCardProps = {
 };
 
 function CountryCard({ country }: CountryCardProps) {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const addLikeDoc = async () => {
-
     if (user && country.name.common) {
       try {
-        const likeRef = doc(db, "likes", user.id, "countries", country.name.common);
+        const likeRef = doc(
+          db,
+          "likes",
+          user.id,
+          "countries",
+          country.name.common
+        );
         const userLike = {
-          isLiked: true
-        }
+          isLiked: true,
+        };
         await setDoc(likeRef, userLike);
         console.log("Liked:", country.name.common);
       } catch (error) {
@@ -28,9 +33,6 @@ function CountryCard({ country }: CountryCardProps) {
       }
     }
   };
-
-
-  
 
   return (
     <div>
@@ -46,12 +48,18 @@ function CountryCard({ country }: CountryCardProps) {
         <Card.Body className={styles.cardData}>
           <Card.Title>{country.name.common}</Card.Title>
 
-         <div className={styles.cardButtons}>
-         <Link to={`${country.name.common}`}>
-            <Button variant="primary">Discover more</Button>
-          </Link>
-         {user ?  <Button onClick={addLikeDoc} variant="primary">Like</Button> : ""}
-         </div>
+          <div className={styles.cardButtons}>
+            <Link to={`${country.name.common}`}>
+              <Button variant="primary">Discover more</Button>
+            </Link>
+            {user ? (
+              <Button onClick={addLikeDoc} variant="primary">
+                Like
+              </Button>
+            ) : (
+              ""
+            )}
+          </div>
         </Card.Body>
       </Card>
     </div>
