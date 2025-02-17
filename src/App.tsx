@@ -13,6 +13,7 @@ import { CountriesContextProvider } from "./context/CountriesContext";
 import Profile from "./pages/Profile";
 import BackButtonThemeContainer from "./components/BackButtonThemeContainer";
 import QuizGame from "./pages/FooQuiz";
+import { useEffect } from "react";
 
 
 
@@ -29,10 +30,17 @@ const Root = () => {
 };
 
 function App() {
-  // console.log(app);
-  // console.log(auth);
-  // console.log(db);
-  // const { darkMode } = useContext(ThemeContext);
+
+  useEffect(() => { // function runs whenever a change id detected
+    const observer = new MutationObserver(() => { // API that watched for DOM changes
+      document.body.style.paddingRight = "0px"; // Force remove padding
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ["style"] }); // it watches for changes in the style attribute
+
+    return () => observer.disconnect(); // when the component unmounts, the observer stops running
+  }, []);
+
   return (
     <>
       <AuthContextProvider>

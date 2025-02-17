@@ -77,12 +77,13 @@ body {
   background-color: var(--background-color);
   color: var(--color);
   font-family: "Space Grotesk", serif;
-  padding-right: 0px !important
+
 }
 
-body.modal-open {
+.modal-open {
   padding-right: 0px !important;
 }
+
 
 * {
   transition: 0.2s;

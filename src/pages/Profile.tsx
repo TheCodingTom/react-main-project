@@ -17,7 +17,7 @@ function Profile() {
 
   // Generate a random DiceBear avatar URL
   const generateAvatar = () => {
-    const seed = Math.random().toString(36).substring(7); // Random seed
+    const seed = Math.random().toString(36).substring(7); // generated random decimal number, toString converts it into a base-36 string which includes numbers and letters and substring removes the first few characters, leaving a random seed that ensures that each avatar is unique
     const newAvatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`;
     setAvatarUrl(newAvatarUrl);
   };
@@ -50,29 +50,28 @@ function Profile() {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (updatedUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (updatedUser) => { // onAuthStateChanges works whenever the user logs in/out or updates profile
       setUser(updatedUser);
       if (updatedUser?.photoURL) {
         setAvatarUrl(updatedUser.photoURL);
       }
     });
 
-    return () => unsubscribe();
-  }, [auth]);
+    return () => unsubscribe(); // stop listening when the component unmounts
+  }, [auth]); // it runs when the component mounts or the auth object changes
 
   return (
     <>
       <h1>Your Profile</h1>
       <div className="profile-page">
-       
-          <img
-            src={
-              avatarUrl ||
-              "https://api.dicebear.com/7.x/avataaars/svg?seed=default"
-            }
-            className="avatar"
-            alt="User Avatar"
-          />
+        <img
+          src={
+            avatarUrl ||
+            "https://api.dicebear.com/7.x/avataaars/svg?seed=default"
+          }
+          className="avatar"
+          alt="User Avatar"
+        />
 
         <Button onClick={generateAvatar}>Randomize Avatar</Button>
         <h3>Email: {user?.email}</h3>
