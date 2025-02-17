@@ -7,15 +7,60 @@ import { Questions } from "../components/Questions";
 
 function FooQuiz() {
   const [gameState, setGameState] = useState<GameState>("start");
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+  const [score, setScore] = useState<number>(0);
+
   const handleStart = () => {
     setGameState("playing");
+  };
+
+  const handleRestart = () => {
+    setGameState("start")
+  }
+  const handleAnswer = (index: number) => {
+    setSelectedAnswer(index);
+    const isCorrect = index === Questions[currentQuestion].correct;
+
+    if (isCorrect === true) {
+      setScore((prev) => prev + 1);
+    }
+    setTimeout(() => {
+      if (currentQuestion < Questions.length - 1) {
+        // prevent app from crashing at the end of 10 questions
+        setCurrentQuestion((prev) => prev + 1); // updates the current question with the next one
+        setSelectedAnswer(null); // reset the selected answer otherwise the index won't change
+      } else {
+        setGameState("end");
+      }
+    }, 1000);
   };
   return (
     <>
       <div>
         {gameState === "start" && <StartScreen onStart={handleStart} />}
-        {gameState === "playing" && <QuestionCard question={Questions[0]} />}
-        {gameState === "end" && <GameOver />}
+        {gameState === "playing" && (
+          <div>
+            <QuestionCard
+              question={Questions[currentQuestion]}
+              onAnswerSelect={handleAnswer}
+              selectedAnswer={selectedAnswer}
+              totalQuestions={Questions.length}
+              currentQuestion={currentQuestion}
+            />
+
+            <div>
+              Score: {score}/{Questions.length}
+            </div>
+          </div>
+        )}
+        {gameState === "end" && (
+          <GameOver
+            totalQuestions={Questions.length}
+            score={score}
+            onRestart={handleRestart}
+          />
+        )}
       </div>
     </>
   );
