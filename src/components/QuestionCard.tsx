@@ -42,10 +42,10 @@ function QuestionCard({
             <div className="flex items-center justify-between">
               <span>{option}</span>
               {selectedAnswer !== null && index === question.correct && (
-                <CheckCircle className="w-5 h-5 text-green-500" />
+                <CheckCircle />
               )}
               {selectedAnswer === index && index !== question.correct && (
-                <XCircle className="w-5 h-5 text-red-500" />
+                <XCircle  />
               )}
             </div>
           </button>

@@ -11,7 +11,7 @@ import { CountriesContextProvider } from "./context/CountriesContext";
 import Profile from "./pages/Profile";
 import BackButtonThemeContainer from "./components/BackButtonThemeContainer";
 import { useEffect } from "react";
-import FooQuiz from "./pages/FooQuiz";
+import QuizBeta from "./pages/QuizBeta";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -50,7 +50,7 @@ function App() {
               <Route element={<Root />}>
                 <Route index element={<Home />} />
                 <Route path="/countries" element={<Countries />} />
-                <Route path="/quiz" element={<FooQuiz />} />
+                <Route path="/quiz" element={<QuizBeta />} />
 
                 <Route
                   path="/countries/:countryName"

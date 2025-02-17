@@ -5,7 +5,7 @@ import GameOver from "../components/GameOver";
 import { GameState } from "../types/quiz";
 import { Questions } from "../components/Questions";
 
-function FooQuiz() {
+function QuizBeta() {
   const [gameState, setGameState] = useState<GameState>("start");
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -66,4 +66,4 @@ function FooQuiz() {
   );
 }
 
-export default FooQuiz;
+export default QuizBeta;

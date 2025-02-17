@@ -37,7 +37,7 @@ function NavBar() {
                     Profile
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item>Play - Coming soon?</NavDropdown.Item>
+                  <NavDropdown.Item as={NavLink} to={"/quiz"}>Play - Beta version</NavDropdown.Item>
                 </NavDropdown>
               ) : (
                 ""
