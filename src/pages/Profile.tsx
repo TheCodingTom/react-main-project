@@ -9,7 +9,9 @@ import {
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
+
 function Profile() {
+  
   const auth = getAuth();
   const [user, setUser] = useState<User | null>(auth.currentUser);
   const [username, setUsername] = useState<string>("");

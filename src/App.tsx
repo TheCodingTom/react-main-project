@@ -10,8 +10,8 @@ import NavBar from "./components/NavBar";
 import { CountriesContextProvider } from "./context/CountriesContext";
 import Profile from "./pages/Profile";
 import BackButtonThemeContainer from "./components/BackButtonThemeContainer";
-import QuizGame from "./pages/FooQuiz";
 import { useEffect } from "react";
+import FooQuiz from "./pages/FooQuiz";
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -50,7 +50,7 @@ function App() {
               <Route element={<Root />}>
                 <Route index element={<Home />} />
                 <Route path="/countries" element={<Countries />} />
-                {/* <Route path="/quiz" element={<QuizGame />} /> */}
+                <Route path="/quiz" element={<FooQuiz />} />
 
                 <Route
                   path="/countries/:countryName"
