@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 
-
-
 type TransitionProps = {
   from: number;
   to: number;

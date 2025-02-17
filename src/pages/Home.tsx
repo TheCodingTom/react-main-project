@@ -13,6 +13,7 @@ import { NavLink } from "react-bootstrap";
 import { Link } from "react-router";
 import styles from "../styles/home.module.css";
 
+
 const Home = () => {
   const { user } = useContext(AuthContext);
   const isAuth = isUserLogged(user);
