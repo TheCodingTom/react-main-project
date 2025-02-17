@@ -6,16 +6,12 @@ import NoMatchPage from "./pages/NoMatchPage";
 import SingleCountry from "./pages/SingleCountry";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-
 import NavBar from "./components/NavBar";
 import { CountriesContextProvider } from "./context/CountriesContext";
-
 import Profile from "./pages/Profile";
 import BackButtonThemeContainer from "./components/BackButtonThemeContainer";
 import QuizGame from "./pages/FooQuiz";
 import { useEffect } from "react";
-
-
 
 const Root = () => {
   // this route element is the parent of 3 pages, so they all contain the navbar
@@ -30,13 +26,16 @@ const Root = () => {
 };
 
 function App() {
-
-  useEffect(() => { // function runs whenever a change id detected
-    const observer = new MutationObserver(() => { // API that watched for DOM changes
-      document.body.style.paddingRight = "0px"; // Force remove padding
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      // API that watched for DOM changes
+      document.body.style.paddingRight = "0px"; // forces to remove padding
     });
 
-    observer.observe(document.body, { attributes: true, attributeFilter: ["style"] }); // it watches for changes in the style attribute
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["style"],
+    }); // it watches for any changes to the style attribute of document.body and it
 
     return () => observer.disconnect(); // when the component unmounts, the observer stops running
   }, []);
