@@ -189,16 +189,6 @@ h1 {
   right: 16px;
 }
 
-.comment-delete-disabled {
-  width: 80px;
-  height: 40px;
-  position: absolute;
-  top: 8px;
-  right: 16px;
-  opacity: 0.5; /* reduce opacity to indicate disabled state */
-  cursor: not-allowed;
-}
-
 /* profile page */
 
 .profile-page {

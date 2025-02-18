@@ -55,12 +55,9 @@ function CommentCard({ comment }: CommentCardProps) {
         <Card.Text>{comment.text}</Card.Text>
       </Card.Body>
       <div>
-        <Button
-          className={user?.email === comment.user.email ? "comment-delete" : "comment-delete-disabled"}
-          onClick={() => handleCommentDelete(comment.id)}
-        >
-          Delete
-        </Button>
+
+      {user?.email === comment.user.email ? <Button className="comment-delete" onClick={() => handleCommentDelete(comment.id)}>Delete</Button> : ""}
+        
       </div>
     </Card>
   );
