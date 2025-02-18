@@ -1,6 +1,4 @@
-![image](https://github.com/user-attachments/assets/d622a3b1-f504-4295-a376-3d21ecae5fc7)
-
-Country Explorer is a dynamic and interactive web application that allows users to explore detailed information about countries worldwide. The project was built as a single-page application using React, designed to offer an intuitive way to search for and learn about different countries.
+Country Explorer is a dynamic and interactive web application that allows users to explore detailed information about countries worldwide. The project was built as a single-page application using React, designed to offer an intuitive way to search for and learn about different countries. This was my 3rd Frontend project at Code Academy Berlin - realised in 4 weeks.
 
 Functionalities and Objectives:
 
