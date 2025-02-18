@@ -10,3 +10,5 @@ Technologies Used:
 	•	TypeScript for type safety and better code management
 	•	CSS3 and Bootstrap for styling and responsive design
 	•	Netlify for deployment
+
+HERE'S THE LIVE DEMO: https://country-explorer32.netlify.app/
