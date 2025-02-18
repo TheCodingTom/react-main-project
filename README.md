@@ -1,50 +1,14 @@
-# React + TypeScript + Vite
+Country Explorer is a dynamic and interactive web application that allows users to explore detailed information about countries worldwide. The project was built as a single-page application using React, designed to offer an intuitive way to search for and learn about different countries. This was my 3rd Frontend project at Code Academy Berlin - realised in 4 weeks.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Functionalities and Objectives:
 
-Currently, two official plugins are available:
+With Country Explorer, users can search for any country and access key details. Logged-in users can also test their geography knowledge by playing a 10-question quiz about world capitals. The goal of the project was to create a user-friendly, visually appealing platform that makes learning about world geography simple and fun.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technologies Used:
+	•	React for building the user interface
+	•	REST Countries API, Wikipedia API, Pixabay API for fetching real-time country data
+	•	TypeScript for type safety and better code management
+	•	CSS3 and Bootstrap for styling and responsive design
+	•	Netlify for deployment
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+HERE'S THE LIVE DEMO: https://country-explorer32.netlify.app/
