@@ -9,7 +9,7 @@ import { isUserLogged } from "../utils/AuthUtility";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import CircularText from "../components/CircularText";
-import { NavLink } from "react-bootstrap";
+import { Button, NavLink } from "react-bootstrap";
 import { Link } from "react-router";
 import styles from "../styles/home.module.css";
 
@@ -79,7 +79,7 @@ const Home = () => {
 
       {isAuth ? (
         <NavLink to={"/countries"} as={Link}>
-          <p className={styles.CTA}>Let's go!</p>
+          <Button>Let's go!</Button>
         </NavLink>
       ) : (
         <SignModal />
