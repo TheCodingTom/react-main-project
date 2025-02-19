@@ -82,7 +82,7 @@ function Comments() {
     const docRef = await addDoc(messagesCollectionRef, newComment);
     console.log("Message added with ID:", docRef.id);
 
-    setCommentText("") // clears input field
+    setCommentText("") // clears input
   };
 
   useEffect(() => {

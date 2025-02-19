@@ -82,6 +82,7 @@ const SignModal = () => {
   const handleShowLoginModal = () => {
     setShowSignIn(true);
     setShowSignUp(false);
+    
   };
 
   const handleCloseBothModals = () => {
