@@ -20,8 +20,10 @@ function Comments() {
   const { user } = useContext(AuthContext);
   const [comments, setComments] = useState<CommentType[] | null>(null);
   const [commentText, setCommentText] = useState<string>("");
+  
 
   const getLiveMessages = () => {
+    
     if (!countryName) {
       throw new Error("countryName is undefined!");
     }
@@ -65,6 +67,7 @@ function Comments() {
       user: user,
     };
 
+
     if (!countryName) {
       throw new Error("countryName is undefined!");
     }
@@ -78,6 +81,8 @@ function Comments() {
 
     const docRef = await addDoc(messagesCollectionRef, newComment);
     console.log("Message added with ID:", docRef.id);
+
+    setCommentText("") // clears input field
   };
 
   useEffect(() => {
@@ -93,14 +98,15 @@ function Comments() {
           return <CommentCard comment={comment} key={comment.id} />;
         })}
 
-      <Form onSubmit={handleCommentSubmit}>
+      <Form onSubmit={handleCommentSubmit} >
         <FloatingLabel
+        
           onChange={handleTextCommentChange}
           controlId="floatingInput"
           label="message"
           className="mb-3"
         >
-          <Form.Control as="textarea" placeholder="message" />
+          <Form.Control value={commentText} type="text" as="textarea" placeholder="message" />
         </FloatingLabel>
         <Button type="submit">Send</Button>
       </Form>
